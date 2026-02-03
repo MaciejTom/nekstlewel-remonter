@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html class="dark" lang="pl"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ultra-Widowiskowy Landing Page</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#39FF14",
+                        "background-light": "#f0f0f0",
+                        "background-dark": "#000000",
+                    },
+                    fontFamily: {
+                        "display": ["Be Vietnam Pro", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="font-display" style="background-color: #000000">
+<div class="relative flex min-h-screen w-full flex-col bg-background-dark group/design-root overflow-x-hidden">
+<div class="layout-container flex h-full grow flex-col">
+<main class="flex-1">
+<div class="bg-background-dark text-primary pt-20">
+<div class="layout-content-container flex flex-col max-w-7xl mx-auto px-6 sm:px-10">
+<div class="py-16 sm:py-24 @container">
+<div class="flex flex-col items-center justify-center gap-8 text-center">
+<div class="flex flex-col gap-4">
+<h2 class="text-primary tracking-tighter text-4xl font-bold leading-tight sm:text-5xl md:text-6xl max-w-4xl">
+                                        Gotowy na Cyfrową Rewolucję?
+                                    </h2>
+<p class="text-primary/80 text-lg font-normal leading-normal max-w-3xl mx-auto sm:text-xl">
+                                        Skontaktuj się z nami i zobacz, jak szybko możemy odmienić Twoją obecność w sieci. Bez zbędnych spotkań, bez czekania.
+                                    </p>
+</div>
+<div class="flex justify-center">
+<button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-none h-12 px-6 sm:h-14 sm:px-8 bg-primary text-background-dark text-base font-bold leading-normal tracking-wider sm:text-lg">
+<span class="truncate">POROZMAWIAJMY O PROJEKCIE</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

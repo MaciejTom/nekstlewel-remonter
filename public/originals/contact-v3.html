@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Intery - Interior Design</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#C0A37D",
+            "background-light": "#F8F5F1",
+            "background-dark": "#121212",
+            "text-light": "#1A1A1A",
+            "text-dark": "#E0E0E0",
+            "card-light": "#FFFFFF",
+            "card-dark": "#2C2C2C",
+            "border-light": "#EAEAEA",
+            "border-dark": "#444444",
+            "footer-light": "#1A1A1A",
+            "footer-dark": "#1A1A1A",
+          },
+          fontFamily: {
+            display: ["Playfair Display", "serif"],
+            sans: ["Roboto", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0px",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 300,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-sans bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark">
+<div class="max-w-screen-2xl mx-auto">
+<main class="px-4 sm:px-8 lg:px-16">
+<section class="py-20 lg:py-32 relative">
+<img alt="Bright and airy living room with a spiral staircase" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbp1vjRlxIP56DGa-VFXGd8ZgQ0gzD4NP_tDrzzbmlqPDoeWbGmrf35M5L8NMZ8K4rJhNL2xweiWkX0j6cdB9cqiJU35gNxTS_tXjTsqfquPGv0ZVobHYkT3qLw8v4xksVJHmgluC3h6cykHNj6Gj4VjG2AK76udh6XJZEJ-usCcf9bR1zsqxRAQKSLfAYMoC2Kjm7SZGtG0fyNiKk0N-YGWDFa1Vm0RbRTtSu--air5F0NX749KnGcBszMt_MZk5BE-dh0W1SkrYp"/>
+<div class="absolute inset-0 bg-black/30"></div>
+<div class="relative grid lg:grid-cols-2 gap-8 items-center">
+<div>
+<p class="text-sm uppercase tracking-widest text-white/80">GET FREE ESTIMATE</p>
+<h2 class="font-display text-4xl md:text-5xl font-bold mt-4 text-white max-w-xl leading-tight">REACH OUT TO US IMMEDIATELY TO ARRANGE A CUSTOMISED QUOTATION FROM ONE OF OUR ASSESSORS.</h2>
+<div class="mt-10 space-y-4">
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined p-3 bg-primary rounded-full text-black">call</span>
+<span class="text-white">+123 (456) 789 00</span>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined p-3 bg-primary rounded-full text-black">email</span>
+<span class="text-white">INFO@INTERY-DESIGN.COM</span>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined p-3 bg-primary rounded-full text-black">location_on</span>
+<span class="text-white">12/A, NEW BOOTON TOWER, NYC, US</span>
+</div>
+</div>
+</div>
+<div class="bg-card-light dark:bg-card-dark p-8">
+<h3 class="font-display text-2xl font-bold">SCHEDULE A FREE CONSULTATION</h3>
+<form class="mt-6 grid sm:grid-cols-2 gap-6">
+<div>
+<label class="text-xs uppercase text-text-light/70 dark:text-text-dark/70" for="full-name">FULL NAME</label>
+<input class="mt-2 w-full bg-transparent border-b border-border-light dark:border-border-dark focus:border-primary focus:ring-0 p-2" id="full-name" placeholder="e.g. alonso" type="text"/>
+</div>
+<div>
+<label class="text-xs uppercase text-text-light/70 dark:text-text-dark/70" for="email">EMAIL ADDRESS</label>
+<input class="mt-2 w-full bg-transparent border-b border-border-light dark:border-border-dark focus:border-primary focus:ring-0 p-2" id="email" placeholder="e.g. jane@framer.com" type="email"/>
+</div>
+<div>
+<label class="text-xs uppercase text-text-light/70 dark:text-text-dark/70" for="phone">PHONE NUMBER</label>
+<input class="mt-2 w-full bg-transparent border-b border-border-light dark:border-border-dark focus:border-primary focus:ring-0 p-2" id="phone" placeholder="jane@framer.com" type="tel"/>
+</div>
+<div>
+<label class="text-xs uppercase text-text-light/70 dark:text-text-dark/70" for="subject">SUBJECT</label>
+<select class="mt-2 w-full bg-transparent border-b border-border-light dark:border-border-dark focus:border-primary focus:ring-0 p-2" id="subject">
+<option>Select...</option>
+<option>Residential</option>
+<option>Commercial</option>
+</select>
+</div>
+<div class="sm:col-span-2">
+<label class="text-xs uppercase text-text-light/70 dark:text-text-dark/70" for="message">MESSAGE</label>
+<textarea class="mt-2 w-full bg-transparent border-b border-border-light dark:border-border-dark focus:border-primary focus:ring-0 p-2" id="message" placeholder="e.g. anything write here" rows="4"></textarea>
+</div>
+<div class="sm:col-span-2">
+<button class="w-full bg-primary text-text-light dark:text-text-light py-4 text-sm font-medium" type="submit">GET A QUOTE</button>
+</div>
+</form>
+</div>
+</div>
+</section>
+</main>
+</div>
+</body></html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WebApp - The Future of Your Service</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#2bcdee",
+            "background-light": "#f6f8f8",
+            "background-dark": "#101f22",
+          },
+          fontFamily: {
+            "display": ["Inter", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    body {
+      background-color: #0A0A0A;
+    }
+    .glassmorphism {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .neon-gradient-button {
+      background-image: linear-gradient(to right, #00FFFF, #FF00FF);
+    }
+  </style>
+</head>
+<body>
+<div class="relative flex min-h-screen w-full flex-col font-display text-white bg-[#0A0A0A] dark group/design-root overflow-x-hidden">
+<div class="relative z-10">
+<main class="container mx-auto">
+<div class="@container">
+<div class="flex flex-col items-center justify-end gap-8 px-4 py-20 text-center">
+<div class="flex flex-col gap-2">
+<h1 class="text-white tracking-tight text-4xl font-bold leading-tight md:text-5xl md:font-black md:tracking-[-0.033em] max-w-3xl">
+                Ready to Dive In?
+              </h1>
+<p class="text-gray-300 text-base font-normal leading-normal max-w-2xl">Join thousands of creators and innovators. Start your journey today.</p>
+</div>
+<div class="flex justify-center">
+<button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 neon-gradient-button text-black text-base font-bold leading-normal tracking-[0.015em] transition-transform duration-300 hover:scale-105">
+<span class="truncate">Try for Free</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+</body></html>

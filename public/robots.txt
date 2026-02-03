@@ -1,0 +1,6 @@
+# Robots.txt for TOM-ART
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://tom-art.pl/sitemap.xml

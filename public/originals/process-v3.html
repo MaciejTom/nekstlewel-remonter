@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Process Section - 6 Steps</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#135bec",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+            "text-light-primary": "#1D2C3B",
+            "text-dark-primary": "#FFFFFF",
+            "text-light-secondary": "#8A94A6",
+            "text-dark-secondary": "#92a4c9"
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings:
+      'FILL' 0,
+      'wght' 300,
+      'GRAD' 0,
+      'opsz' 24
+    }
+  </style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark" style="background-color: #101622">
+  <div class="relative flex min-h-screen w-full flex-col items-center justify-center p-4 sm:p-6 md:p-10">
+    <div class="layout-container flex w-full max-w-5xl grow flex-col py-10">
+      <!-- Section Header -->
+      <div class="flex flex-col items-center text-center">
+        <h2 class="text-3xl font-bold leading-tight tracking-tighter text-text-light-primary dark:text-text-dark-primary md:text-4xl">Our Streamlined 6-Step Process</h2>
+        <p class="mt-3 max-w-2xl text-base text-text-light-secondary dark:text-dark-secondary sm:text-lg">
+          From initial contact to final delivery, we ensure a seamless and transparent journey for every client.
+        </p>
+      </div>
+      <!-- Steps Grid -->
+      <div class="mt-12 grid gap-8 md:mt-16 md:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+        <!-- Step 1 -->
+        <div class="flex flex-col items-start p-2">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20">
+            <span class="material-symbols-outlined text-primary text-3xl">chat_bubble</span>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-text-light-primary dark:text-text-dark-primary">01. Initial Inquiry</h3>
+          <p class="mt-2 text-base leading-relaxed text-text-light-secondary dark:text-dark-secondary">
+            The first step is for you to reach out to us with your initial questions or project ideas.
+          </p>
+        </div>
+        <!-- Step 2 -->
+        <div class="flex flex-col items-start p-2">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20">
+            <span class="material-symbols-outlined text-primary text-3xl">groups</span>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-text-light-primary dark:text-text-dark-primary">02. Discovery &amp; Consultation</h3>
+          <p class="mt-2 text-base leading-relaxed text-text-light-secondary dark:text-dark-secondary">
+            We schedule a call to dive deeper into your needs, goals, and vision for the project.
+          </p>
+        </div>
+        <!-- Step 3 -->
+        <div class="flex flex-col items-start p-2">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20">
+            <span class="material-symbols-outlined text-primary text-3xl">description</span>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-text-light-primary dark:text-text-dark-primary">03. Customized Proposal</h3>
+          <p class="mt-2 text-base leading-relaxed text-text-light-secondary dark:text-dark-secondary">
+            Based on our consultation, we prepare a detailed proposal outlining the scope, timeline, and investment.
+          </p>
+        </div>
+        <!-- Step 4 -->
+        <div class="flex flex-col items-start p-2">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20">
+            <span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-text-light-primary dark:text-text-dark-primary">04. Project Kick-off</h3>
+          <p class="mt-2 text-base leading-relaxed text-text-light-secondary dark:text-dark-secondary">
+            Once the proposal is approved, we officially start the project with a kick-off meeting to align on all details.
+          </p>
+        </div>
+        <!-- Step 5 -->
+        <div class="flex flex-col items-start p-2">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20">
+            <span class="material-symbols-outlined text-primary text-3xl">rate_review</span>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-text-light-primary dark:text-text-dark-primary">05. Execution &amp; Review</h3>
+          <p class="mt-2 text-base leading-relaxed text-text-light-secondary dark:text-dark-secondary">
+            Our team gets to work, providing regular updates and incorporating your feedback at key milestones.
+          </p>
+        </div>
+        <!-- Step 6 -->
+        <div class="flex flex-col items-start p-2">
+          <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/20">
+            <span class="material-symbols-outlined text-primary text-3xl">inventory_2</span>
+          </div>
+          <h3 class="mt-5 text-lg font-bold text-text-light-primary dark:text-text-dark-primary">06. Final Delivery &amp; Support</h3>
+          <p class="mt-2 text-base leading-relaxed text-text-light-secondary dark:text-dark-secondary">
+            We deliver the final product and provide ongoing support to ensure your continued success.
+          </p>
+        </div>
+      </div>
+      <!-- Call to Action Button -->
+      <div class="mt-12 flex justify-center py-3 md:mt-16">
+        <button class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-8 bg-primary text-white text-base font-bold leading-normal tracking-[0.015em] transition-transform hover:scale-105">
+          <span class="truncate">Begin Your Project</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

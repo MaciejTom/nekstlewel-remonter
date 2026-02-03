@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Footer V2</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#1152d4",
+                "primary-dark": "#0d42aa",
+                "accent": "#FFC107",
+                "accent-hover": "#e0a800",
+                "background-light": "#f6f6f8",
+                "background-dark": "#101622",
+                "surface-light": "#ffffff",
+                "surface-dark": "#1a2233",
+                "text-main": "#0d121b",
+                "text-sub": "#4c669a",
+            },
+            fontFamily: {
+                "display": ["Work Sans", "sans-serif"],
+                "body": ["Work Sans", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+    },
+}
+</script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-main dark:text-white antialiased overflow-x-hidden">
+<!-- Footer -->
+<footer class="bg-white dark:bg-surface-dark border-t border-gray-200 dark:border-gray-800 py-10">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-10 flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary dark:text-white">handyman</span>
+<span class="text-lg font-black text-primary dark:text-white tracking-tight">FIXMAN</span>
+</div>
+<p class="text-sm text-gray-500 text-center md:text-right">
+© 2024 FIXMAN Usługi Remontowo-Budowlane. Wszelkie prawa zastrzeżone.<br/>
+Stalowa Wola, Polska.
+</p>
+</div>
+</footer>
+</body>
+</html>

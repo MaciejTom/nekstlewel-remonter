@@ -1,0 +1,213 @@
+@import "tailwindcss";
+
+/* =============================================
+   TOM-ART WARM THEME — tweakcn generated
+   Cream + Navy + Red accent
+   ============================================= */
+
+:root {
+  --background: #fffbf5;
+  --foreground: #1d3557;
+  --card: #ffffff;
+  --card-foreground: #1d3557;
+  --popover: #ffffff;
+  --popover-foreground: #1d3557;
+  --primary: #e63946;
+  --primary-foreground: #ffffff;
+  --secondary: #1d3557;
+  --secondary-foreground: #fffbf5;
+  --muted: #f3ede4;
+  --muted-foreground: #7d7063;
+  --accent: #f3ede4;
+  --accent-foreground: #1d3557;
+  --destructive: #9b2226;
+  --destructive-foreground: #ffffff;
+  --border: #e8e1d5;
+  --input: #e8e1d5;
+  --ring: #e63946;
+  --chart-1: #e63946;
+  --chart-2: #1d3557;
+  --chart-3: #457b9d;
+  --chart-4: #a8dadc;
+  --chart-5: #f1faee;
+  --radius: 0.5rem;
+  --shadow-2xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
+  --shadow-xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
+  --shadow-sm: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 1px 2px -1px hsl(25 15% 15% / 0.08);
+  --shadow: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 1px 2px -1px hsl(25 15% 15% / 0.08);
+  --shadow-md: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 2px 4px -1px hsl(25 15% 15% / 0.08);
+  --shadow-lg: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 4px 6px -1px hsl(25 15% 15% / 0.08);
+  --shadow-xl: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 8px 10px -1px hsl(25 15% 15% / 0.08);
+  --shadow-2xl: 0px 4px 12px 0px hsl(25 15% 15% / 0.20);
+  --tracking-normal: 0.01em;
+  --spacing: 0.25rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+
+  --tracking-tighter: calc(var(--tracking-normal) - 0.05em);
+  --tracking-tight: calc(var(--tracking-normal) - 0.025em);
+  --tracking-normal: var(--tracking-normal);
+  --tracking-wide: calc(var(--tracking-normal) + 0.025em);
+  --tracking-wider: calc(var(--tracking-normal) + 0.05em);
+  --tracking-widest: calc(var(--tracking-normal) + 0.1em);
+}
+
+/* Base */
+html {
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+    letter-spacing: var(--tracking-normal);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-plus-jakarta), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  }
+}
+
+/* Section spacing */
+.section-spacing {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+/* Signature element: red underline accent on H2 */
+.h2-accent::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: var(--primary);
+  margin-top: 0.75rem;
+  border-radius: 2px;
+}
+
+.h2-accent-center::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 3px;
+  background: var(--primary);
+  margin-top: 0.75rem;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 2px;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+}
+
+/* FAQ */
+details summary::-webkit-details-marker {
+  display: none;
+}
+details summary {
+  list-style: none;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--muted);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--radius);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--muted-foreground);
+}
+
+::selection {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+}
+
+/* Hero animations */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(12px);
+    opacity: 0;
+  }
+}
+
+.animate-scroll {
+  animation: scroll 1.5s infinite;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out both;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>FAQ Section - 2 Column Grid</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#FFD600",
+            "background-light": "#FFFFFF",
+            "background-dark": "#000000",
+          },
+          fontFamily: {
+            display: ["Inter", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "8px",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-800 dark:text-gray-200 antialiased" style="background-color: #000000">
+  <div class="mx-auto max-w-screen-2xl px-4 sm:px-6 lg:px-8">
+    <section class="py-24">
+      <div class="text-center mb-16">
+        <h2 class="text-5xl font-extrabold text-gray-900 dark:text-white">QUESTIONS, ANSWERED</h2>
+        <p class="mt-4 max-w-2xl mx-auto text-gray-600 dark:text-gray-400">Get quick answers to the most common questions about our consulting process, services, and collaboration.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">What industries does Altero work with?</p>
+        </div>
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">Can you help with implementation, not just strategy?</p>
+        </div>
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">How does your consulting process work?</p>
+        </div>
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">How can I get started?</p>
+        </div>
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">Do you offer customized solutions?</p>
+        </div>
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">What makes Altero different from other consulting firms?</p>
+        </div>
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">How long does a typical project take?</p>
+        </div>
+        <div class="flex items-center space-x-3 py-4 border-b border-gray-200 dark:border-gray-800">
+          <span class="material-icons-outlined text-gray-900 dark:text-white text-xl">add</span>
+          <p class="font-medium text-gray-900 dark:text-white">Do you work with startups as well as established companies?</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

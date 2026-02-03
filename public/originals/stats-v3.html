@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Stats Section</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#073A36",
+            "background-light": "#FFFFFF",
+            "background-dark": "#111827",
+          },
+          fontFamily: {
+            display: ["Poppins", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "0.5rem",
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    .material-icons-outlined {
+      font-size: inherit;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-gray-700 dark:text-gray-300">
+  <section class="py-24">
+    <div class="container mx-auto px-8">
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <p class="text-sm font-semibold text-primary uppercase tracking-widest">STATS</p>
+        <h2 class="mt-2 text-4xl font-bold text-gray-900 dark:text-white">Our Achievements</h2>
+      </div>
+      <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div>
+          <p class="text-5xl font-bold text-primary">8k</p>
+          <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white">Interior Projects</p>
+          <p class="text-gray-500 dark:text-gray-400">Designs we have finished in last 32 years.</p>
+        </div>
+        <div>
+          <p class="text-5xl font-bold text-primary">31</p>
+          <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white">Years of Works</p>
+          <p class="text-gray-500 dark:text-gray-400">Designs we have finished in last 32 years.</p>
+        </div>
+        <div>
+          <p class="text-5xl font-bold text-primary">12K</p>
+          <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white">Satisfied Clients</p>
+          <p class="text-gray-500 dark:text-gray-400">Designs we have finished in last 32 years.</p>
+        </div>
+        <div>
+          <p class="text-5xl font-bold text-primary">97%</p>
+          <p class="mt-2 text-lg font-semibold text-gray-900 dark:text-white">Happy Rate</p>
+          <p class="text-gray-500 dark:text-gray-400">Designs we have finished in last 32 years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>

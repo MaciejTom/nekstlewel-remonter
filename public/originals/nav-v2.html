@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nav V2</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+tailwind.config = {
+    darkMode: "class",
+    theme: {
+        extend: {
+            colors: {
+                "primary": "#1152d4",
+                "primary-dark": "#0d42aa",
+                "accent": "#FFC107",
+                "accent-hover": "#e0a800",
+                "background-light": "#f6f6f8",
+                "background-dark": "#101622",
+                "surface-light": "#ffffff",
+                "surface-dark": "#1a2233",
+                "text-main": "#0d121b",
+                "text-sub": "#4c669a",
+            },
+            fontFamily: {
+                "display": ["Work Sans", "sans-serif"],
+                "body": ["Work Sans", "sans-serif"],
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+    },
+}
+</script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-text-main dark:text-white antialiased overflow-x-hidden">
+<!-- Top Navigation -->
+<nav class="sticky top-0 z-50 w-full bg-white dark:bg-surface-dark border-b border-[#e7ebf3] dark:border-gray-800 shadow-sm">
+<div class="max-w-[1280px] mx-auto px-4 sm:px-10 py-3 flex items-center justify-between">
+<!-- Logo -->
+<div class="flex items-center gap-3">
+<div class="size-8 flex items-center justify-center bg-primary rounded text-white">
+<span class="material-symbols-outlined">handyman</span>
+</div>
+<span class="text-xl font-black tracking-tight text-primary dark:text-white">FIXMAN</span>
+</div>
+<!-- Desktop Menu -->
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors" href="#about">O mnie</a>
+<a class="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors" href="#services">Usługi</a>
+<a class="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors" href="#gallery">Galeria</a>
+<a class="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors" href="#reviews">Opinie</a>
+<a class="text-sm font-medium text-text-main dark:text-gray-300 hover:text-primary transition-colors" href="#contact">Kontakt</a>
+</div>
+<!-- CTA Button -->
+<div class="hidden md:block">
+<button class="bg-accent hover:bg-accent-hover text-text-main font-bold py-2.5 px-5 rounded-lg transition-colors flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-[20px]">call</span>
+<span>Zadzwoń Teraz</span>
+</button>
+</div>
+<!-- Mobile Menu Icon (Placeholder) -->
+<div class="md:hidden text-text-main dark:text-white">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</div>
+</nav>
+</body>
+</html>

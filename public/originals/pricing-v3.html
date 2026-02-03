@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Pricing Comparison Table</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#135bec",
+            "background-light": "#f6f6f8",
+            "background-dark": "#101622",
+          },
+          fontFamily: {
+            "display": ["Manrope", "sans-serif"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      font-size: 20px;
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display" style="background-color: #101622">
+  <div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+    <div class="layout-container flex h-full grow flex-col">
+      <div class="px-4 sm:px-8 md:px-20 lg:px-40 flex flex-1 justify-center py-5">
+        <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
+          <main class="flex flex-col gap-10 py-10">
+            <div class="flex flex-wrap justify-center text-center gap-3 p-4">
+              <div class="flex w-full max-w-2xl flex-col gap-3">
+                <p class="text-black dark:text-white text-4xl font-black leading-tight tracking-[-0.033em]">Find the Plan That's Right for You</p>
+                <p class="text-gray-600 dark:text-[#92a4c9] text-base font-normal leading-normal">Choose the perfect plan to fit your needs. Simple, transparent pricing for teams of all sizes.</p>
+              </div>
+            </div>
+            <div class="overflow-x-auto">
+              <div class="w-full min-w-[800px] border border-gray-200 dark:border-[#324467] rounded-xl bg-gray-50 dark:bg-[#192233]">
+                <table class="w-full text-left">
+                  <thead>
+                    <tr>
+                      <th class="p-6 w-2/5">
+                        <h2 class="text-black dark:text-white text-lg font-bold">Features</h2>
+                      </th>
+                      <th class="p-6 text-center w-1/5">
+                        <h3 class="text-black dark:text-white text-base font-bold">Basic</h3>
+                        <p class="text-gray-600 dark:text-[#92a4c9] text-sm">For individuals</p>
+                        <p class="text-black dark:text-white text-3xl font-black my-2">$19<span class="text-base font-bold">/mo</span></p>
+                        <button class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-[#232f48] text-black dark:text-white text-sm font-bold leading-normal tracking-[0.015em]"><span class="truncate">Get Started</span></button>
+                      </th>
+                      <th class="p-6 text-center w-1/5 border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48] relative">
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
+                          <p class="text-white text-xs font-medium leading-normal tracking-[0.015em] rounded-full bg-primary px-3 py-1 text-center">Most Popular</p>
+                        </div>
+                        <h3 class="text-black dark:text-white text-base font-bold">Pro</h3>
+                        <p class="text-gray-600 dark:text-[#92a4c9] text-sm">For small teams</p>
+                        <p class="text-black dark:text-white text-3xl font-black my-2">$49<span class="text-base font-bold">/mo</span></p>
+                        <button class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]"><span class="truncate">Start Free Trial</span></button>
+                      </th>
+                      <th class="p-6 text-center w-1/5">
+                        <h3 class="text-black dark:text-white text-base font-bold">Enterprise</h3>
+                        <p class="text-gray-600 dark:text-[#92a4c9] text-sm">For large organizations</p>
+                        <p class="text-black dark:text-white text-3xl font-black my-2">$99<span class="text-base font-bold">/mo</span></p>
+                        <button class="w-full flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-gray-200 dark:bg-[#232f48] text-black dark:text-white text-sm font-bold leading-normal tracking-[0.015em]"><span class="truncate">Contact Sales</span></button>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-3" colspan="4">
+                        <h4 class="text-gray-600 dark:text-[#92a4c9] text-sm font-bold tracking-wider uppercase">Core Features</h4>
+                      </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Core Feature A</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Core Feature B</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Advanced Feature C</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Enterprise Feature D</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-3" colspan="4">
+                        <h4 class="text-gray-600 dark:text-[#92a4c9] text-sm font-bold tracking-wider uppercase">Analytics</h4>
+                      </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Basic Analytics</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Advanced Analytics</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Custom Analytics</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-3" colspan="4">
+                        <h4 class="text-gray-600 dark:text-[#92a4c9] text-sm font-bold tracking-wider uppercase">Support & Security</h4>
+                      </td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Standard Support</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Priority Support</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                    <tr class="border-t border-gray-200 dark:border-[#324467]">
+                      <td class="px-6 py-4 text-black dark:text-white">Dedicated Support</td>
+                      <td class="text-center"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center border-x border-gray-200 dark:border-[#324467] bg-gray-100 dark:bg-[#232f48]"><span class="material-symbols-outlined text-gray-400 dark:text-gray-600">remove</span></td>
+                      <td class="text-center"><span class="material-symbols-outlined text-green-500">check_circle</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

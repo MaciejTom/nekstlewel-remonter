@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Nav V3</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#FFD11A",
+            "background-light": "#FFFFFF",
+            "background-dark": "#000000",
+          },
+          fontFamily: {
+            display: ["Space Grotesk", "sans-serif"],
+          },
+          borderRadius: {
+            DEFAULT: "8px",
+          },
+        },
+      },
+    };
+  </script>
+<style>
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: #000;
+      color: #fff;
+    }
+  </style>
+</head>
+<body class="bg-background-dark text-white dark:bg-background-dark dark:text-white">
+<header class="py-6 px-16 flex justify-between items-center relative z-10 border-b border-gray-800 dark:border-gray-800">
+<h1 class="text-2xl font-bold tracking-wider">ALTERO</h1>
+<nav class="flex items-center space-x-8">
+<a class="text-sm text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors" href="#">Home</a>
+<a class="text-sm text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors" href="#">About</a>
+<a class="text-sm text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors" href="#">Projects</a>
+<a class="text-sm text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors" href="#">Service</a>
+<a class="text-sm text-gray-400 dark:text-gray-400 hover:text-white dark:hover:text-white transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center space-x-6">
+<div class="text-right text-sm text-gray-400 dark:text-gray-400">
+<p>Los Angeles, CA</p>
+<p>204.294.9280</p>
+</div>
+<button class="bg-white dark:bg-white text-black dark:text-black px-6 py-2.5 rounded-md text-sm font-medium">Get in touch</button>
+</div>
+</header>
+</body>
+</html>
