@@ -11,7 +11,7 @@ const s = {
   header: "text-center max-w-3xl mb-24 relative z-10",
   title: "text-4xl md:text-5xl font-bold text-foreground mb-6 relative inline-block tracking-tight",
   titleBreak: "block mt-2",
-  titleUnderline: "absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1.5 bg-primary rounded-full opacity-80",
+  titleUnderline: "absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-primary opacity-80",
   subtitle: "text-muted-foreground text-lg md:text-xl leading-relaxed mt-8 max-w-2xl mx-auto",
 
   // Services list
@@ -23,10 +23,10 @@ const s = {
 
   // Image
   imageCol: "w-full lg:w-1/2 relative perspective-1000",
-  imageBorderLeft: "absolute top-6 -left-6 w-full h-full bg-primary/5 rounded-xl hidden lg:block -z-10 transition-transform duration-500 group-hover:rotate-2",
-  imageBorderRight: "absolute top-6 -right-6 w-full h-full bg-secondary/5 rounded-xl hidden lg:block -z-10 transition-transform duration-500 group-hover:-rotate-2",
-  imageWrap: "relative h-72 sm:h-96 lg:h-[450px] w-full rounded-xl overflow-hidden shadow-xl border border-border/50 bg-muted",
-  image: "object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-110",
+  imageBorderLeft: "absolute top-4 -left-4 w-full h-full bg-primary/10 hidden lg:block -z-10 transition-transform duration-500 group-hover:rotate-0 group-hover:translate-x-2 group-hover:translate-y-2",
+  imageBorderRight: "absolute top-4 -right-4 w-full h-full bg-secondary/10 hidden lg:block -z-10 transition-transform duration-500 group-hover:rotate-0 group-hover:-translate-x-2 group-hover:translate-y-2",
+  imageWrap: "relative h-72 sm:h-96 lg:h-[450px] w-full shadow-xl border border-border/50 bg-muted rounded-sm",
+  image: "object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105",
 
   // Content
   contentCol: "w-full lg:w-1/2",
@@ -35,7 +35,7 @@ const s = {
   // Step badge
   badge: "flex items-center gap-4 mb-6",
   badgeReverse: "flex items-center gap-4 mb-6 lg:flex-row-reverse",
-  iconCircle: "flex items-center justify-center w-14 h-14 rounded-xl bg-primary/10 text-primary shadow-sm border border-primary/10 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300",
+  iconCircle: "flex items-center justify-center w-14 h-14 bg-primary/10 text-primary shadow-sm border border-primary/10 group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300 rounded-sm",
   stepLabel: "uppercase tracking-widest text-xs font-bold text-primary",
 
   // Service text
@@ -45,16 +45,16 @@ const s = {
   // Features
   featureList: "space-y-4",
   featureListReverse: "space-y-4 flex flex-col lg:items-end",
-  featureItem: "flex items-center gap-3 p-2 rounded-lg hover:bg-muted/50 transition-colors -ml-2 pl-2",
-  featureItemReverse: "flex items-center gap-3 lg:flex-row-reverse p-2 rounded-lg hover:bg-muted/50 transition-colors -mr-2 pr-2",
+  featureItem: "flex items-center gap-3 p-2 hover:bg-muted/50 transition-colors -ml-2 pl-2",
+  featureItemReverse: "flex items-center gap-3 lg:flex-row-reverse p-2 hover:bg-muted/50 transition-colors -mr-2 pr-2",
   featureIcon: "material-symbols-outlined text-primary text-xl mt-0.5",
   featureText: "font-medium text-foreground/90",
 
   // CTA
-  cta: "mt-24 lg:mt-32 text-center w-full max-w-2xl border-t border-border/50 pt-16 animate-fade-up",
-  ctaTitle: "text-3xl text-foreground font-bold mb-6 tracking-tight",
-  ctaDesc: "text-muted-foreground mb-10 text-lg",
-  ctaButton: "bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-10 rounded-full shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 mx-auto text-lg",
+  cta: "mt-24 lg:mt-32 text-center w-full max-w-3xl bg-secondary text-secondary-foreground rounded-sm p-12 md:p-16 animate-fade-up relative overflow-hidden",
+  ctaTitle: "text-3xl text-white font-bold mb-6 tracking-tight relative z-10",
+  ctaDesc: "text-gray-300 mb-10 text-lg relative z-10",
+  ctaButton: "bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-10 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 mx-auto text-lg rounded-sm relative z-10",
 }
 
 const iconFill = { fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24" } as const
@@ -62,13 +62,14 @@ const iconFill = { fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz
 interface ServicesEditorialSectionProps {
   content: ServiceEditorialContent
   className?: string
+  id?: string
 }
 
-export function ServicesEditorialSection({ content, className }: ServicesEditorialSectionProps) {
+export function ServicesEditorialSection({ content, className, id }: ServicesEditorialSectionProps) {
   const { title, titleBreak, subtitle, services, cta } = content
 
   return (
-    <section className={`${s.section} ${className ?? ""}`}>
+    <section id={id} className={`${s.section} ${className ?? ""}`}>
       {/* Gradient overlay */}
       <div className={s.gradient} />
 
@@ -136,6 +137,10 @@ export function ServicesEditorialSection({ content, className }: ServicesEditori
         {/* CTA */}
         {cta && (
           <div className={s.cta}>
+            {/* Background decoration */}
+            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+
             <p className={s.ctaTitle}>{cta.title}</p>
             <p className={s.ctaDesc}>{cta.description}</p>
             <button className={s.ctaButton}>

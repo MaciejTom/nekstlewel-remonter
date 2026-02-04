@@ -6,33 +6,31 @@ import {
   MapPin,
   FileText,
   Paintbrush,
-  Grid3X3,
-  Palette,
-  Hammer,
-  Thermometer,
-  Wrench,
+  Building2,
+  Home,
+  Users,
+  Clock,
+  ShieldCheck,
+  CalendarCheck,
   CheckCircle,
   ChevronDown,
   ArrowRight,
   Menu,
-  X,
-  ClipboardList,
-  Clock,
-  ShieldCheck,
-  Sparkles,
   Star,
+  Bath,
 } from "lucide-react"
 import Image from "next/image"
-import { ServicesEditorialSection } from "@/components/sections/services-editorial-section"
 
+// Content imports - LECH-BUD
 import { heroContent } from "@/content/lech-bud/hero"
-import { servicesContent } from "@/content/tom-art/services"
 import { servicesEditorialContent } from "@/content/lech-bud/services-editorial"
-import { processContent } from "@/content/tom-art/process"
+import { ServicesEditorialSection } from "@/components/sections/services-editorial-section"
+import { processContent } from "@/content/lech-bud/process"
 import { whyUsContent } from "@/content/lech-bud/why-us"
 import { portfolioContent } from "@/content/lech-bud/portfolio"
-import { faqContent } from "@/content/tom-art/faq"
-import { contactContent } from "@/content/tom-art/contact"
+import { reviewsContent } from "@/content/lech-bud/reviews"
+import { faqContent } from "@/content/lech-bud/faq"
+import { contactContent } from "@/content/lech-bud/contact"
 
 // Icon map for dynamic icon rendering
 const iconMap: Record<string, React.ElementType> = {
@@ -40,22 +38,25 @@ const iconMap: Record<string, React.ElementType> = {
   MapPin,
   FileText,
   Paintbrush,
-  Grid3X3,
-  Palette,
-  Hammer,
-  Thermometer,
-  Wrench,
+  Building2,
+  Home,
+  Users,
+  Clock,
+  ShieldCheck,
+  CalendarCheck,
   CheckCircle,
+  Bath,
 }
 
 // ===========================================
 // NAV SECTION
 // ===========================================
 const navLinks = [
-  { label: "Uslugi", href: "#uslugi" },
-  { label: "Proces", href: "#proces" },
   { label: "Dlaczego my", href: "#dlaczego" },
-  { label: "O mnie", href: "#o-mnie" },
+  { label: "Usługi", href: "#uslugi" },
+  { label: "Realizacje", href: "#realizacje" },
+  { label: "Opinie", href: "#opinie" },
+  { label: "Proces", href: "#proces" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontakt", href: "#kontakt" },
 ]
@@ -68,7 +69,6 @@ function NavSection() {
       setIsScrolled(window.scrollY > 20)
     }
 
-    // Check initial
     handleScroll()
 
     window.addEventListener("scroll", handleScroll)
@@ -79,7 +79,7 @@ function NavSection() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/10 shadow-sm h-20"
+          ? "bg-background/95 backdrop-blur-md border-b border-border/10 shadow-sm h-20"
           : "bg-transparent border-b border-transparent h-24"
       }`}
     >
@@ -87,11 +87,11 @@ function NavSection() {
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <a href="/" className="text-2xl font-bold text-foreground tracking-tight">
-            TOM-ART
+            LECH-BUD
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -105,15 +105,15 @@ function NavSection() {
 
           {/* CTA */}
           <a
-            href="tel:690651606"
-            className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all hover:shadow-lg hover:scale-105"
+            href="tel:607176748"
+            className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm text-sm font-semibold hover:bg-primary/90 transition-all hover:shadow-lg hover:scale-105"
           >
             <Phone className="w-4 h-4" />
-            690 651 606
+            607 176 748
           </a>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2 text-foreground hover:bg-muted rounded-lg transition-colors">
+          <button className="lg:hidden p-2 text-foreground hover:bg-muted rounded-sm transition-colors">
             <Menu className="w-6 h-6" />
           </button>
         </div>
@@ -137,6 +137,7 @@ function HeroSection() {
           className="object-cover"
           priority
           sizes="100vw"
+          quality={90}
         />
         {/* Gradient overlay for text readability */}
         <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 via-50% to-background/30" />
@@ -216,213 +217,6 @@ function HeroSection() {
           </div>
         </div>
       )}
-    </section>
-  )
-}
-
-// ===========================================
-// SERVICES SECTION
-// ===========================================
-function ServicesSection() {
-  return (
-    <section id="uslugi" className="bg-muted/30 py-32">
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-20 max-w-3xl mx-auto">
-          <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
-            {servicesContent.tagline}
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 h2-accent-center tracking-tight">
-            {servicesContent.title}
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            {servicesContent.subtitle}
-          </p>
-        </div>
-
-        {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesContent.services.map((service, index) => {
-            const Icon = iconMap[service.icon] || Hammer
-            return (
-              <div
-                key={index}
-                className="group bg-card p-10 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 border border-border/50 hover:border-primary/20 hover:-translate-y-2"
-              >
-                {/* Icon */}
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg flex items-center justify-center mb-8 group-hover:from-primary group-hover:to-primary/90 transition-all duration-300 shadow-inner group-hover:shadow-lg group-hover:shadow-primary/30">
-                  <Icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                </div>
-
-                {/* Text */}
-                <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            )
-          })}
-
-          {/* CTA Card */}
-          {servicesContent.ctaCard && (
-            <div className="bg-secondary text-secondary-foreground p-10 rounded-lg flex flex-col items-center justify-center text-center shadow-xl relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              <h3 className="text-2xl font-bold mb-4 relative z-10">
-                {servicesContent.ctaCard.title}
-              </h3>
-              {servicesContent.ctaCard.description && (
-                <p className="text-secondary-foreground/80 mb-8 relative z-10 leading-relaxed">
-                  {servicesContent.ctaCard.description}
-                </p>
-              )}
-              <a
-                href="tel:690651606"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/30 hover:-translate-y-1 relative z-10"
-              >
-                <Phone className="w-5 h-5" />
-                {servicesContent.ctaCard.buttonText}
-              </a>
-            </div>
-          )}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ===========================================
-// PROCESS SECTION
-// ===========================================
-function ProcessSection() {
-  return (
-    <section id="proces" className="bg-background py-32 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 h2-accent-center tracking-tight">
-            {processContent.title}
-          </h2>
-          {processContent.subtitle && (
-            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed text-lg">
-              {processContent.subtitle}
-            </p>
-          )}
-        </div>
-
-        {/* Steps */}
-        <div className="max-w-4xl mx-auto relative">
-          {/* Vertical connecting line */}
-          <div className="absolute left-[39px] top-8 bottom-8 w-[2px] bg-gradient-to-b from-primary/20 via-primary/20 to-transparent hidden md:block" />
-
-          <div className="space-y-12">
-            {processContent.steps.map((step, index) => (
-              <div
-                key={index}
-                className="relative flex flex-col md:flex-row gap-8 items-start group"
-              >
-                {/* Step number */}
-                <div className="shrink-0 z-10">
-                  <div className="w-20 h-20 bg-background border-4 border-muted rounded-full flex items-center justify-center group-hover:border-primary transition-colors duration-300 shadow-sm">
-                    <span className="text-3xl font-bold text-muted-foreground/50 group-hover:text-primary transition-colors">
-                      {index + 1}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="bg-card border border-border/50 rounded-lg p-8 shadow-sm hover:shadow-md transition-all flex-1 group-hover:-translate-y-1 group-hover:border-primary/20">
-                  <span className="text-xs font-bold text-primary tracking-widest uppercase mb-3 block">
-                    {step.badge}
-                  </span>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
-                    {step.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ===========================================
-// WHY US SECTION
-// ===========================================
-const iconImageMap: Record<string, string> = {
-  Clock: "/images/lech-bud/Whisk_c259a637d38e05184f441dba9d60e8b9dr-removebg-preview.png",
-  ShieldCheck: "/images/lech-bud/Whisk_0ff055529f5e3bbad9e46ad59dc41e6adr-removebg-preview (1).png",
-  Building2: "/images/lech-bud/Whisk_5a4e3a2f16e5378a518405bddd9d228fdr-removebg-preview.png",
-  CalendarCheck: "/images/lech-bud/checks.png",
-}
-
-function WhyUsSection() {
-  return (
-    <section id="dlaczego" className="bg-muted/40 py-32 relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 -translate-x-1/2 pointer-events-none" />
-      <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[80px] translate-y-1/2 translate-x-1/2 pointer-events-none" />
-
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-28 max-w-3xl mx-auto">
-          <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
-            {whyUsContent.tagline}
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 h2-accent-center tracking-tight">{whyUsContent.title}</h2>
-        </div>
-
-        {/* USP grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 max-w-7xl mx-auto">
-          {whyUsContent.services.map((usp, index) => {
-            const iconSrc = iconImageMap[usp.icon] || iconImageMap.Clock
-
-            return (
-              <div key={index} className="group transition-all duration-300 flex flex-col items-center text-center gap-6 hover:-translate-y-2">
-                {/* Icon Container */}
-                <div className="relative w-32 h-32 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
-                   {/* Paint accent */}
-                   <div className="absolute inset-0 flex items-center justify-center -z-10">
-                      <svg viewBox="0 0 200 200" className="w-[180%] h-[180%] text-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" fill="currentColor">
-                        <path d="M45.7,143.6c-13.8-13.8-15.9-37.3-6.1-54.6c6.2-10.8,17.5-17.7,29.7-19.3c15.6-2.1,31.6,1.4,45.6,8.8 c17.4,9.2,31.7,24.6,38.8,42.6c6.3,16.1,6.1,34.8-2.6,49.6c-7.8,13.2-21.7,22.3-36.8,25.4c-18.7,3.8-38.6-1.5-53.7-12.2 C53.2,178.6,47.8,162.9,45.7,143.6z" transform="rotate(-15 100 100) scale(1.2 0.8)"/>
-                      </svg>
-                      <svg viewBox="0 0 200 200" className="w-[160%] h-[160%] text-primary/30 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" fill="currentColor">
-                         <path d="M42.7,-63.3C54.6,-54.3,63.1,-41.8,69.2,-28.6C75.3,-15.4,79,-1.5,75.3,10.8C71.6,23.1,60.6,33.8,49.5,43.2C38.4,52.6,27.2,60.7,14.6,65.3C2,69.9,-12,71,-24.8,66.3C-37.6,61.6,-49.2,51.1,-58.4,39.2C-67.6,27.3,-74.4,14,-73.4,1.3C-72.4,-11.4,-63.6,-23.5,-53.4,-33.8C-43.2,-44.1,-31.6,-52.6,-19.6,-61.5C-7.6,-70.4,4.8,-79.7,17.4,-79.9C30,-80.1,42.7,-71.2,42.7,-63.3Z" transform="translate(100 100) scale(1.1)" />
-                      </svg>
-                   </div>
-
-                   <Image
-                     src={iconSrc}
-                     alt={usp.title}
-                     width={110}
-                     height={110}
-                     sizes="(max-width: 768px) 80px, 110px"
-                     className="w-full h-full object-contain drop-shadow-2xl relative z-10"
-                   />
-                </div>
-
-                {/* Text */}
-                <div>
-                  <h3 className="text-xl font-bold mb-4 text-foreground group-hover:text-primary transition-colors leading-tight">{usp.title}</h3>
-                  <p className="text-muted-foreground leading-relaxed text-sm">
-                    {usp.description}
-                  </p>
-                </div>
-              </div>
-            )
-          })}
-        </div>
-      </div>
     </section>
   )
 }
@@ -519,6 +313,220 @@ function PortfolioSection() {
   )
 }
 
+// ===========================================
+// WHY US SECTION
+// ===========================================
+function WhyUsSection() {
+  return (
+    <section id="dlaczego" className="bg-background py-32 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center mb-20 max-w-3xl mx-auto">
+          <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
+            {whyUsContent.tagline}
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 h2-accent-center tracking-tight">
+            {whyUsContent.title}
+          </h2>
+        </div>
+
+        {/* USP grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+          {whyUsContent.services.map((usp, index) => {
+            const Icon = iconMap[usp.icon] || CheckCircle
+
+            // Logic for distinct styling
+            const isGold = ["Clock", "ShieldCheck"].includes(usp.icon)
+
+            const cardBorderClass = isGold
+              ? "border-gold/20 hover:border-gold/50"
+              : "border-border/50 hover:border-primary/30"
+
+            const iconBgClass = isGold
+              ? "bg-gold/10 text-gold ring-1 ring-gold/20"
+              : "bg-primary/10 text-primary ring-1 ring-primary/20"
+
+            const iconShadowClass = isGold
+               ? "shadow-gold/10"
+               : "shadow-primary/10"
+
+            return (
+              <div key={index} className={`group text-center p-8 rounded-sm border bg-card transition-all duration-300 hover:-translate-y-2 hover:shadow-xl ${cardBorderClass}`}>
+                {/* Icon Container */}
+                <div className="relative w-20 h-20 mx-auto mb-6">
+                  {/* Backdrop */}
+                  <div className={`absolute inset-0 opacity-20 rotate-3 transition-transform group-hover:rotate-6 rounded-sm ${isGold ? "bg-gold" : "bg-primary"}`} />
+
+                  {/* Icon Box */}
+                  <div className={`relative w-full h-full flex items-center justify-center shadow-lg transition-shadow rounded-sm ${iconBgClass} ${iconShadowClass}`}>
+                    <Icon className="w-10 h-10" />
+                  </div>
+                </div>
+
+                {/* Text */}
+                <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-foreground transition-colors">
+                  {usp.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed text-sm">
+                  {usp.description}
+                </p>
+              </div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ===========================================
+// REVIEWS SECTION (NOWA)
+// ===========================================
+function ReviewsSection() {
+  // Take only first 2 reviews to keep it neat as requested
+  const displayReviews = reviewsContent.reviews.slice(0, 2)
+
+  return (
+    <section id="opinie" className="bg-muted/50 py-32">
+      <div className="container mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
+            Zaufali nam
+          </span>
+          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 h2-accent-center tracking-tight">
+            {reviewsContent.title}
+          </h2>
+        </div>
+
+        {/* Reviews grid - Premium Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+          {displayReviews.map((review, index) => (
+            <div
+              key={index}
+              className="bg-background relative p-10 rounded-sm shadow-xl border-t-4 border-primary group hover:-translate-y-1 transition-transform duration-300"
+            >
+              {/* Decorative Quote Icon */}
+              <div className="absolute top-6 right-8 text-primary/10 group-hover:text-primary/20 transition-colors">
+                <svg width="60" height="60" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.01697 21L5.01697 18C5.01697 16.8954 5.9124 16 7.01697 16H10.017C10.5693 16 11.017 15.5523 11.017 15V9C11.017 8.44772 10.5693 8 10.017 8H6.01697C5.46468 8 5.01697 8.44772 5.01697 9V11C5.01697 11.5523 4.56925 12 4.01697 12H3.01697V5H13.017V15C13.017 18.3137 10.3307 21 7.01697 21H5.01697Z" />
+                </svg>
+              </div>
+
+              {/* Stars */}
+              <div className="flex gap-1 mb-6">
+                {Array.from({ length: review.rating }).map((_, i) => (
+                  <Star key={i} className="w-5 h-5 fill-gold text-gold" />
+                ))}
+              </div>
+
+              {/* Quote */}
+              <blockquote className="text-xl text-foreground font-medium leading-relaxed mb-8 relative z-10">
+                "{review.quote}"
+              </blockquote>
+
+              {/* Author / Signature */}
+              <div className="flex items-center gap-4 border-t border-border/50 pt-6">
+                <div className="w-12 h-12 bg-secondary text-secondary-foreground rounded-sm flex items-center justify-center text-lg font-bold">
+                  {review.authorName.charAt(0)}
+                </div>
+                <div>
+                  <div className="font-bold text-foreground text-lg">{review.authorName}</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wider font-medium">{review.authorLabel}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom link */}
+        {reviewsContent.bottomLink && (
+          <div className="text-center mt-12">
+            <a href="#" className="inline-flex items-center gap-2 text-primary hover:text-primary/80 font-semibold transition-colors border-b border-primary/20 hover:border-primary pb-0.5">
+              {reviewsContent.bottomLink.text}
+            </a>
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}
+
+// ===========================================
+// PROCESS SECTION (DARK MODE)
+// ===========================================
+function ProcessSection() {
+  return (
+    <section id="proces" className="bg-secondary text-secondary-foreground py-32 relative overflow-hidden">
+       {/* Background noise texture */}
+       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }}></div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          
+          {/* Left: Sticky Header */}
+          <div className="lg:sticky lg:top-32 h-fit">
+            <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
+              Jak pracujemy
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-bold text-white mb-8 h2-accent tracking-tight">
+              {processContent.title}
+            </h2>
+            {processContent.subtitle && (
+              <p className="text-gray-400 text-lg leading-relaxed mb-12 max-w-md">
+                {processContent.subtitle}
+              </p>
+            )}
+            
+            {/* Quick Contact Box */}
+            <div className="hidden lg:block bg-white/5 border border-white/10 rounded-sm p-8 backdrop-blur-sm">
+              <h4 className="text-white font-bold mb-2">Masz pytania co do procesu?</h4>
+              <p className="text-gray-400 text-sm mb-4">Chętnie wyjaśnimy każdy etap współpracy.</p>
+              <a href="tel:607176748" className="text-primary font-bold hover:text-white transition-colors flex items-center gap-2">
+                <Phone className="w-4 h-4" />
+                607 176 748
+              </a>
+            </div>
+          </div>
+
+          {/* Right: Timeline Steps */}
+          <div className="relative pl-8 md:pl-0">
+            {/* Timeline Line */}
+            <div className="absolute left-[0px] md:left-8 top-4 bottom-4 w-[2px] bg-white/10" />
+
+            <div className="space-y-16">
+              {processContent.steps.map((step, index) => (
+                <div key={index} className="relative pl-8 md:pl-24">
+                  
+                  {/* Number Badge */}
+                  <div className="absolute left-[-20px] md:left-0 top-0 w-16 h-16 bg-secondary border border-primary text-primary rounded-sm flex items-center justify-center text-2xl font-bold shadow-xl shadow-black/20 z-10">
+                    {index + 1}
+                  </div>
+
+                  {/* Content */}
+                  <div>
+                    <span className="text-xs font-bold text-primary/80 tracking-widest uppercase mb-2 block">
+                      {step.badge}
+                    </span>
+                    <h3 className="text-2xl font-bold text-white mb-4">
+                      {step.title}
+                    </h3>
+                    <p className="text-gray-400 leading-relaxed text-lg">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
 
 // ===========================================
 // FAQ SECTION
@@ -544,7 +552,7 @@ function FaqSection() {
           {faqContent.items.map((item, index) => (
             <details
               key={index}
-              className="group bg-card border border-border/50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all"
+              className="group bg-card border border-border/50 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all"
             >
               <summary className="flex items-center justify-between p-8 cursor-pointer hover:bg-muted/30 transition-colors select-none">
                 <span className="font-bold text-lg text-foreground pr-8">
@@ -599,16 +607,15 @@ function ContactSection() {
                 {contactContent.contactItems.map((item, i) => {
                   const Icon = iconMap[item.icon || "Phone"] || Phone
 
-                  // Helper for labels
                   let subLabel = "Informacje"
                   if (item.icon === "Phone") subLabel = "Telefon"
                   if (item.icon === "MapPin") subLabel = "Lokalizacja"
-                  if (item.icon === "FileText") subLabel = "Dane firmowe"
+                  if (item.icon === "Clock") subLabel = "Godziny pracy"
 
                   return (
                     <div
                       key={i}
-                      className="flex items-center gap-6 p-6 rounded-lg border border-border/60 bg-white/50 backdrop-blur-sm hover:border-primary/50 hover:bg-white hover:shadow-lg transition-all duration-300 group"
+                      className="flex items-center gap-6 p-6 rounded-sm border border-border/60 bg-white/50 backdrop-blur-sm hover:border-primary/50 hover:bg-white hover:shadow-lg transition-all duration-300 group"
                     >
                       <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm border border-border/50 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                         <Icon className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
@@ -635,7 +642,7 @@ function ContactSection() {
           {/* Right - form */}
           <div className="order-1 lg:order-2 h-full">
             <div className="relative h-full">
-               <div className="bg-white border border-border/40 rounded-xl p-8 md:p-12 shadow-xl relative overflow-hidden h-full flex flex-col justify-center">
+               <div className="bg-white border border-border/40 rounded-sm p-8 md:p-12 shadow-xl relative overflow-hidden h-full flex flex-col justify-center">
                 {/* Subtle pattern inside form */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
@@ -656,14 +663,14 @@ function ContactSection() {
                           <textarea
                             placeholder={field.placeholder}
                             required
-                            className="w-full bg-muted/20 border border-border/60 rounded-lg px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm min-h-[220px] resize-none"
+                            className="w-full bg-muted/20 border border-border/60 rounded-sm px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm min-h-[180px] resize-none"
                           />
                         ) : (
                           <input
                             type={field.type}
                             placeholder={field.placeholder}
                             required
-                            className="w-full bg-muted/20 border border-border/60 rounded-lg px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm"
+                            className="w-full bg-muted/20 border border-border/60 rounded-sm px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm"
                           />
                         )}
                       </div>
@@ -672,7 +679,7 @@ function ContactSection() {
                   <div className="mt-auto pt-4">
                     <button
                       type="submit"
-                      className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-bold hover:bg-primary/90 transition-all hover:shadow-lg shadow-primary/25 flex items-center justify-center gap-3 group mt-4"
+                      className="w-full bg-primary text-primary-foreground py-4 rounded-sm font-bold hover:bg-primary/90 transition-all hover:shadow-lg shadow-primary/25 flex items-center justify-center gap-3 group mt-4"
                     >
                       <span>{contactContent.submitText}</span>
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -705,12 +712,17 @@ function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-5 pr-8">
             <a href="/" className="inline-block text-4xl font-bold tracking-tight mb-6 text-white">
-              TOM-ART
+              LECH-BUD
             </a>
             <p className="text-gray-300 leading-relaxed text-lg mb-8 max-w-md">
-              Profesjonalne usługi remontowo-wykończeniowe. <br/>
-              Kompleksowe remonty wnętrz na terenie Rzepiennika i okolic Tarnowa.
+              Firma remontowo-budowlana z 40-letnim doświadczeniem. <br/>
+              Biurowce, domy kultury, wspólnoty mieszkaniowe. Kielce i okolice.
             </p>
+            {/* Certyfikat badge */}
+            <div className="inline-flex items-center gap-2 bg-gold/20 text-gold px-4 py-2 rounded-sm text-sm font-semibold">
+              <ShieldCheck className="w-5 h-5" />
+              Certyfikat Firma Godna Zaufania
+            </div>
           </div>
 
           {/* Links Column */}
@@ -742,26 +754,26 @@ function Footer() {
             </h4>
             <ul className="space-y-6">
               <li>
-                <a href="tel:690651606" className="group flex items-center gap-4 hover:text-primary transition-colors">
+                <a href="tel:607176748" className="group flex items-center gap-4 hover:text-primary transition-colors">
                    <Phone className="w-8 h-8 text-primary" />
                    <div>
                       <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Zadzwoń teraz</span>
-                      <span className="text-2xl font-bold text-white group-hover:text-primary transition-colors">690 651 606</span>
+                      <span className="text-2xl font-bold text-white group-hover:text-primary transition-colors">607 176 748</span>
                    </div>
                 </a>
-              </li>
-              <li className="flex items-center gap-4">
-                 <FileText className="w-8 h-8 text-primary/70" />
-                 <div>
-                    <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Dane firmowe</span>
-                    <span className="text-lg text-gray-200">NIP: 9930712739</span>
-                 </div>
               </li>
               <li className="flex items-center gap-4">
                  <MapPin className="w-8 h-8 text-primary/70" />
                  <div>
                     <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Lokalizacja</span>
-                    <span className="text-lg text-gray-200">Rzepiennik Suchy i okolice</span>
+                    <span className="text-lg text-gray-200">Kielce i okolice</span>
+                 </div>
+              </li>
+              <li className="flex items-center gap-4">
+                 <Clock className="w-8 h-8 text-primary/70" />
+                 <div>
+                    <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Godziny</span>
+                    <span className="text-lg text-gray-200">wt-pt od 07:00</span>
                  </div>
               </li>
             </ul>
@@ -770,11 +782,11 @@ function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-10 mt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} TOM-ART Tomasz Wszołek. Wszelkie prawa zastrzeżone.</p>
+          <p>&copy; {new Date().getFullYear()} Lech-Bud Leszek Kozieł. Wszelkie prawa zastrzeżone.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-primary transition-colors">Polityka prywatności</a>
+            <span className="text-gold">Od 1986 roku</span>
             <span className="w-1 h-1 bg-gray-600 rounded-full" />
-            <a href="#" className="hover:text-primary transition-colors">Regulamin</a>
+            <a href="#" className="hover:text-primary transition-colors">Polityka prywatności</a>
           </div>
         </div>
       </div>
@@ -789,13 +801,14 @@ export default function HomePage() {
   return (
     <main className="selection:bg-primary/20 selection:text-primary">
       <NavSection />
-      <HeroSection />
-      <WhyUsSection />
-      <ServicesEditorialSection content={servicesEditorialContent} />
-      <PortfolioSection />
-      <ProcessSection />
-      <FaqSection />
-      <ContactSection />
+      <HeroSection />        {/* 1. HERO */}
+      <WhyUsSection />       {/* 2. DLACZEGO LECH-BUD */}
+      <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} className="!bg-muted/30" />    {/* 3. USŁUGI */}
+      <PortfolioSection />   {/* 4. REALIZACJE */}
+      <ReviewsSection />     {/* 5. OPINIE */}
+      <ProcessSection />     {/* 6. JAK PRACUJEMY */}
+      <FaqSection />         {/* 7. FAQ */}
+      <ContactSection />     {/* 8. KONTAKT */}
       <Footer />
     </main>
   )

@@ -1,0 +1,58 @@
+/* =============================================
+   LECH-BUD WARM BRICK THEME
+   Kremowe tlo + Ceglasty czerwony + Granatowy
+   Podobne do TOM-ART, ale z ceglastym akcentem
+   ============================================= */
+
+:root {
+  /* Tla - kremowe jak TOM-ART */
+  --background: #fffbf5;
+  --foreground: #1d3557;          /* Granatowy */
+  --card: #ffffff;
+  --card-foreground: #1d3557;
+  --popover: #ffffff;
+  --popover-foreground: #1d3557;
+
+  /* Primary - Ceglasty czerwony */
+  --primary: #dc2626;             /* red-600 - cegla */
+  --primary-foreground: #ffffff;
+
+  /* Secondary - Granatowy jak TOM-ART */
+  --secondary: #1d3557;
+  --secondary-foreground: #fffbf5;
+
+  /* Muted - kremowy */
+  --muted: #f3ede4;
+  --muted-foreground: #7d7063;
+
+  /* Accent */
+  --accent: #f3ede4;
+  --accent-foreground: #1d3557;
+
+  /* Utility */
+  --destructive: #b91c1c;
+  --destructive-foreground: #ffffff;
+  --border: #e8e1d5;
+  --input: #e8e1d5;
+  --ring: #dc2626;
+
+  /* Gold - dla 40 lat, certyfikatow */
+  --gold: #b45309;                /* amber-700 */
+
+  /* Chart colors */
+  --chart-1: #dc2626;
+  --chart-2: #1d3557;
+  --chart-3: #78716c;
+  --chart-4: #a8a29e;
+  --chart-5: #d6d3d1;
+
+  /* Shadows - ciepły odcien */
+  --shadow-2xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
+  --shadow-xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
+  --shadow-sm: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 1px 2px -1px hsl(25 15% 15% / 0.08);
+  --shadow: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 1px 2px -1px hsl(25 15% 15% / 0.08);
+  --shadow-md: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 2px 4px -1px hsl(25 15% 15% / 0.08);
+  --shadow-lg: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 4px 6px -1px hsl(25 15% 15% / 0.08);
+  --shadow-xl: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 8px 10px -1px hsl(25 15% 15% / 0.08);
+  --shadow-2xl: 0px 4px 12px 0px hsl(25 15% 15% / 0.20);
+}
