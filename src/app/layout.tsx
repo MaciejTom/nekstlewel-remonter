@@ -15,28 +15,28 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://tom-art.pl"),
-  title: "TOM-ART | Usługi remontowo-budowlane",
-  description: "Od ścian po podłogi — pełen zakres prac remontowych. Tynki, posadzki, malowanie, murarstwo, izolacje. Rzepiennik, Tuchów, okolice Tarnowa.",
+  metadataBase: new URL("https://lech-bud.pl"),
+  title: "LECH-BUD | Remonty wnętrz Kielce - od 1986 roku",
+  description: "40 lat doświadczenia w remontach wnętrz. Biurowce, domy kultury, wspólnoty mieszkaniowe i prywatne łazienki w Kielcach i okolicach. Leszek Kozieł.",
   openGraph: {
-    title: "TOM-ART | Usługi remontowo-budowlane",
-    description: "Od ścian po podłogi — pełen zakres prac remontowych. Tynki, posadzki, malowanie, murarstwo, izolacje. Rzepiennik, Tuchów, okolice Tarnowa.",
+    title: "LECH-BUD | Remonty wnętrz Kielce - od 1986 roku",
+    description: "40 lat doświadczenia w remontach wnętrz. Biurowce, domy kultury, wspólnoty mieszkaniowe i prywatne łazienki w Kielcach i okolicach.",
     type: "website",
     locale: "pl_PL",
     images: [
       {
-        url: "/images/tom-art/hero.webp",
-        width: 1408,
-        height: 768,
-        alt: "TOM-ART - profesjonalne usługi remontowe",
+        url: "/heroLech.jpg",
+        width: 1200,
+        height: 630,
+        alt: "LECH-BUD - profesjonalne remonty wnętrz od 1986 roku",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "TOM-ART | Usługi remontowo-budowlane",
-    description: "Od ścian po podłogi — pełen zakres prac remontowych.",
-    images: ["/images/tom-art/hero.webp"],
+    title: "LECH-BUD | Remonty wnętrz Kielce - od 1986 roku",
+    description: "40 lat doświadczenia w remontach wnętrz w Kielcach i okolicach.",
+    images: ["/heroLech.jpg"],
   },
 };
 

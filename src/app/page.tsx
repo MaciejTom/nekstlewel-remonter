@@ -791,9 +791,7 @@ function Footer() {
         <div className="border-t border-white/10 pt-10 mt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
           <p>&copy; {new Date().getFullYear()} LECH-BUD Leszek Kozieł. Wszelkie prawa zastrzeżone.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-primary transition-colors">Polityka prywatności</a>
-            <span className="w-1 h-1 bg-gray-600 rounded-full" />
-            <a href="#" className="hover:text-primary transition-colors">Regulamin</a>
+            <span className="text-gray-500">Realizacja: Nekst Lewel</span>
           </div>
         </div>
       </div>
@@ -923,7 +921,7 @@ export default function HomePage() {
         <NavSection />
         <HeroSection />
         <WhyUsSection />
-        <ServicesEditorialSection content={servicesEditorialContent} />
+        <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} />
         <PortfolioSection onImageClick={openLightbox} />
         <ProcessSection />
         <FaqSection />
