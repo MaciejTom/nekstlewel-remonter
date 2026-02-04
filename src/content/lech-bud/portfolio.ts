@@ -36,6 +36,30 @@ export const portfolioContent: PortfolioContent = {
       specs: "Płytki, kabiny, armatura",
       image: "/images/lech-bud/oferteo_003_160237248-crop-20210924-133004.jpg",
     },
+    {
+      title: "Dom Kultury - hol główny",
+      category: "Obiekty publiczne",
+      specs: "Malowanie, oświetlenie, sufit",
+      image: "/images/lech-bud/oferteo_005_133035390-crop-sabat-zdiecia.jpg",
+    },
+    {
+      title: "Biuro administracji",
+      category: "Biurowce",
+      specs: "Ściany, podłogi, instalacje",
+      image: "/images/lech-bud/oferteo_013_122301403-crop-sm-5.jpg",
+    },
+    {
+      title: "Remont klatki - blok mieszkalny",
+      category: "Wspólnoty mieszkaniowe",
+      specs: "Kompleksowy remont",
+      image: "/images/lech-bud/oferteo_001_160723832-crop-20210924-132823.jpg",
+    },
+    {
+      title: "Łazienka z prysznicem",
+      category: "Łazienki",
+      specs: "Glazura, kabina, armatura",
+      image: "/images/lech-bud/oferteo_003_160237248-crop-20210924-133004.jpg",
+    },
   ],
 
   galleryButton: {

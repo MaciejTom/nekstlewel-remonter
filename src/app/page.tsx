@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import {
   Phone,
   MapPin,
@@ -13,10 +13,13 @@ import {
   Wrench,
   CheckCircle,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   ArrowRight,
   Menu,
   Clock,
   ShieldCheck,
+  X,
 } from "lucide-react"
 import Image from "next/image"
 import { ServicesEditorialSection } from "@/components/sections/services-editorial-section"
@@ -81,8 +84,11 @@ function NavSection() {
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
-          <a href="/" className="text-2xl font-bold text-foreground tracking-tight">
-            LECH-BUD
+          <a href="/" className="flex items-center gap-2">
+            <div className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center font-bold text-xl rounded-sm">
+              L
+            </div>
+            <span className="text-xl font-bold text-foreground tracking-tight">LECH-BUD</span>
           </a>
 
           {/* Desktop nav */}
@@ -226,7 +232,7 @@ function ProcessSection() {
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 h2-accent-center tracking-tight">
             {processContent.title}
           </h2>
@@ -237,41 +243,45 @@ function ProcessSection() {
           )}
         </div>
 
-        {/* Steps */}
-        <div className="max-w-4xl mx-auto relative">
-          {/* Vertical connecting line */}
-          <div className="absolute left-[39px] top-8 bottom-8 w-[2px] bg-gradient-to-b from-primary/20 via-primary/20 to-transparent hidden md:block" />
-
-          <div className="space-y-12">
-            {processContent.steps.map((step, index) => (
-              <div
-                key={index}
-                className="relative flex flex-col md:flex-row gap-8 items-start group"
-              >
-                {/* Step number */}
-                <div className="shrink-0 z-10">
-                  <div className="w-20 h-20 bg-background border-4 border-muted rounded-full flex items-center justify-center group-hover:border-primary transition-colors duration-300 shadow-sm">
-                    <span className="text-3xl font-bold text-muted-foreground/50 group-hover:text-primary transition-colors">
-                      {index + 1}
-                    </span>
-                  </div>
+        {/* Steps - horizontal grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
+          {processContent.steps.map((step, index) => (
+            <div
+              key={index}
+              className="group relative"
+            >
+              {/* Connecting arrow (hidden on mobile and last item) */}
+              {index < processContent.steps.length - 1 && (
+                <div className="hidden lg:block absolute top-10 -right-3 z-10">
+                  <ChevronRight className="w-6 h-6 text-primary/30" />
                 </div>
+              )}
+
+              {/* Card */}
+              <div className="bg-card border border-border/50 rounded-sm p-6 h-full hover:shadow-lg transition-all group-hover:-translate-y-2 group-hover:border-primary/30 relative overflow-hidden">
+                {/* Large number background */}
+                <span className="absolute -top-4 -right-2 text-[120px] font-bold text-primary/5 leading-none select-none">
+                  {index + 1}
+                </span>
 
                 {/* Content */}
-                <div className="bg-card border border-border/50 rounded-lg p-8 shadow-sm hover:shadow-md transition-all flex-1 group-hover:-translate-y-1 group-hover:border-primary/20">
-                  <span className="text-xs font-bold text-primary tracking-widest uppercase mb-3 block">
+                <div className="relative z-10">
+                  <span className="inline-flex items-center justify-center w-10 h-10 bg-primary text-primary-foreground rounded-sm text-lg font-bold mb-4">
+                    {index + 1}
+                  </span>
+                  <span className="text-xs font-bold text-primary tracking-widest uppercase mb-2 block">
                     {step.badge}
                   </span>
-                  <h3 className="text-xl font-bold text-foreground mb-3">
+                  <h3 className="text-lg font-bold text-foreground mb-2">
                     {step.title}
                   </h3>
-                  <p className="text-muted-foreground leading-relaxed">
+                  <p className="text-muted-foreground text-sm leading-relaxed">
                     {step.description}
                   </p>
                 </div>
               </div>
-            ))}
-          </div>
+            </div>
+          ))}
         </div>
       </div>
     </section>
@@ -350,9 +360,120 @@ function WhyUsSection() {
 }
 
 // ===========================================
+// GALLERY SLIDER (responsive: 1 mobile, 2 tablet, 4 desktop)
+// ===========================================
+function GallerySlider({ projects, onImageClick }: { projects: typeof portfolioContent.projects; onImageClick: (index: number) => void }) {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+  const totalItems = projects.length
+
+  const goNext = () => {
+    setCurrentIndex(prev => (prev + 1) % totalItems)
+  }
+
+  const goPrev = () => {
+    setCurrentIndex(prev => (prev === 0 ? totalItems - 1 : prev - 1))
+  }
+
+  // Swipe handlers
+  const minSwipeDistance = 50
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    if (distance > minSwipeDistance) goNext()
+    if (distance < -minSwipeDistance) goPrev()
+  }
+
+  // Triple the projects for infinite loop illusion
+  const extendedProjects = [...projects, ...projects, ...projects]
+
+  return (
+    <div className="relative px-8 md:px-0" onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
+      {/* Navigation buttons */}
+      <button
+        onClick={goPrev}
+        className="absolute left-0 md:-left-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-primary text-primary-foreground rounded-full shadow-lg flex items-center justify-center hover:bg-primary/80 transition-all hover:scale-110"
+      >
+        <ChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+      </button>
+      <button
+        onClick={goNext}
+        className="absolute right-0 md:-right-5 top-1/2 -translate-y-1/2 z-20 w-10 h-10 md:w-12 md:h-12 bg-primary text-primary-foreground rounded-full shadow-lg flex items-center justify-center hover:bg-primary/80 transition-all hover:scale-110"
+      >
+        <ChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+      </button>
+
+      {/* Sliding container */}
+      <div className="overflow-hidden">
+        <div
+          className="flex gap-4 transition-transform duration-500 ease-out"
+          style={{
+            transform: `translateX(calc(${-currentIndex} * var(--slide-width, 25%)))`,
+          }}
+        >
+          {extendedProjects.map((project, i) => (
+            <div
+              key={i}
+              onClick={() => onImageClick(i % totalItems)}
+              className="group relative rounded-sm overflow-hidden shadow-lg flex-shrink-0 w-[calc(100%-0px)] sm:w-[calc(50%-8px)] lg:w-[calc(25%-12px)] cursor-pointer"
+            >
+              <div className="relative bg-muted/20 aspect-[3/4]">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
+              </div>
+
+              {/* Content overlay */}
+              <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
+                <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-semibold px-2 py-1 rounded-sm mb-2">
+                  {project.category}
+                </span>
+                <h3 className="text-sm font-bold text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                  {project.title}
+                </h3>
+                <p className="text-white/70 text-xs line-clamp-1">{project.specs}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Dots indicator */}
+      <div className="flex justify-center gap-2 mt-6">
+        {projects.map((_, idx) => (
+          <button
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`w-2 h-2 rounded-full transition-all ${
+              idx === currentIndex ? 'bg-primary w-6' : 'bg-foreground/20 hover:bg-foreground/40'
+            }`}
+          />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// ===========================================
 // PORTFOLIO SECTION
 // ===========================================
-function PortfolioSection() {
+function PortfolioSection({ onImageClick }: { onImageClick: (index: number) => void }) {
   return (
     <section id="realizacje" className="bg-muted/30 py-32 relative overflow-hidden">
       {/* Background decoration */}
@@ -365,7 +486,7 @@ function PortfolioSection() {
             <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
               {portfolioContent.tagline}
             </span>
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
               {portfolioContent.title}{" "}
               <span className="text-primary">{portfolioContent.titleAccent}</span>
             </h2>
@@ -389,38 +510,8 @@ function PortfolioSection() {
           )}
         </div>
 
-        {/* Projects Grid - 2x2 */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {portfolioContent.projects.map((project, index) => (
-            <div
-              key={index}
-              className="group relative rounded-sm overflow-hidden shadow-lg"
-            >
-              {/* Image */}
-              <div className="relative bg-muted aspect-[4/3]">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes="(max-width: 640px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
-              </div>
-
-              {/* Content overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
-                <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-semibold px-2 py-1 rounded-sm mb-2">
-                  {project.category}
-                </span>
-                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">
-                  {project.title}
-                </h3>
-                <p className="text-white/70 text-sm line-clamp-1">{project.specs}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+        {/* Horizontal scroll gallery */}
+        <GallerySlider projects={portfolioContent.projects} onImageClick={onImageClick} />
 
         {/* Gallery button */}
         {portfolioContent.galleryButton && (
@@ -624,8 +715,11 @@ function Footer() {
 
           {/* Brand Column */}
           <div className="lg:col-span-5 pr-8">
-            <a href="/" className="inline-block text-4xl font-bold tracking-tight mb-6 text-white">
-              LECH-BUD
+            <a href="/" className="inline-flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 bg-primary text-primary-foreground flex items-center justify-center font-bold text-2xl rounded-sm">
+                L
+              </div>
+              <span className="text-3xl font-bold text-white tracking-tight">LECH-BUD</span>
             </a>
             <p className="text-gray-300 leading-relaxed text-lg mb-8 max-w-md">
               40 lat doświadczenia w remontach wnętrz.<br/>
@@ -708,20 +802,134 @@ function Footer() {
 }
 
 // ===========================================
+// LIGHTBOX COMPONENT (rendered at root level)
+// ===========================================
+function Lightbox({
+  isOpen,
+  onClose,
+  images,
+  currentIndex,
+  onNext,
+  onPrev
+}: {
+  isOpen: boolean
+  onClose: () => void
+  images: typeof portfolioContent.projects
+  currentIndex: number
+  onNext: () => void
+  onPrev: () => void
+}) {
+  const [touchStart, setTouchStart] = useState<number | null>(null)
+  const [touchEnd, setTouchEnd] = useState<number | null>(null)
+
+  const onTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null)
+    setTouchStart(e.targetTouches[0].clientX)
+  }
+
+  const onTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX)
+  }
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return
+    const distance = touchStart - touchEnd
+    if (distance > 50) onNext()
+    if (distance < -50) onPrev()
+  }
+
+  if (!isOpen) return null
+
+  return (
+    <div
+      className="fixed inset-0 bg-black/95 flex items-center justify-center"
+      style={{ zIndex: 9999 }}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      onTouchEnd={onTouchEnd}
+    >
+      <button
+        onClick={onClose}
+        className="absolute top-4 right-4 w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-all z-10"
+      >
+        <X className="w-6 h-6" />
+      </button>
+
+      <button
+        onClick={onPrev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-all z-10"
+      >
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button
+        onClick={onNext}
+        className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/10 text-white rounded-full flex items-center justify-center hover:bg-white/20 transition-all z-10"
+      >
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
+      <div className="relative w-full h-full max-w-5xl max-h-[90vh] mx-4">
+        <Image
+          src={images[currentIndex].image}
+          alt={images[currentIndex].title}
+          fill
+          className="object-contain"
+          sizes="100vw"
+          priority
+        />
+      </div>
+
+      <div className="absolute bottom-4 left-0 right-0 text-center text-white">
+        <h3 className="text-xl font-bold mb-1">{images[currentIndex].title}</h3>
+        <p className="text-white/70">{images[currentIndex].specs}</p>
+        <p className="text-white/50 text-sm mt-2">{currentIndex + 1} / {images.length}</p>
+      </div>
+    </div>
+  )
+}
+
+// ===========================================
 // MAIN PAGE
 // ===========================================
 export default function HomePage() {
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [lightboxIndex, setLightboxIndex] = useState(0)
+  const projects = portfolioContent.projects
+
+  const openLightbox = (index: number) => {
+    setLightboxIndex(index % projects.length)
+    setLightboxOpen(true)
+  }
+
+  const lightboxNext = () => {
+    setLightboxIndex(prev => (prev + 1) % projects.length)
+  }
+
+  const lightboxPrev = () => {
+    setLightboxIndex(prev => (prev === 0 ? projects.length - 1 : prev - 1))
+  }
+
   return (
-    <main className="selection:bg-primary/20 selection:text-primary">
-      <NavSection />
-      <HeroSection />
-      <WhyUsSection />
-      <ServicesEditorialSection content={servicesEditorialContent} />
-      <PortfolioSection />
-      <ProcessSection />
-      <FaqSection />
-      <ContactSection />
-      <Footer />
-    </main>
+    <>
+      <Lightbox
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        images={projects}
+        currentIndex={lightboxIndex}
+        onNext={lightboxNext}
+        onPrev={lightboxPrev}
+      />
+      <main className="selection:bg-primary/20 selection:text-primary">
+        <NavSection />
+        <HeroSection />
+        <WhyUsSection />
+        <ServicesEditorialSection content={servicesEditorialContent} />
+        <PortfolioSection onImageClick={openLightbox} />
+        <ProcessSection />
+        <FaqSection />
+        <ContactSection />
+        <Footer />
+      </main>
+    </>
   )
 }

@@ -42,6 +42,19 @@
   --shadow-2xl: 0px 4px 12px 0px hsl(25 15% 15% / 0.20);
   --tracking-normal: 0.01em;
   --spacing: 0.25rem;
+  --slide-width: calc(100% + 16px);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --slide-width: calc(50% + 8px);
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --slide-width: calc(25% + 4px);
+  }
 }
 
 @theme inline {
