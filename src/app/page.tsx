@@ -15,24 +15,19 @@ import {
   ChevronDown,
   ArrowRight,
   Menu,
-  X,
-  ClipboardList,
   Clock,
   ShieldCheck,
-  Sparkles,
-  Star,
 } from "lucide-react"
 import Image from "next/image"
 import { ServicesEditorialSection } from "@/components/sections/services-editorial-section"
 
 import { heroContent } from "@/content/lech-bud/hero"
-import { servicesContent } from "@/content/tom-art/services"
 import { servicesEditorialContent } from "@/content/lech-bud/services-editorial"
-import { processContent } from "@/content/tom-art/process"
+import { processContent } from "@/content/lech-bud/process"
 import { whyUsContent } from "@/content/lech-bud/why-us"
 import { portfolioContent } from "@/content/lech-bud/portfolio"
-import { faqContent } from "@/content/tom-art/faq"
-import { contactContent } from "@/content/tom-art/contact"
+import { faqContent } from "@/content/lech-bud/faq"
+import { contactContent } from "@/content/lech-bud/contact"
 
 // Icon map for dynamic icon rendering
 const iconMap: Record<string, React.ElementType> = {
@@ -52,10 +47,10 @@ const iconMap: Record<string, React.ElementType> = {
 // NAV SECTION
 // ===========================================
 const navLinks = [
-  { label: "Uslugi", href: "#uslugi" },
-  { label: "Proces", href: "#proces" },
   { label: "Dlaczego my", href: "#dlaczego" },
-  { label: "O mnie", href: "#o-mnie" },
+  { label: "Usługi", href: "#uslugi" },
+  { label: "Realizacje", href: "#realizacje" },
+  { label: "Proces", href: "#proces" },
   { label: "FAQ", href: "#faq" },
   { label: "Kontakt", href: "#kontakt" },
 ]
@@ -79,7 +74,7 @@ function NavSection() {
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border/10 shadow-sm h-20"
+          ? "bg-background/95 backdrop-blur-md border-b border-border/10 shadow-sm h-20"
           : "bg-transparent border-b border-transparent h-24"
       }`}
     >
@@ -87,11 +82,11 @@ function NavSection() {
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <a href="/" className="text-2xl font-bold text-foreground tracking-tight">
-            TOM-ART
+            LECH-BUD
           </a>
 
           {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -105,15 +100,15 @@ function NavSection() {
 
           {/* CTA */}
           <a
-            href="tel:690651606"
-            className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-primary/90 transition-all hover:shadow-lg hover:scale-105"
+            href="tel:607176748"
+            className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm text-sm font-semibold hover:bg-primary/90 transition-all hover:shadow-lg hover:scale-105"
           >
             <Phone className="w-4 h-4" />
-            690 651 606
+            607 176 748
           </a>
 
           {/* Mobile menu button */}
-          <button className="md:hidden p-2 text-foreground hover:bg-muted rounded-lg transition-colors">
+          <button className="lg:hidden p-2 text-foreground hover:bg-muted rounded-sm transition-colors">
             <Menu className="w-6 h-6" />
           </button>
         </div>
@@ -216,79 +211,6 @@ function HeroSection() {
           </div>
         </div>
       )}
-    </section>
-  )
-}
-
-// ===========================================
-// SERVICES SECTION
-// ===========================================
-function ServicesSection() {
-  return (
-    <section id="uslugi" className="bg-muted/30 py-32">
-      <div className="container mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-20 max-w-3xl mx-auto">
-          <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
-            {servicesContent.tagline}
-          </span>
-          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 h2-accent-center tracking-tight">
-            {servicesContent.title}
-          </h2>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            {servicesContent.subtitle}
-          </p>
-        </div>
-
-        {/* Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesContent.services.map((service, index) => {
-            const Icon = iconMap[service.icon] || Hammer
-            return (
-              <div
-                key={index}
-                className="group bg-card p-10 rounded-lg shadow-sm hover:shadow-xl transition-all duration-300 border border-border/50 hover:border-primary/20 hover:-translate-y-2"
-              >
-                {/* Icon */}
-                <div className="w-16 h-16 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg flex items-center justify-center mb-8 group-hover:from-primary group-hover:to-primary/90 transition-all duration-300 shadow-inner group-hover:shadow-lg group-hover:shadow-primary/30">
-                  <Icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors duration-300" />
-                </div>
-
-                {/* Text */}
-                <h3 className="text-2xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-              </div>
-            )
-          })}
-
-          {/* CTA Card */}
-          {servicesContent.ctaCard && (
-            <div className="bg-secondary text-secondary-foreground p-10 rounded-lg flex flex-col items-center justify-center text-center shadow-xl relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-
-              <h3 className="text-2xl font-bold mb-4 relative z-10">
-                {servicesContent.ctaCard.title}
-              </h3>
-              {servicesContent.ctaCard.description && (
-                <p className="text-secondary-foreground/80 mb-8 relative z-10 leading-relaxed">
-                  {servicesContent.ctaCard.description}
-                </p>
-              )}
-              <a
-                href="tel:690651606"
-                className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-4 rounded-xl font-bold hover:bg-primary/90 transition-all shadow-lg hover:shadow-primary/30 hover:-translate-y-1 relative z-10"
-              >
-                <Phone className="w-5 h-5" />
-                {servicesContent.ctaCard.buttonText}
-              </a>
-            </div>
-          )}
-        </div>
-      </div>
     </section>
   )
 }
@@ -703,12 +625,17 @@ function Footer() {
           {/* Brand Column */}
           <div className="lg:col-span-5 pr-8">
             <a href="/" className="inline-block text-4xl font-bold tracking-tight mb-6 text-white">
-              TOM-ART
+              LECH-BUD
             </a>
             <p className="text-gray-300 leading-relaxed text-lg mb-8 max-w-md">
-              Profesjonalne usługi remontowo-wykończeniowe. <br/>
-              Kompleksowe remonty wnętrz na terenie Rzepiennika i okolic Tarnowa.
+              40 lat doświadczenia w remontach wnętrz.<br/>
+              Biurowce, domy kultury, wspólnoty mieszkaniowe i prywatne łazienki w Kielcach i okolicach.
             </p>
+            {/* Certificate badge */}
+            <div className="inline-flex items-center gap-3 bg-gold/10 border border-gold/20 rounded-sm px-4 py-2">
+              <ShieldCheck className="w-5 h-5 text-gold" />
+              <span className="text-gold text-sm font-semibold">Od 1986 roku</span>
+            </div>
           </div>
 
           {/* Links Column */}
@@ -740,26 +667,26 @@ function Footer() {
             </h4>
             <ul className="space-y-6">
               <li>
-                <a href="tel:690651606" className="group flex items-center gap-4 hover:text-primary transition-colors">
+                <a href="tel:607176748" className="group flex items-center gap-4 hover:text-primary transition-colors">
                    <Phone className="w-8 h-8 text-primary" />
                    <div>
                       <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Zadzwoń teraz</span>
-                      <span className="text-2xl font-bold text-white group-hover:text-primary transition-colors">690 651 606</span>
+                      <span className="text-2xl font-bold text-white group-hover:text-primary transition-colors">607 176 748</span>
                    </div>
                 </a>
               </li>
               <li className="flex items-center gap-4">
-                 <FileText className="w-8 h-8 text-primary/70" />
+                 <Clock className="w-8 h-8 text-primary/70" />
                  <div>
-                    <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Dane firmowe</span>
-                    <span className="text-lg text-gray-200">NIP: 9930712739</span>
+                    <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Godziny pracy</span>
+                    <span className="text-lg text-gray-200">wt-pt od 07:00</span>
                  </div>
               </li>
               <li className="flex items-center gap-4">
                  <MapPin className="w-8 h-8 text-primary/70" />
                  <div>
                     <span className="block text-xs text-gray-400 uppercase tracking-wider mb-0.5">Lokalizacja</span>
-                    <span className="text-lg text-gray-200">Rzepiennik Suchy i okolice</span>
+                    <span className="text-lg text-gray-200">Kielce i okolice</span>
                  </div>
               </li>
             </ul>
@@ -768,7 +695,7 @@ function Footer() {
 
         {/* Bottom Bar */}
         <div className="border-t border-white/10 pt-10 mt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-gray-400">
-          <p>&copy; {new Date().getFullYear()} TOM-ART Tomasz Wszołek. Wszelkie prawa zastrzeżone.</p>
+          <p>&copy; {new Date().getFullYear()} LECH-BUD Leszek Kozieł. Wszelkie prawa zastrzeżone.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-primary transition-colors">Polityka prywatności</a>
             <span className="w-1 h-1 bg-gray-600 rounded-full" />
