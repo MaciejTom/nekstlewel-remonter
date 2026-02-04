@@ -432,9 +432,9 @@ function WhyUsSection() {
 // ===========================================
 function PortfolioSection() {
   return (
-    <section id="realizacje" className="bg-secondary text-secondary-foreground py-32 relative overflow-hidden">
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-5" style={{ backgroundImage: "radial-gradient(#ffffff 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
+    <section id="realizacje" className="bg-muted/30 py-32 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
@@ -443,11 +443,11 @@ function PortfolioSection() {
             <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
               {portfolioContent.tagline}
             </span>
-            <h2 className="text-4xl sm:text-5xl font-bold tracking-tight">
+            <h2 className="text-4xl sm:text-5xl font-bold text-foreground tracking-tight">
               {portfolioContent.title}{" "}
               <span className="text-primary">{portfolioContent.titleAccent}</span>
             </h2>
-            <p className="text-secondary-foreground/70 mt-4 text-lg">
+            <p className="text-muted-foreground mt-4 text-lg">
               {portfolioContent.subtitle}
             </p>
           </div>
@@ -457,46 +457,44 @@ function PortfolioSection() {
             <div className="flex gap-8">
               {portfolioContent.stats.map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className={`text-4xl font-bold ${stat.highlight ? 'text-gold' : 'text-white'}`}>
+                  <div className={`text-4xl font-bold ${stat.highlight ? 'text-gold' : 'text-foreground'}`}>
                     {stat.value}
                   </div>
-                  <div className="text-sm text-secondary-foreground/60">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
                 </div>
               ))}
             </div>
           )}
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Projects Grid - 2x2 */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {portfolioContent.projects.map((project, index) => (
             <div
               key={index}
-              className={`group relative rounded-sm overflow-hidden ${
-                project.featured ? 'md:col-span-2 md:row-span-2' : ''
-              } ${project.wide ? 'md:col-span-2' : ''}`}
+              className="group relative rounded-sm overflow-hidden shadow-lg"
             >
               {/* Image */}
-              <div className={`relative bg-muted/20 ${project.featured ? 'aspect-[4/3]' : 'aspect-[3/2]'}`}>
+              <div className="relative bg-muted aspect-[4/3]">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  sizes={project.featured ? "(max-width: 768px) 100vw, 66vw" : "(max-width: 768px) 100vw, 33vw"}
+                  sizes="(max-width: 640px) 100vw, 50vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
               </div>
 
               {/* Content overlay */}
-              <div className="absolute bottom-0 left-0 right-0 p-6 z-20">
-                <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-semibold px-3 py-1 rounded-sm mb-3">
+              <div className="absolute bottom-0 left-0 right-0 p-5 z-20">
+                <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-semibold px-2 py-1 rounded-sm mb-2">
                   {project.category}
                 </span>
-                <h3 className="text-xl font-bold text-white mb-2 group-hover:text-primary transition-colors">
+                <h3 className="text-lg font-bold text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">
                   {project.title}
                 </h3>
-                <p className="text-white/70 text-sm">{project.specs}</p>
+                <p className="text-white/70 text-sm line-clamp-1">{project.specs}</p>
               </div>
             </div>
           ))}

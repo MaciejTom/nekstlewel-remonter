@@ -15,21 +15,26 @@ export const portfolioContent: PortfolioContent = {
     {
       title: "Klub Sabat Dom Kultury",
       category: "Obiekty publiczne",
-      specs: "Malowanie, płytki, podłogi, oświetlenie",
+      specs: "Malowanie, płytki, podłogi",
       image: "/images/lech-bud/oferteo_005_133035390-crop-sabat-zdiecia.jpg",
-      featured: true,
     },
     {
       title: "Biurowiec SM Wichrowe Wzgórze",
       category: "Biurowce",
-      specs: "Korytarze, biura, wykładziny, malowanie",
+      specs: "Korytarze, biura, wykładziny",
       image: "/images/lech-bud/oferteo_013_122301403-crop-sm-5.jpg",
     },
     {
-      title: "Klatki schodowe — bloki mieszkalne",
+      title: "Klatki schodowe",
       category: "Wspólnoty mieszkaniowe",
       specs: "Płytki, malowanie, balustrady",
       image: "/images/lech-bud/oferteo_001_160723832-crop-20210924-132823.jpg",
+    },
+    {
+      title: "Łazienki prywatne",
+      category: "Łazienki",
+      specs: "Płytki, kabiny, armatura",
+      image: "/images/lech-bud/oferteo_003_160237248-crop-20210924-133004.jpg",
     },
   ],
 

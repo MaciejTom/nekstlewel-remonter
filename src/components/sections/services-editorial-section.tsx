@@ -51,10 +51,10 @@ const s = {
   featureText: "font-medium text-foreground/90",
 
   // CTA
-  cta: "mt-24 lg:mt-32 text-center w-full max-w-3xl bg-secondary text-secondary-foreground rounded-sm p-12 md:p-16 animate-fade-up relative overflow-hidden",
-  ctaTitle: "text-3xl text-white font-bold mb-6 tracking-tight relative z-10",
-  ctaDesc: "text-gray-300 mb-10 text-lg relative z-10",
-  ctaButton: "bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-10 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 mx-auto text-lg rounded-sm relative z-10",
+  cta: "mt-24 lg:mt-32 w-full max-w-7xl bg-secondary text-secondary-foreground rounded-sm p-8 md:p-12 animate-fade-up relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8",
+  ctaTitle: "text-2xl md:text-3xl text-white font-bold mb-2 md:mb-0 tracking-tight relative z-10",
+  ctaDesc: "text-gray-400 relative z-10",
+  ctaButton: "bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-10 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 text-lg rounded-sm relative z-10 shrink-0",
 }
 
 const iconFill = { fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24" } as const
@@ -141,8 +141,10 @@ export function ServicesEditorialSection({ content, className, id }: ServicesEdi
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
             <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
 
-            <p className={s.ctaTitle}>{cta.title}</p>
-            <p className={s.ctaDesc}>{cta.description}</p>
+            <div className="relative z-10">
+              <p className={s.ctaTitle}>{cta.title}</p>
+              <p className={s.ctaDesc}>{cta.description}</p>
+            </div>
             <button className={s.ctaButton}>
               {cta.buttonIcon && (
                 <span className="material-symbols-outlined text-[24px]" style={iconFill}>
