@@ -17,7 +17,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Montaz armatury i sanitariatow",
         "Zabudowy plytami G-K"
       ],
-      image: "/images/lech-bud/oferteo_021_124408834-crop-sm-2.jpg",
+      image: "/images/lech-bud/oferteo_021_124408834-crop-sm-2.webp",
       imageAlt: "Nowoczesna lazienka z kabina walk-in"
     },
     {
@@ -31,7 +31,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Sufity napinane",
         "Zabudowy i scianki dzialowe"
       ],
-      image: "/images/lech-bud/oferteo_009_132628847-crop-20230208-090704.jpg",
+      image: "/images/lech-bud/oferteo_009_132628847-crop-20230208-090704.webp",
       imageAlt: "Korytarz biurowy po remoncie"
     },
     {
@@ -45,7 +45,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Balustrady i porecze",
         "Wymiana oswietlenia"
       ],
-      image: "/images/lech-bud/oferteo_015_76621_20210202_102954-768x1024.jpg",
+      image: "/images/lech-bud/oferteo_015_76621_20210202_102954-768x1024.webp",
       imageAlt: "Wyremontowana klatka schodowa"
     },
     {
@@ -59,7 +59,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Malowanie elewacji",
         "Obrobki blacharskie"
       ],
-      image: "/images/lech-bud/oferteo_001_160723832-crop-20210924-132823.jpg",
+      image: "/images/lech-bud/oferteo_001_160723832-crop-20210924-132823.webp",
       imageAlt: "Elewacja budynku"
     },
     {
@@ -73,7 +73,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Montaz paneli i wykladzin",
         "Zabudowy karton-gips"
       ],
-      image: "/images/lech-bud/oferteo_006_132953394-crop-20230208-090918.jpg",
+      image: "/images/lech-bud/oferteo_006_132953394-crop-20230208-090918.webp",
       imageAlt: "Wykonczenie wnetrze mieszkania"
     }
   ],

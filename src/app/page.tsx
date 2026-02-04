@@ -132,7 +132,7 @@ function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/heroLech.jpg"
+          src="/heroLech.webp"
           alt="Realizacja Lech-Bud"
           fill
           className="object-cover"
@@ -269,7 +269,7 @@ function ProcessSection() {
                   <span className="inline-flex items-center justify-center w-10 h-10 bg-primary text-primary-foreground rounded-sm text-lg font-bold mb-4">
                     {index + 1}
                   </span>
-                  <span className="text-xs font-bold text-primary tracking-widest uppercase mb-2 block">
+                  <span className="text-sm font-bold text-primary tracking-widest uppercase mb-2 block">
                     {step.badge}
                   </span>
                   <h3 className="text-lg font-bold text-foreground mb-2">
@@ -555,7 +555,7 @@ function FaqSection() {
           {faqContent.items.map((item, index) => (
             <details
               key={index}
-              className="group bg-card border border-border/50 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all"
+              className="group bg-card border border-border/50 rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all"
             >
               <summary className="flex items-center justify-between p-8 cursor-pointer hover:bg-muted/30 transition-colors select-none">
                 <span className="font-bold text-lg text-foreground pr-8">
@@ -582,6 +582,72 @@ function FaqSection() {
 // CONTACT SECTION
 // ===========================================
 function ContactSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    message: "",
+  })
+  const [errors, setErrors] = useState<Record<string, string>>({})
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {}
+
+    // Name validation
+    if (!formData.name.trim()) {
+      newErrors.name = "Imię jest wymagane"
+    } else if (formData.name.trim().length < 2) {
+      newErrors.name = "Imię musi mieć min. 2 znaki"
+    }
+
+    // Phone validation (Polish format)
+    const phoneClean = formData.phone.replace(/\s/g, "")
+    if (!phoneClean) {
+      newErrors.phone = "Numer telefonu jest wymagany"
+    } else if (!/^(\+48)?[0-9]{9}$/.test(phoneClean)) {
+      newErrors.phone = "Nieprawidłowy format (np. 607176748)"
+    }
+
+    // Message validation
+    if (!formData.message.trim()) {
+      newErrors.message = "Opis prac jest wymagany"
+    } else if (formData.message.trim().length < 10) {
+      newErrors.message = "Opis musi mieć min. 10 znaków"
+    }
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+
+    if (!validateForm()) return
+
+    setIsSubmitting(true)
+    setSubmitStatus("idle")
+
+    // Simulate form submission (replace with actual API call)
+    try {
+      await new Promise(resolve => setTimeout(resolve, 1000))
+      setSubmitStatus("success")
+      setFormData({ name: "", phone: "", message: "" })
+    } catch {
+      setSubmitStatus("error")
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
+  const handleChange = (field: string, value: string) => {
+    setFormData(prev => ({ ...prev, [field]: value }))
+    // Clear error when user starts typing
+    if (errors[field]) {
+      setErrors(prev => ({ ...prev, [field]: "" }))
+    }
+  }
+
   return (
     <section id="kontakt" className="bg-background py-32 relative overflow-hidden">
       {/* Decorative background blobs */}
@@ -619,7 +685,7 @@ function ContactSection() {
                   return (
                     <div
                       key={i}
-                      className="flex items-center gap-6 p-6 rounded-lg border border-border/60 bg-white/50 backdrop-blur-sm hover:border-primary/50 hover:bg-white hover:shadow-lg transition-all duration-300 group"
+                      className="flex items-center gap-6 p-6 rounded-sm border border-border/60 bg-white/50 backdrop-blur-sm hover:border-primary/50 hover:bg-white hover:shadow-lg transition-all duration-300 group"
                     >
                       <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center shrink-0 shadow-sm border border-border/50 group-hover:bg-primary group-hover:text-white transition-colors duration-300">
                         <Icon className="w-6 h-6 text-primary group-hover:text-white transition-colors" />
@@ -646,47 +712,101 @@ function ContactSection() {
           {/* Right - form */}
           <div className="order-1 lg:order-2 h-full">
             <div className="relative h-full">
-               <div className="bg-white border border-border/40 rounded-xl p-8 md:p-12 shadow-xl relative overflow-hidden h-full flex flex-col justify-center">
+               <div className="bg-white border border-border/40 rounded-sm p-8 md:p-12 shadow-xl relative overflow-hidden h-full flex flex-col justify-center">
                 {/* Subtle pattern inside form */}
                 <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 pointer-events-none" />
 
                 <h3 className="text-2xl font-bold text-foreground mb-8 relative z-10">
                   {contactContent.formTitle}
                 </h3>
-                <form className="space-y-5 relative z-10 flex-1 flex flex-col">
+                <form onSubmit={handleSubmit} className="space-y-5 relative z-10 flex-1 flex flex-col" noValidate>
+                  {submitStatus === "success" && (
+                    <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-sm flex items-center gap-2">
+                      <CheckCircle className="w-5 h-5" />
+                      <span>Dziękujemy! Odezwiemy się wkrótce.</span>
+                    </div>
+                  )}
+                  {submitStatus === "error" && (
+                    <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-sm">
+                      Wystąpił błąd. Spróbuj ponownie lub zadzwoń bezpośrednio.
+                    </div>
+                  )}
+
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    {contactContent.fields.map((field, i) => (
-                      <div
-                        key={i}
-                        className={field.half ? "" : "col-span-1 md:col-span-2"}
-                      >
-                        <label className="block text-sm font-bold text-foreground/70 mb-2 ml-1">
-                          {field.label}
-                        </label>
-                        {field.type === "textarea" ? (
-                          <textarea
-                            placeholder={field.placeholder}
-                            required
-                            className="w-full bg-muted/20 border border-border/60 rounded-lg px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm min-h-[220px] resize-none"
-                          />
-                        ) : (
-                          <input
-                            type={field.type}
-                            placeholder={field.placeholder}
-                            required
-                            className="w-full bg-muted/20 border border-border/60 rounded-lg px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm"
-                          />
-                        )}
-                      </div>
-                    ))}
+                    {/* Name field */}
+                    <div>
+                      <label className="block text-sm font-bold text-foreground/70 mb-2 ml-1">
+                        Imię
+                      </label>
+                      <input
+                        type="text"
+                        placeholder="Twoje imię"
+                        value={formData.name}
+                        onChange={(e) => handleChange("name", e.target.value)}
+                        className={`w-full bg-muted/20 border rounded-sm px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm ${
+                          errors.name ? "border-red-400 bg-red-50/50" : "border-border/60"
+                        }`}
+                      />
+                      {errors.name && (
+                        <p className="text-red-500 text-xs mt-1 ml-1">{errors.name}</p>
+                      )}
+                    </div>
+
+                    {/* Phone field */}
+                    <div>
+                      <label className="block text-sm font-bold text-foreground/70 mb-2 ml-1">
+                        Telefon
+                      </label>
+                      <input
+                        type="tel"
+                        placeholder="Numer telefonu"
+                        value={formData.phone}
+                        onChange={(e) => handleChange("phone", e.target.value)}
+                        className={`w-full bg-muted/20 border rounded-sm px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm ${
+                          errors.phone ? "border-red-400 bg-red-50/50" : "border-border/60"
+                        }`}
+                      />
+                      {errors.phone && (
+                        <p className="text-red-500 text-xs mt-1 ml-1">{errors.phone}</p>
+                      )}
+                    </div>
+
+                    {/* Message field */}
+                    <div className="col-span-1 md:col-span-2">
+                      <label className="block text-sm font-bold text-foreground/70 mb-2 ml-1">
+                        Opis prac
+                      </label>
+                      <textarea
+                        placeholder="Opisz krótko, co trzeba zrobić..."
+                        value={formData.message}
+                        onChange={(e) => handleChange("message", e.target.value)}
+                        className={`w-full bg-muted/20 border rounded-sm px-5 py-4 text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/10 focus:border-primary focus:bg-white transition-all duration-300 shadow-sm min-h-[180px] resize-none ${
+                          errors.message ? "border-red-400 bg-red-50/50" : "border-border/60"
+                        }`}
+                      />
+                      {errors.message && (
+                        <p className="text-red-500 text-xs mt-1 ml-1">{errors.message}</p>
+                      )}
+                    </div>
                   </div>
+
                   <div className="mt-auto pt-4">
                     <button
                       type="submit"
-                      className="w-full bg-primary text-primary-foreground py-4 rounded-xl font-bold hover:bg-primary/90 transition-all hover:shadow-lg shadow-primary/25 flex items-center justify-center gap-3 group mt-4"
+                      disabled={isSubmitting}
+                      className="w-full bg-primary text-primary-foreground py-4 rounded-sm font-bold hover:bg-primary/90 transition-all hover:shadow-lg shadow-primary/25 flex items-center justify-center gap-3 group mt-4 disabled:opacity-70 disabled:cursor-not-allowed"
                     >
-                      <span>{contactContent.submitText}</span>
-                      <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                      {isSubmitting ? (
+                        <>
+                          <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                          <span>Wysyłanie...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>{contactContent.submitText}</span>
+                          <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                        </>
+                      )}
                     </button>
                     <p className="text-xs text-center text-muted-foreground mt-4">
                       * Wycena jest całkowicie darmowa i niezobowiązująca.

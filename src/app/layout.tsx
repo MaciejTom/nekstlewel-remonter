@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     images: [
       {
-        url: "/heroLech.jpg",
+        url: "/heroLech.webp",
         width: 1200,
         height: 630,
         alt: "LECH-BUD - profesjonalne remonty wnętrz od 1986 roku",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "LECH-BUD | Remonty wnętrz Kielce - od 1986 roku",
     description: "40 lat doświadczenia w remontach wnętrz w Kielcach i okolicach.",
-    images: ["/heroLech.jpg"],
+    images: ["/heroLech.webp"],
   },
 };
 
