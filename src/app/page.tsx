@@ -538,6 +538,79 @@ function PortfolioSection({ onImageClick }: { onImageClick: (index: number) => v
 
 
 // ===========================================
+// PORTFOLIO MOSAIC SECTION
+// ===========================================
+function PortfolioMosaicSection() {
+  // Użyj pierwszych 6 unikalnych projektów z portfolioContent
+  const mosaicProjects = portfolioContent.projects.slice(0, 6)
+  // Indeksy projektów które mają być wyższe (row-span-2)
+  const tallIndices = [1, 4]
+
+  return (
+    <section className="w-full bg-background py-24 px-4 md:px-10">
+      <div className="mx-auto max-w-[1400px]">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">
+            Inspiracje
+          </span>
+          <h2 className="text-foreground font-serif text-4xl md:text-5xl font-normal mt-3">
+            Wybrane Realizacje
+          </h2>
+          <p className="text-muted-foreground mt-4 font-light max-w-2xl mx-auto">
+            Każdy projekt to osobna historia. Zobacz efekty naszej pracy.
+          </p>
+        </div>
+
+        {/* Mosaic Grid */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          style={{ gridAutoRows: "280px" }}
+        >
+          {mosaicProjects.map((project, index) => (
+            <div
+              key={index}
+              className={`group relative overflow-hidden ${tallIndices.includes(index) ? 'lg:row-span-2' : ''}`}
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute top-4 right-4 bg-black/80 backdrop-blur border border-primary/30 px-3 py-1 z-20">
+                <span className="text-primary text-[10px] font-bold uppercase tracking-widest">
+                  {project.category}
+                </span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                <h3 className="text-white font-serif text-xl italic">
+                  {project.title}
+                </h3>
+                <p className="text-white/70 text-sm mt-1">{project.specs}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-16">
+          <a
+            href="#kontakt"
+            className="inline-flex items-center gap-3 text-primary hover:text-foreground transition-colors group"
+          >
+            <span className="text-lg font-serif italic">Chcesz podobny efekt?</span>
+            <span className="bg-primary text-primary-foreground px-6 py-3 font-bold tracking-widest uppercase text-sm group-hover:bg-foreground transition-colors">
+              Napisz
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ===========================================
 // FAQ SECTION
 // ===========================================
 function FaqSection() {
@@ -1214,6 +1287,7 @@ export default function HomePage() {
         <WhyUsSection />
         <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} />
         <PortfolioSection onImageClick={openLightbox} />
+        <PortfolioMosaicSection />
         <ProcessSection />
         <FaqSection />
         <ContactSection />
