@@ -611,6 +611,91 @@ function PortfolioMosaicSection() {
 }
 
 // ===========================================
+// GALLERY VARIANTS
+// ===========================================
+
+// Wariant 2: Masonry/Pinterest - nieregularna siatka
+function GalleryVariant2() {
+  const projects = portfolioContent.projects
+  const heights = ['h-64', 'h-80', 'h-72', 'h-96', 'h-64', 'h-80', 'h-72', 'h-64']
+
+  return (
+    <section className="py-24 bg-muted/30">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">Wariant 2</span>
+          <h2 className="text-3xl font-bold text-foreground mt-2">Masonry Grid</h2>
+        </div>
+        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
+          {projects.map((project, index) => (
+            <div key={index} className={`break-inside-avoid group relative overflow-hidden rounded-sm ${heights[index % heights.length]}`}>
+              <Image src={project.image} alt={project.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
+              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-300" />
+              <div className="absolute inset-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <span className="text-primary text-xs font-bold uppercase tracking-wider">{project.category}</span>
+                <h3 className="text-white text-xl font-bold mt-2">{project.title}</h3>
+                <p className="text-white/70 text-sm mt-1">{project.specs}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+
+// Wariant 6: Accordion/Expand - rozwijane karty
+function GalleryVariant6() {
+  const [expanded, setExpanded] = useState<number | null>(0)
+  const projects = portfolioContent.projects.slice(0, 5)
+
+  return (
+    <section className="py-24 bg-muted/30">
+      <div className="container mx-auto px-6">
+        <div className="text-center mb-12">
+          <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">Wariant 6</span>
+          <h2 className="text-3xl font-bold text-foreground mt-2">Accordion</h2>
+        </div>
+        <div className="flex flex-col lg:flex-row gap-2 h-[500px]">
+          {projects.map((project, index) => (
+            <div
+              key={index}
+              onClick={() => setExpanded(index)}
+              className={`relative overflow-hidden rounded-sm cursor-pointer transition-all duration-500 ${expanded === index ? 'flex-[3]' : 'flex-1'}`}
+            >
+              <Image src={project.image} alt={project.title} fill className="object-cover" />
+              <div className={`absolute inset-0 transition-colors duration-300 ${expanded === index ? 'bg-black/40' : 'bg-black/60 hover:bg-black/50'}`} />
+              <div className={`absolute inset-0 p-6 flex flex-col justify-end transition-opacity duration-300 ${expanded === index ? 'opacity-100' : 'opacity-0 lg:opacity-100'}`}>
+                <span className="text-primary text-xs font-bold uppercase tracking-wider">{project.category}</span>
+                <h3 className={`text-white font-bold mt-2 transition-all duration-300 ${expanded === index ? 'text-2xl' : 'text-sm lg:writing-vertical lg:rotate-180'}`}>
+                  {project.title}
+                </h3>
+                {expanded === index && (
+                  <p className="text-white/70 text-sm mt-2 animate-fade-in">{project.specs}</p>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Separator dla wariantów galerii
+function GalleryVariantsSeparator() {
+  return (
+    <div className="py-12 bg-muted border-y-4 border-primary">
+      <div className="container mx-auto px-6 text-center">
+        <h2 className="text-3xl font-bold text-foreground">Warianty galerii</h2>
+        <p className="text-muted-foreground mt-2">2 różne układy do wyboru</p>
+      </div>
+    </div>
+  )
+}
+
+// ===========================================
 // FAQ SECTION
 // ===========================================
 function FaqSection() {
@@ -1288,6 +1373,12 @@ export default function HomePage() {
         <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} />
         <PortfolioSection onImageClick={openLightbox} />
         <PortfolioMosaicSection />
+
+        {/* ========== GALERIA WARIANTÓW ========== */}
+        <GalleryVariantsSeparator />
+        <GalleryVariant2 />
+        <GalleryVariant6 />
+
         <ProcessSection />
         <FaqSection />
         <ContactSection />
