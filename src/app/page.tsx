@@ -614,30 +614,77 @@ function PortfolioMosaicSection() {
 // GALLERY VARIANTS
 // ===========================================
 
-// Wariant 2: Masonry/Pinterest - nieregularna siatka
+// Wariant 2: Mosaic Grid - układ z wyższymi zdjęciami
 function GalleryVariant2() {
-  const projects = portfolioContent.projects
-  const heights = ['h-64', 'h-80', 'h-72', 'h-96', 'h-64', 'h-80', 'h-72', 'h-64']
+  // Definiujemy które projekty mają być wyższe (row-span-2)
+  const projectsWithSpan = [
+    { ...portfolioContent.projects[0], span: "" },
+    { ...portfolioContent.projects[1], span: "lg:row-span-2" },
+    { ...portfolioContent.projects[2], span: "" },
+    { ...portfolioContent.projects[3], span: "" },
+    { ...portfolioContent.projects[4], span: "lg:row-span-2" },
+    { ...portfolioContent.projects[5], span: "" },
+    { ...portfolioContent.projects[6], span: "" },
+  ]
 
   return (
-    <section className="py-24 bg-muted/30">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-12">
-          <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">Wariant 2</span>
-          <h2 className="text-3xl font-bold text-foreground mt-2">Masonry Grid</h2>
+    <section id="realizacje" className="w-full bg-muted/30 py-24 px-4 md:px-10">
+      <div className="mx-auto max-w-[1400px]">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">
+            Portfolio
+          </span>
+          <h2 className="text-foreground text-4xl md:text-5xl font-bold mt-3">
+            Nasze realizacje
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+            Każdy projekt to osobna historia. Zobacz efekty naszej pracy.
+          </p>
         </div>
-        <div className="columns-1 md:columns-2 lg:columns-3 gap-4 space-y-4">
-          {projects.map((project, index) => (
-            <div key={index} className={`break-inside-avoid group relative overflow-hidden rounded-sm ${heights[index % heights.length]}`}>
-              <Image src={project.image} alt={project.title} fill className="object-cover group-hover:scale-110 transition-transform duration-700" />
-              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-colors duration-300" />
-              <div className="absolute inset-0 p-6 flex flex-col justify-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-primary text-xs font-bold uppercase tracking-wider">{project.category}</span>
-                <h3 className="text-white text-xl font-bold mt-2">{project.title}</h3>
+
+        {/* Mosaic Grid */}
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+          style={{ gridAutoRows: "280px" }}
+        >
+          {projectsWithSpan.map((project, index) => (
+            <div
+              key={index}
+              className={`group relative overflow-hidden rounded-sm ${project.span}`}
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+              <div className="absolute top-4 right-4 bg-black/80 backdrop-blur border border-primary/30 px-3 py-1 z-20">
+                <span className="text-primary text-[10px] font-bold uppercase tracking-widest">
+                  {project.category}
+                </span>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                <h3 className="text-white font-bold text-xl">
+                  {project.title}
+                </h3>
                 <p className="text-white/70 text-sm mt-1">{project.specs}</p>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* CTA */}
+        <div className="text-center mt-16">
+          <a
+            href="#kontakt"
+            className="inline-flex items-center gap-3 text-primary hover:text-foreground transition-colors group"
+          >
+            <span className="text-lg font-medium">Chcesz podobny efekt?</span>
+            <span className="bg-primary text-primary-foreground px-6 py-3 font-bold tracking-widest uppercase text-sm group-hover:bg-foreground transition-colors">
+              Napisz
+            </span>
+          </a>
         </div>
       </div>
     </section>
@@ -688,8 +735,8 @@ function GalleryVariantsSeparator() {
   return (
     <div className="py-12 bg-muted border-y-4 border-primary">
       <div className="container mx-auto px-6 text-center">
-        <h2 className="text-3xl font-bold text-foreground">Warianty galerii</h2>
-        <p className="text-muted-foreground mt-2">2 różne układy do wyboru</p>
+        <h2 className="text-3xl font-bold text-foreground">Galeria realizacji</h2>
+        <p className="text-muted-foreground mt-2">Masonry Grid</p>
       </div>
     </div>
   )
@@ -1371,13 +1418,7 @@ export default function HomePage() {
         <HeroSection />
         <WhyUsSection />
         <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} />
-        <PortfolioSection onImageClick={openLightbox} />
-        <PortfolioMosaicSection />
-
-        {/* ========== GALERIA WARIANTÓW ========== */}
-        <GalleryVariantsSeparator />
         <GalleryVariant2 />
-        <GalleryVariant6 />
 
         <ProcessSection />
         <FaqSection />
