@@ -25,6 +25,10 @@ import {
   MessageSquare,
   User,
   Building2,
+  Settings,
+  Shuffle,
+  RotateCcw,
+  ArrowLeftRight,
 } from "lucide-react"
 import Image from "next/image"
 import { ServicesEditorialSection } from "@/components/sections/services-editorial-section"
@@ -1383,6 +1387,1035 @@ function ContactWithMap() {
 }
 
 // ===========================================
+// CONTROL PANEL - Design System Dashboard
+// ===========================================
+
+// Rozszerzona paleta kolorów (70 kolorów)
+const COLOR_PALETTE = [
+  // Biele i kremowe
+  '#ffffff', '#fefefe', '#fafafa', '#f5f5f5', '#fffbf5', '#fef7ed', '#fef3c7', '#fefce8',
+  // Szare jasne
+  '#f1f5f9', '#e2e8f0', '#cbd5e1', '#94a3b8', '#64748b',
+  // Szare ciemne
+  '#475569', '#334155', '#1e293b', '#0f172a', '#020617',
+  // Czerwone
+  '#fef2f2', '#fee2e2', '#fca5a5', '#f87171', '#ef4444', '#dc2626', '#b91c1c', '#991b1b', '#7f1d1d',
+  // Pomarańczowe
+  '#fff7ed', '#ffedd5', '#fdba74', '#fb923c', '#f97316', '#ea580c', '#c2410c', '#9a3412',
+  // Żółte / Złote
+  '#fefce8', '#fef08a', '#facc15', '#eab308', '#ca8a04', '#a16207', '#854d0e', '#d97706',
+  // Zielone
+  '#f0fdf4', '#dcfce7', '#86efac', '#4ade80', '#22c55e', '#16a34a', '#15803d', '#166534', '#14532d',
+  // Cyjan / Teal
+  '#f0fdfa', '#99f6e4', '#2dd4bf', '#14b8a6', '#0d9488', '#0f766e', '#115e59',
+  // Niebieskie
+  '#eff6ff', '#dbeafe', '#93c5fd', '#60a5fa', '#3b82f6', '#2563eb', '#1d4ed8', '#1e40af', '#1e3a8a',
+  // Granatowe / Navy
+  '#1d3557', '#14213d', '#0a1628', '#172554',
+  // Fioletowe
+  '#faf5ff', '#e9d5ff', '#c084fc', '#a855f7', '#9333ea', '#7c3aed', '#6d28d9', '#5b21b6',
+  // Różowe
+  '#fdf2f8', '#fbcfe8', '#f472b6', '#ec4899', '#db2777', '#be185d',
+  // Brązowe / Ciepłe
+  '#fdf4e3', '#f3ede4', '#e8e1d5', '#d6ccc2', '#a8a29e', '#78716c', '#57534e', '#44403c',
+  // Czarne
+  '#171717', '#000000',
+]
+
+// Rozszerzona lista czcionek (24 opcje)
+const FONT_OPTIONS = [
+  // Sans-serif nowoczesne
+  { name: 'Inter', family: "'Inter', sans-serif", category: 'sans' },
+  { name: 'DM Sans', family: "'DM Sans', sans-serif", category: 'sans' },
+  { name: 'Outfit', family: "'Outfit', sans-serif", category: 'sans' },
+  { name: 'Plus Jakarta', family: "'Plus Jakarta Sans', sans-serif", category: 'sans' },
+  { name: 'Manrope', family: "'Manrope', sans-serif", category: 'sans' },
+  { name: 'Space Grotesk', family: "'Space Grotesk', sans-serif", category: 'sans' },
+  { name: 'Bricolage', family: "'Bricolage Grotesque', sans-serif", category: 'sans' },
+  { name: 'Syne', family: "'Syne', sans-serif", category: 'sans' },
+  // Sans-serif klasyczne
+  { name: 'Roboto', family: "'Roboto', sans-serif", category: 'sans' },
+  { name: 'Open Sans', family: "'Open Sans', sans-serif", category: 'sans' },
+  { name: 'Lato', family: "'Lato', sans-serif", category: 'sans' },
+  { name: 'Montserrat', family: "'Montserrat', sans-serif", category: 'sans' },
+  { name: 'Poppins', family: "'Poppins', sans-serif", category: 'sans' },
+  { name: 'Raleway', family: "'Raleway', sans-serif", category: 'sans' },
+  { name: 'Work Sans', family: "'Work Sans', sans-serif", category: 'sans' },
+  { name: 'Rubik', family: "'Rubik', sans-serif", category: 'sans' },
+  // Display / Nagłówkowe
+  { name: 'Oswald', family: "'Oswald', sans-serif", category: 'display' },
+  { name: 'Bebas Neue', family: "'Bebas Neue', sans-serif", category: 'display' },
+  { name: 'Archivo Black', family: "'Archivo Black', sans-serif", category: 'display' },
+  // Serif
+  { name: 'Playfair', family: "'Playfair Display', serif", category: 'serif' },
+  { name: 'Cormorant', family: "'Cormorant Garamond', serif", category: 'serif' },
+  { name: 'Libre Baskerville', family: "'Libre Baskerville', serif", category: 'serif' },
+  { name: 'Merriweather', family: "'Merriweather', serif", category: 'serif' },
+  { name: 'DM Serif', family: "'DM Serif Display', serif", category: 'serif' },
+]
+
+// Presety tematów (12 gotowych kombinacji)
+const THEME_PRESETS = [
+  {
+    name: 'Warm Classic',
+    desc: 'Kremowy + Granat + Czerwony',
+    background: '#fffbf5',
+    foreground: '#1d3557',
+    primary: '#e63946',
+    muted: '#f3ede4',
+    border: '#e8e1d5',
+    font: 'Inter',
+  },
+  {
+    name: 'Industrial Orange',
+    desc: 'Ciemny + Pomarańcz',
+    background: '#0f172a',
+    foreground: '#f1f5f9',
+    primary: '#f97316',
+    muted: '#1e293b',
+    border: '#334155',
+    font: 'Oswald',
+  },
+  {
+    name: 'Industrial Yellow',
+    desc: 'Ciemny + Żółty',
+    background: '#171717',
+    foreground: '#fafafa',
+    primary: '#eab308',
+    muted: '#262626',
+    border: '#404040',
+    font: 'Space Grotesk',
+  },
+  {
+    name: 'Clean Blue',
+    desc: 'Biały + Niebieski',
+    background: '#ffffff',
+    foreground: '#1e293b',
+    primary: '#2563eb',
+    muted: '#f1f5f9',
+    border: '#e2e8f0',
+    font: 'DM Sans',
+  },
+  {
+    name: 'Trust Navy',
+    desc: 'Jasny + Navy + Niebieski',
+    background: '#f8fafc',
+    foreground: '#14213d',
+    primary: '#1d4ed8',
+    muted: '#e2e8f0',
+    border: '#cbd5e1',
+    font: 'Plus Jakarta',
+  },
+  {
+    name: 'Premium Gold',
+    desc: 'Ciemny + Złoto',
+    background: '#0a1628',
+    foreground: '#fef7ed',
+    primary: '#d97706',
+    muted: '#172554',
+    border: '#1e3a8a',
+    font: 'Playfair',
+  },
+  {
+    name: 'Nature Green',
+    desc: 'Jasny + Zielony',
+    background: '#fafafa',
+    foreground: '#14532d',
+    primary: '#16a34a',
+    muted: '#f0fdf4',
+    border: '#dcfce7',
+    font: 'Outfit',
+  },
+  {
+    name: 'Modern Minimal',
+    desc: 'Biały + Czarny',
+    background: '#ffffff',
+    foreground: '#171717',
+    primary: '#171717',
+    muted: '#f5f5f5',
+    border: '#e5e5e5',
+    font: 'Manrope',
+  },
+  {
+    name: 'Bold Red',
+    desc: 'Biały + Czerwony mocny',
+    background: '#fefefe',
+    foreground: '#1e293b',
+    primary: '#dc2626',
+    muted: '#fef2f2',
+    border: '#fca5a5',
+    font: 'Bebas Neue',
+  },
+  {
+    name: 'Elegant Purple',
+    desc: 'Jasny + Fiolet',
+    background: '#faf5ff',
+    foreground: '#3b0764',
+    primary: '#7c3aed',
+    muted: '#e9d5ff',
+    border: '#c084fc',
+    font: 'Cormorant',
+  },
+  {
+    name: 'Dark Slate',
+    desc: 'Slate ciemny + Cyan',
+    background: '#0f172a',
+    foreground: '#e2e8f0',
+    primary: '#14b8a6',
+    muted: '#1e293b',
+    border: '#334155',
+    font: 'Bricolage',
+  },
+  {
+    name: 'Warm Earth',
+    desc: 'Beżowy + Brąz',
+    background: '#fdf4e3',
+    foreground: '#44403c',
+    primary: '#78716c',
+    muted: '#f3ede4',
+    border: '#d6ccc2',
+    font: 'Libre Baskerville',
+  },
+]
+
+// Opcje zaokrągleń
+const RADIUS_OPTIONS = [
+  { name: 'Ostre', value: '0' },
+  { name: 'Lekkie', value: '0.25rem' },
+  { name: 'Normalne', value: '0.5rem' },
+  { name: 'Okrągłe', value: '1rem' },
+  { name: 'Bardzo okrągłe', value: '1.5rem' },
+]
+
+// Opcje cieni
+const SHADOW_OPTIONS = [
+  { name: 'Brak', value: 'none' },
+  { name: 'Subtelne', value: 'subtle' },
+  { name: 'Normalne', value: 'normal' },
+  { name: 'Mocne', value: 'strong' },
+]
+
+function ControlPanel() {
+  const [isOpen, setIsOpen] = useState(false)
+  const [activeTab, setActiveTab] = useState<'presets' | 'colors' | 'typography' | 'effects'>('presets')
+
+  // Stan kolorów
+  const [bgColor, setBgColor] = useState('#fffbf5')
+  const [fgColor, setFgColor] = useState('#1d3557')
+  const [primaryColor, setPrimaryColor] = useState('#e63946')
+  const [mutedColor, setMutedColor] = useState('#f3ede4')
+  const [borderColor, setBorderColor] = useState('#e8e1d5')
+
+  // Stan typografii
+  const [currentFont, setCurrentFont] = useState('Inter')
+
+  // Stan efektów
+  const [radius, setRadius] = useState('0.5rem')
+  const [shadowIntensity, setShadowIntensity] = useState('normal')
+
+  // Aktywny preset
+  const [activePreset, setActivePreset] = useState('Warm Classic')
+
+  // Efekt do aktualizacji wszystkich CSS variables
+  useEffect(() => {
+    const root = document.documentElement
+
+    // Kolory główne
+    root.style.setProperty('--background', bgColor)
+    root.style.setProperty('--foreground', fgColor)
+    root.style.setProperty('--card-foreground', fgColor)
+    root.style.setProperty('--popover-foreground', fgColor)
+    root.style.setProperty('--accent-foreground', fgColor)
+    root.style.setProperty('--primary', primaryColor)
+    root.style.setProperty('--ring', primaryColor)
+    root.style.setProperty('--muted', mutedColor)
+    root.style.setProperty('--accent', mutedColor)
+    root.style.setProperty('--border', borderColor)
+    root.style.setProperty('--input', borderColor)
+
+    // Kolory pochodne (card, secondary)
+    root.style.setProperty('--card', bgColor === '#ffffff' || bgColor === '#fefefe' || bgColor === '#fafafa' ? '#ffffff' : bgColor)
+    root.style.setProperty('--secondary', fgColor)
+    root.style.setProperty('--secondary-foreground', bgColor)
+  }, [bgColor, fgColor, primaryColor, mutedColor, borderColor])
+
+  // Efekt do zmiany czcionki - ustawia zmienne CSS dla body i nagłówków
+  useEffect(() => {
+    const font = FONT_OPTIONS.find(f => f.name === currentFont)
+    if (font) {
+      document.documentElement.style.setProperty('--body-font', font.family)
+      document.documentElement.style.setProperty('--heading-font', font.family)
+    }
+  }, [currentFont])
+
+  // Efekt do zmiany zaokrągleń
+  useEffect(() => {
+    document.documentElement.style.setProperty('--radius', radius)
+  }, [radius])
+
+  // Efekt do zmiany cieni
+  useEffect(() => {
+    const root = document.documentElement
+    const shadowMap: Record<string, { base: string; lg: string }> = {
+      none: {
+        base: 'none',
+        lg: 'none',
+      },
+      subtle: {
+        base: '0px 1px 3px rgba(0,0,0,0.05)',
+        lg: '0px 4px 12px rgba(0,0,0,0.05)',
+      },
+      normal: {
+        base: '0px 2px 6px rgba(0,0,0,0.08)',
+        lg: '0px 8px 24px rgba(0,0,0,0.1)',
+      },
+      strong: {
+        base: '0px 4px 12px rgba(0,0,0,0.15)',
+        lg: '0px 16px 48px rgba(0,0,0,0.2)',
+      },
+    }
+    const shadows = shadowMap[shadowIntensity]
+    root.style.setProperty('--shadow-sm', shadows.base)
+    root.style.setProperty('--shadow', shadows.base)
+    root.style.setProperty('--shadow-md', shadows.lg)
+    root.style.setProperty('--shadow-lg', shadows.lg)
+    root.style.setProperty('--shadow-xl', shadows.lg)
+  }, [shadowIntensity])
+
+  // Zastosuj preset
+  const applyPreset = (preset: typeof THEME_PRESETS[0]) => {
+    setBgColor(preset.background)
+    setFgColor(preset.foreground)
+    setPrimaryColor(preset.primary)
+    setMutedColor(preset.muted)
+    setBorderColor(preset.border)
+    setCurrentFont(preset.font)
+    setActivePreset(preset.name)
+  }
+
+  // Losuj wszystko
+  const randomizeAll = () => {
+    const randomPreset = THEME_PRESETS[Math.floor(Math.random() * THEME_PRESETS.length)]
+    applyPreset(randomPreset)
+    setRadius(RADIUS_OPTIONS[Math.floor(Math.random() * RADIUS_OPTIONS.length)].value)
+    setShadowIntensity(SHADOW_OPTIONS[Math.floor(Math.random() * SHADOW_OPTIONS.length)].value)
+    setActivePreset('')
+  }
+
+  // Reset
+  const resetToDefault = () => {
+    applyPreset(THEME_PRESETS[0])
+    setRadius('0.5rem')
+    setShadowIntensity('normal')
+    document.body.style.fontFamily = ''
+  }
+
+  // Kolorowy swatch
+  const ColorSwatch = ({ color, isActive, onClick, size = 'normal' }: { color: string; isActive: boolean; onClick: () => void; size?: 'normal' | 'small' }) => (
+    <button
+      onClick={onClick}
+      className={`${size === 'small' ? 'w-6 h-6' : 'w-8 h-8'} rounded transition-all duration-200 hover:scale-110 border border-white/10 ${
+        isActive ? 'ring-2 ring-white ring-offset-2 ring-offset-black' : ''
+      }`}
+      style={{ backgroundColor: color }}
+      aria-label={`Wybierz kolor ${color}`}
+    />
+  )
+
+  return (
+    <>
+      {/* Przycisk toggle */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="fixed left-4 top-1/2 -translate-y-1/2 z-[60] w-12 h-12 bg-black text-white rounded-full flex items-center justify-center shadow-lg hover:bg-gray-800 transition-all duration-300"
+        style={{ transform: isOpen ? 'translateX(340px) translateY(-50%)' : 'translateY(-50%)' }}
+        aria-label={isOpen ? 'Zamknij panel' : 'Otwórz panel kontrolny'}
+      >
+        {isOpen ? <X className="w-5 h-5" /> : <Settings className="w-5 h-5" />}
+      </button>
+
+      {/* Panel */}
+      <div
+        className={`fixed left-0 top-0 h-screen w-[340px] bg-black text-white z-50 overflow-y-auto transition-transform duration-300 ease-out ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+      >
+        <div className="p-5 space-y-5">
+          {/* Nagłówek */}
+          <div className="pb-3 border-b border-white/20">
+            <h2 className="text-lg font-bold tracking-tight">Design System</h2>
+            <p className="text-xs text-white/50 mt-1">Zmiany widoczne na żywo</p>
+          </div>
+
+          {/* Tabs */}
+          <div className="flex gap-1 p-1 bg-white/5 rounded-lg">
+            {(['presets', 'colors', 'typography', 'effects'] as const).map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setActiveTab(tab)}
+                className={`flex-1 py-2 text-[10px] font-bold uppercase tracking-wider rounded transition-all ${
+                  activeTab === tab
+                    ? 'bg-white text-black'
+                    : 'text-white/60 hover:text-white hover:bg-white/10'
+                }`}
+              >
+                {tab === 'presets' && 'Presety'}
+                {tab === 'colors' && 'Kolory'}
+                {tab === 'typography' && 'Fonty'}
+                {tab === 'effects' && 'Efekty'}
+              </button>
+            ))}
+          </div>
+
+          {/* PRESETY TAB */}
+          {activeTab === 'presets' && (
+            <div className="space-y-3">
+              <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Gotowe motywy</h3>
+              <div className="grid grid-cols-2 gap-2">
+                {THEME_PRESETS.map((preset) => (
+                  <button
+                    key={preset.name}
+                    onClick={() => applyPreset(preset)}
+                    className={`p-3 rounded-lg border text-left transition-all ${
+                      activePreset === preset.name
+                        ? 'border-white bg-white/10'
+                        : 'border-white/20 hover:border-white/40 hover:bg-white/5'
+                    }`}
+                  >
+                    {/* Preview kolorów */}
+                    <div className="flex gap-1 mb-2">
+                      <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: preset.background, border: '1px solid rgba(255,255,255,0.2)' }} />
+                      <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: preset.primary }} />
+                      <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: preset.foreground }} />
+                      <div className="w-4 h-4 rounded-sm" style={{ backgroundColor: preset.muted }} />
+                    </div>
+                    <p className="text-xs font-bold text-white">{preset.name}</p>
+                    <p className="text-[10px] text-white/50">{preset.desc}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* KOLORY TAB */}
+          {activeTab === 'colors' && (
+            <div className="space-y-5">
+              {/* Background */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Tło (Background)</h3>
+                  <div className="w-5 h-5 rounded border border-white/20" style={{ backgroundColor: bgColor }} />
+                </div>
+                <div className="grid grid-cols-8 gap-1">
+                  {COLOR_PALETTE.map((color) => (
+                    <ColorSwatch key={`bg-${color}`} color={color} isActive={bgColor === color} onClick={() => { setBgColor(color); setActivePreset('') }} size="small" />
+                  ))}
+                </div>
+              </div>
+
+              {/* Foreground */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Tekst (Foreground)</h3>
+                  <div className="w-5 h-5 rounded border border-white/20" style={{ backgroundColor: fgColor }} />
+                </div>
+                <div className="grid grid-cols-8 gap-1">
+                  {COLOR_PALETTE.map((color) => (
+                    <ColorSwatch key={`fg-${color}`} color={color} isActive={fgColor === color} onClick={() => { setFgColor(color); setActivePreset('') }} size="small" />
+                  ))}
+                </div>
+              </div>
+
+              {/* Primary */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Akcent (Primary)</h3>
+                  <div className="w-5 h-5 rounded" style={{ backgroundColor: primaryColor }} />
+                </div>
+                <div className="grid grid-cols-8 gap-1">
+                  {COLOR_PALETTE.map((color) => (
+                    <ColorSwatch key={`primary-${color}`} color={color} isActive={primaryColor === color} onClick={() => { setPrimaryColor(color); setActivePreset('') }} size="small" />
+                  ))}
+                </div>
+              </div>
+
+              {/* Muted */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Stonowane (Muted)</h3>
+                  <div className="w-5 h-5 rounded border border-white/20" style={{ backgroundColor: mutedColor }} />
+                </div>
+                <div className="grid grid-cols-8 gap-1">
+                  {COLOR_PALETTE.map((color) => (
+                    <ColorSwatch key={`muted-${color}`} color={color} isActive={mutedColor === color} onClick={() => { setMutedColor(color); setActivePreset('') }} size="small" />
+                  ))}
+                </div>
+              </div>
+
+              {/* Border */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Obramowanie (Border)</h3>
+                  <div className="w-5 h-5 rounded border border-white/20" style={{ backgroundColor: borderColor }} />
+                </div>
+                <div className="grid grid-cols-8 gap-1">
+                  {COLOR_PALETTE.map((color) => (
+                    <ColorSwatch key={`border-${color}`} color={color} isActive={borderColor === color} onClick={() => { setBorderColor(color); setActivePreset('') }} size="small" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* TYPOGRAFIA TAB */}
+          {activeTab === 'typography' && (
+            <div className="space-y-4">
+              {/* Sans-serif nowoczesne */}
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Sans-serif nowoczesne</h3>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {FONT_OPTIONS.filter(f => f.category === 'sans').slice(0, 8).map((font) => (
+                    <button
+                      key={font.name}
+                      onClick={() => { setCurrentFont(font.name); setActivePreset('') }}
+                      className={`px-2 py-1.5 text-[11px] font-medium border rounded transition-all ${
+                        currentFont === font.name
+                          ? 'bg-white text-black border-white'
+                          : 'bg-white/5 text-white border-white/20 hover:bg-white/10'
+                      }`}
+                      style={{ fontFamily: font.family }}
+                    >
+                      {font.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Sans-serif klasyczne */}
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Sans-serif klasyczne</h3>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {FONT_OPTIONS.filter(f => f.category === 'sans').slice(8).map((font) => (
+                    <button
+                      key={font.name}
+                      onClick={() => { setCurrentFont(font.name); setActivePreset('') }}
+                      className={`px-2 py-1.5 text-[11px] font-medium border rounded transition-all ${
+                        currentFont === font.name
+                          ? 'bg-white text-black border-white'
+                          : 'bg-white/5 text-white border-white/20 hover:bg-white/10'
+                      }`}
+                      style={{ fontFamily: font.family }}
+                    >
+                      {font.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Display */}
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Display / Nagłówkowe</h3>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {FONT_OPTIONS.filter(f => f.category === 'display').map((font) => (
+                    <button
+                      key={font.name}
+                      onClick={() => { setCurrentFont(font.name); setActivePreset('') }}
+                      className={`px-2 py-1.5 text-[11px] font-medium border rounded transition-all ${
+                        currentFont === font.name
+                          ? 'bg-white text-black border-white'
+                          : 'bg-white/5 text-white border-white/20 hover:bg-white/10'
+                      }`}
+                      style={{ fontFamily: font.family }}
+                    >
+                      {font.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Serif */}
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Serif / Eleganckie</h3>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {FONT_OPTIONS.filter(f => f.category === 'serif').map((font) => (
+                    <button
+                      key={font.name}
+                      onClick={() => { setCurrentFont(font.name); setActivePreset('') }}
+                      className={`px-2 py-1.5 text-[11px] font-medium border rounded transition-all ${
+                        currentFont === font.name
+                          ? 'bg-white text-black border-white'
+                          : 'bg-white/5 text-white border-white/20 hover:bg-white/10'
+                      }`}
+                      style={{ fontFamily: font.family }}
+                    >
+                      {font.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Aktualny font */}
+              <div className="p-3 bg-white/5 rounded-lg">
+                <p className="text-[10px] text-white/50 mb-1">Aktywna czcionka:</p>
+                <p className="text-lg font-bold" style={{ fontFamily: FONT_OPTIONS.find(f => f.name === currentFont)?.family }}>{currentFont}</p>
+              </div>
+            </div>
+          )}
+
+          {/* EFEKTY TAB */}
+          {activeTab === 'effects' && (
+            <div className="space-y-5">
+              {/* Zaokrąglenia */}
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Zaokrąglenia (Border Radius)</h3>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {RADIUS_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.value}
+                      onClick={() => setRadius(opt.value)}
+                      className={`px-3 py-2 text-xs font-medium border transition-all ${
+                        radius === opt.value
+                          ? 'bg-white text-black border-white'
+                          : 'bg-white/5 text-white border-white/20 hover:bg-white/10'
+                      }`}
+                      style={{ borderRadius: opt.value }}
+                    >
+                      {opt.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Cienie */}
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Intensywność cieni</h3>
+                <div className="grid grid-cols-2 gap-1.5">
+                  {SHADOW_OPTIONS.map((opt) => (
+                    <button
+                      key={opt.value}
+                      onClick={() => setShadowIntensity(opt.value)}
+                      className={`px-3 py-2 text-xs font-medium border transition-all ${
+                        shadowIntensity === opt.value
+                          ? 'bg-white text-black border-white'
+                          : 'bg-white/5 text-white border-white/20 hover:bg-white/10'
+                      }`}
+                    >
+                      {opt.name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* Preview */}
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-bold uppercase tracking-[0.2em] text-white/50">Podgląd</h3>
+                <div
+                  className="p-4 border"
+                  style={{
+                    borderRadius: radius,
+                    backgroundColor: bgColor,
+                    borderColor: borderColor,
+                    boxShadow: shadowIntensity === 'none' ? 'none' :
+                               shadowIntensity === 'subtle' ? '0px 4px 12px rgba(0,0,0,0.05)' :
+                               shadowIntensity === 'normal' ? '0px 8px 24px rgba(0,0,0,0.1)' :
+                               '0px 16px 48px rgba(0,0,0,0.2)'
+                  }}
+                >
+                  <p style={{ color: fgColor }} className="font-bold mb-1">Przykładowy tekst</p>
+                  <button
+                    style={{ backgroundColor: primaryColor, borderRadius: radius }}
+                    className="px-3 py-1 text-white text-sm font-medium"
+                  >
+                    Przycisk
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Szybkie akcje */}
+          <div className="space-y-2 pt-4 border-t border-white/20">
+            <button
+              onClick={randomizeAll}
+              className="w-full py-2.5 px-4 bg-white/10 border border-white/20 text-white font-bold text-xs uppercase tracking-wide hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 rounded"
+            >
+              <Shuffle className="w-4 h-4" />
+              Losuj wszystko
+            </button>
+
+            <button
+              onClick={resetToDefault}
+              className="w-full py-2.5 px-4 bg-white/10 border border-white/20 text-white font-bold text-xs uppercase tracking-wide hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2 rounded"
+            >
+              <RotateCcw className="w-4 h-4" />
+              Reset do domyślnych
+            </button>
+          </div>
+
+          {/* Stopka */}
+          <div className="pt-3 border-t border-white/20 text-center">
+            <p className="text-[10px] text-white/30 uppercase tracking-widest">LECH-BUD Design System</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Overlay */}
+      {isOpen && (
+        <div
+          className="fixed inset-0 bg-black/20 z-40"
+          onClick={() => setIsOpen(false)}
+        />
+      )}
+    </>
+  )
+}
+
+// ===========================================
+// CONTACT VARIANTS (4 układy)
+// ===========================================
+
+// Wariant 17: Rounded Card (nowy z HTML)
+function ContactVariant17() {
+  return (
+    <section className="bg-muted/30 min-h-screen flex items-center justify-center p-4 lg:p-12">
+      <div className="max-w-7xl w-full mx-auto shadow-2xl rounded-2xl overflow-hidden flex flex-col lg:flex-row bg-[#0f172a]">
+        {/* Lewa strona - ciemna z info */}
+        <div className="w-full lg:w-5/12 p-8 lg:p-16 flex flex-col justify-center relative text-white">
+          <div className="absolute top-0 left-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+
+          <div className="relative z-10">
+            <span className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Kontakt</span>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-6 leading-tight">
+              Zadzwoń do Leszka
+            </h2>
+            <div className="h-1.5 w-16 bg-primary mb-8 rounded-full" />
+            <p className="text-slate-400 text-base mb-10 leading-relaxed">
+              40 lat doświadczenia odbiera telefon. Zadzwoń, opisz co potrzebujesz. Umówimy się na oględziny i wycenę.
+            </p>
+
+            <div className="space-y-8">
+              <a href="tel:607176748" className="flex items-start group">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-5 shrink-0 group-hover:bg-primary transition-colors duration-300">
+                  <Phone className="w-5 h-5 text-primary group-hover:text-white" />
+                </div>
+                <div>
+                  <p className="text-slate-400 text-xs uppercase tracking-wide font-medium mb-1">Telefon</p>
+                  <p className="text-white text-lg font-bold">607 176 748</p>
+                </div>
+              </a>
+
+              <div className="flex items-start group">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-5 shrink-0 group-hover:bg-primary transition-colors duration-300">
+                  <MapPin className="w-5 h-5 text-primary group-hover:text-white" />
+                </div>
+                <div>
+                  <p className="text-slate-400 text-xs uppercase tracking-wide font-medium mb-1">Lokalizacja</p>
+                  <p className="text-white text-lg font-bold leading-snug">Jana Nowaka-Jeziorańskiego 73,<br />25-432 Kielce</p>
+                </div>
+              </div>
+
+              <div className="flex items-start group">
+                <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center mr-5 shrink-0 group-hover:bg-primary transition-colors duration-300">
+                  <Clock className="w-5 h-5 text-primary group-hover:text-white" />
+                </div>
+                <div>
+                  <p className="text-slate-400 text-xs uppercase tracking-wide font-medium mb-1">Godziny pracy</p>
+                  <p className="text-white text-lg font-bold">wt-pt od 07:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Prawa strona - jasna z formularzem */}
+        <div className="w-full lg:w-7/12 bg-white p-8 lg:p-16 flex flex-col justify-center">
+          <h3 className="text-2xl lg:text-3xl font-bold text-[#0f172a] mb-2">Napisz do nas</h3>
+          <p className="text-slate-500 mb-8">Wypełnij formularz, a oddzwonimy z darmową wyceną.</p>
+
+          <form className="space-y-5">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-slate-700" htmlFor="name17">Imię</label>
+                <input
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                  id="name17"
+                  placeholder="Twoje imię"
+                  type="text"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-slate-700" htmlFor="phone17">Telefon</label>
+                <input
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                  id="phone17"
+                  placeholder="Numer telefonu"
+                  type="tel"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-sm font-semibold text-slate-700" htmlFor="message17">Opis prac</label>
+              <textarea
+                className="w-full px-4 py-3 bg-slate-50 border border-slate-200 text-slate-900 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none"
+                id="message17"
+                placeholder="Opisz krótko, co trzeba zrobić..."
+                rows={4}
+              />
+            </div>
+
+            <div className="pt-2">
+              <button
+                className="w-full bg-primary hover:bg-primary/90 text-white font-bold py-4 px-8 rounded-lg flex items-center justify-center space-x-2 transition-all transform hover:scale-[1.01] active:scale-95 shadow-lg shadow-primary/20"
+                type="submit"
+              >
+                <span>Wyślij zapytanie</span>
+                <Send className="w-4 h-4" />
+              </button>
+            </div>
+
+            <p className="text-center text-xs text-slate-400 italic mt-4">
+              * Twoje dane są bezpieczne i służą jedynie do kontaktu w sprawie wyceny.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Wariant 14: Hero Contact
+// Wariant 16: Split Full-Height (pełnoekranowy podział 50/50)
+function ContactVariant16() {
+  return (
+    <section className="min-h-screen flex flex-col lg:flex-row overflow-hidden">
+      {/* Lewa strona - ciemna */}
+      <div className="w-full lg:w-1/2 bg-secondary p-8 lg:p-24 flex flex-col justify-center relative">
+        <div className="absolute top-0 left-0 w-32 h-32 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+
+        <div className="relative z-10 max-w-xl mx-auto lg:mx-0">
+          <span className="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Kontakt</span>
+          <h2 className="text-4xl lg:text-6xl font-bold text-secondary-foreground mb-6 leading-tight">
+            Zadzwoń do Leszka
+            <div className="h-1.5 w-20 bg-primary mt-4 rounded-full" />
+          </h2>
+          <p className="text-secondary-foreground/70 text-lg mb-12 max-w-md leading-relaxed">
+            40 lat doświadczenia odbiera telefon. Zadzwoń, opisz co potrzebujesz. Umówimy się na oględziny i wycenę. Reszta to nasza robota.
+          </p>
+
+          <div className="space-y-6">
+            <a href="tel:607176748" className="flex items-center group p-4 rounded-xl hover:bg-secondary-foreground/5 transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-secondary-foreground/10 flex items-center justify-center mr-6 group-hover:bg-primary transition-colors">
+                <Phone className="w-5 h-5 text-secondary-foreground" />
+              </div>
+              <div>
+                <p className="text-secondary-foreground/50 text-sm uppercase tracking-wide font-medium">Telefon</p>
+                <p className="text-secondary-foreground text-xl font-bold">607 176 748</p>
+              </div>
+            </a>
+
+            <div className="flex items-center group p-4 rounded-xl hover:bg-secondary-foreground/5 transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-secondary-foreground/10 flex items-center justify-center mr-6 group-hover:bg-primary transition-colors">
+                <MapPin className="w-5 h-5 text-secondary-foreground" />
+              </div>
+              <div>
+                <p className="text-secondary-foreground/50 text-sm uppercase tracking-wide font-medium">Lokalizacja</p>
+                <p className="text-secondary-foreground text-xl font-bold leading-tight">Jana Nowaka-Jeziorańskiego 73,<br />25-432 Kielce</p>
+              </div>
+            </div>
+
+            <div className="flex items-center group p-4 rounded-xl hover:bg-secondary-foreground/5 transition-all duration-300">
+              <div className="w-12 h-12 rounded-full bg-secondary-foreground/10 flex items-center justify-center mr-6 group-hover:bg-primary transition-colors">
+                <Clock className="w-5 h-5 text-secondary-foreground" />
+              </div>
+              <div>
+                <p className="text-secondary-foreground/50 text-sm uppercase tracking-wide font-medium">Godziny pracy</p>
+                <p className="text-secondary-foreground text-xl font-bold">wt-pt od 07:00</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Prawa strona - jasna */}
+      <div className="w-full lg:w-1/2 bg-card p-8 lg:p-24 flex flex-col justify-center">
+        <div className="max-w-xl mx-auto lg:ml-0 w-full">
+          <h3 className="text-3xl font-bold text-foreground mb-8">Bezpłatna wycena</h3>
+
+          <form className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-foreground" htmlFor="name16">Imię</label>
+                <input
+                  className="w-full px-4 py-3 bg-muted border border-border text-foreground rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                  id="name16"
+                  name="name"
+                  placeholder="Twoje imię"
+                  type="text"
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="block text-sm font-semibold text-foreground" htmlFor="phone16">Telefon</label>
+                <input
+                  className="w-full px-4 py-3 bg-muted border border-border text-foreground rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none"
+                  id="phone16"
+                  name="phone"
+                  placeholder="Numer telefonu"
+                  type="tel"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-2">
+              <label className="block text-sm font-semibold text-foreground" htmlFor="message16">Opis prac</label>
+              <textarea
+                className="w-full px-4 py-3 bg-muted border border-border text-foreground rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-all outline-none resize-none"
+                id="message16"
+                name="message"
+                placeholder="Opisz krótko, co trzeba zrobić..."
+                rows={5}
+              />
+            </div>
+
+            <button
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-8 rounded-lg flex items-center justify-center space-x-2 transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20"
+              type="submit"
+            >
+              <span>Wyślij zapytanie</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+
+            <p className="text-center text-xs text-muted-foreground italic mt-6">
+              * Wycena jest całkowicie darmowa i niezobowiązująca.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Wariant 18: Centered Card (podobny do V17, zamknięty w divie)
+function ContactVariant18() {
+  return (
+    <section className="bg-muted/30 min-h-screen flex items-center justify-center p-4 lg:p-12">
+      <div className="max-w-6xl w-full mx-auto shadow-2xl rounded-2xl overflow-hidden flex flex-col lg:flex-row bg-secondary">
+        {/* Lewa strona - ciemna z info */}
+        <div className="w-full lg:w-5/12 p-8 lg:p-12 flex flex-col justify-center relative">
+          <div className="absolute top-0 left-0 w-48 h-48 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
+
+          <div className="relative z-10">
+            <span className="text-primary font-bold tracking-widest uppercase text-xs mb-4 block">Kontakt</span>
+            <h2 className="text-3xl lg:text-4xl font-bold text-secondary-foreground mb-4 leading-tight">
+              Zadzwoń do Leszka
+            </h2>
+            <div className="h-1 w-16 bg-primary mb-6 rounded-full" />
+            <p className="text-secondary-foreground/60 text-sm mb-8 leading-relaxed">
+              40 lat doświadczenia odbiera telefon. Zadzwoń, opisz co potrzebujesz - umówimy oględziny.
+            </p>
+
+            <div className="space-y-5">
+              <a href="tel:607176748" className="flex items-center group">
+                <div className="w-10 h-10 rounded-full bg-secondary-foreground/10 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary transition-colors duration-300">
+                  <Phone className="w-4 h-4 text-primary group-hover:text-white" />
+                </div>
+                <div>
+                  <p className="text-secondary-foreground/50 text-xs uppercase tracking-wide font-medium mb-0.5">Telefon</p>
+                  <p className="text-secondary-foreground text-base font-bold">607 176 748</p>
+                </div>
+              </a>
+
+              <div className="flex items-center group">
+                <div className="w-10 h-10 rounded-full bg-secondary-foreground/10 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary transition-colors duration-300">
+                  <MapPin className="w-4 h-4 text-primary group-hover:text-white" />
+                </div>
+                <div>
+                  <p className="text-secondary-foreground/50 text-xs uppercase tracking-wide font-medium mb-0.5">Lokalizacja</p>
+                  <p className="text-secondary-foreground text-base font-bold leading-snug">Kielce</p>
+                </div>
+              </div>
+
+              <div className="flex items-center group">
+                <div className="w-10 h-10 rounded-full bg-secondary-foreground/10 flex items-center justify-center mr-4 shrink-0 group-hover:bg-primary transition-colors duration-300">
+                  <Clock className="w-4 h-4 text-primary group-hover:text-white" />
+                </div>
+                <div>
+                  <p className="text-secondary-foreground/50 text-xs uppercase tracking-wide font-medium mb-0.5">Godziny</p>
+                  <p className="text-secondary-foreground text-base font-bold">wt-pt od 07:00</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Prawa strona - jasna z formularzem */}
+        <div className="w-full lg:w-7/12 bg-card p-8 lg:p-12 flex flex-col justify-center">
+          <h3 className="text-2xl font-bold text-foreground mb-2">Bezpłatna wycena</h3>
+          <p className="text-muted-foreground text-sm mb-6">Wypełnij formularz - oddzwonimy w ciągu 24h.</p>
+
+          <form className="space-y-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-foreground" htmlFor="name18">Imię</label>
+                <input
+                  className="w-full px-4 py-3 bg-muted border border-border text-foreground rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                  id="name18"
+                  placeholder="Twoje imię"
+                  type="text"
+                />
+              </div>
+              <div className="space-y-1.5">
+                <label className="block text-sm font-semibold text-foreground" htmlFor="phone18">Telefon</label>
+                <input
+                  className="w-full px-4 py-3 bg-muted border border-border text-foreground rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none"
+                  id="phone18"
+                  placeholder="Numer telefonu"
+                  type="tel"
+                />
+              </div>
+            </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-sm font-semibold text-foreground" htmlFor="message18">Opis prac</label>
+              <textarea
+                className="w-full px-4 py-3 bg-muted border border-border text-foreground rounded-lg focus:ring-2 focus:ring-primary focus:border-primary transition-all outline-none resize-none"
+                id="message18"
+                placeholder="Opisz krótko, co trzeba zrobić..."
+                rows={4}
+              />
+            </div>
+
+            <button
+              className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-3.5 px-8 rounded-lg flex items-center justify-center gap-2 transition-all transform hover:scale-[1.02] active:scale-95 shadow-lg shadow-primary/20"
+              type="submit"
+            >
+              <span>Wyślij zapytanie</span>
+              <ArrowRight className="w-5 h-5" />
+            </button>
+
+            <p className="text-center text-xs text-muted-foreground italic">
+              * Wycena jest całkowicie darmowa i niezobowiązująca.
+            </p>
+          </form>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// Separator dla wariantów kontakt
+function ContactVariantsSeparator() {
+  return (
+    <div className="py-12 bg-muted border-y-4 border-primary">
+      <div className="container mx-auto px-6 text-center">
+        <h2 className="text-3xl font-bold text-foreground">Warianty sekcji kontakt</h2>
+        <p className="text-muted-foreground mt-2">3 układy do wyboru</p>
+      </div>
+    </div>
+  )
+}
+
+// ===========================================
 // MAIN PAGE
 // ===========================================
 export default function HomePage() {
@@ -1422,10 +2455,13 @@ export default function HomePage() {
 
         <ProcessSection />
         <FaqSection />
-        <ContactSection />
-        <ContactWithMap />
+
+        {/* ========== WARIANTY KONTAKT ========== */}
+        <ContactVariant16 />
+
         <Footer />
         <ThemeSwitcher />
+        <ControlPanel />
       </main>
     </>
   )
