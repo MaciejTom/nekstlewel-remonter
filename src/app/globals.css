@@ -12,7 +12,7 @@
 
   --background: #171717;
   --foreground: #fafafa;
-  --card: #262626;
+  --card: #171717;
   --card-foreground: #fafafa;
   --popover: #262626;
   --popover-foreground: #fafafa;
@@ -35,7 +35,7 @@
   --chart-3: #457b9d;
   --chart-4: #a8dadc;
   --chart-5: #f1faee;
-  --radius: 1.5rem;
+  --radius: 0.5rem;
   --shadow-2xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
   --shadow-xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
   --shadow-sm: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 1px 2px -1px hsl(25 15% 15% / 0.08);
