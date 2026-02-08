@@ -1,9 +1,14 @@
 "use client"
 
 import { ChevronDown } from "lucide-react"
-import { faqContent } from "@/content/lech-bud/faq"
+import { faqContent as defaultFaqContent } from "@/content/lech-bud/faq"
 
-export function FaqSection() {
+interface FaqSectionProps {
+  content?: typeof defaultFaqContent
+}
+
+export function FaqSection({ content = defaultFaqContent }: FaqSectionProps) {
+  const faqContent = content
   return (
     <section id="faq" className="bg-muted/30 py-32">
       <div className="container mx-auto px-6">

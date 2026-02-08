@@ -2,16 +2,29 @@
 
 import Image from "next/image"
 import { Phone, ArrowRight, ShieldCheck } from "lucide-react"
-import { heroContent } from "@/content/lech-bud/hero"
+import { heroContent as defaultHeroContent } from "@/content/lech-bud/hero"
 
-export function HeroSection() {
+interface HeroSectionProps {
+  content?: typeof defaultHeroContent
+  heroImage?: string
+  heroImageAlt?: string
+  phone?: string
+}
+
+export function HeroSection({
+  content = defaultHeroContent,
+  heroImage = "/heroLech.webp",
+  heroImageAlt = "Realizacja",
+  phone = "607176748",
+}: HeroSectionProps) {
+  const heroContent = content
   return (
     <section className="relative min-h-screen flex items-center bg-background overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <Image
-          src="/heroLech.webp"
-          alt="Realizacja Lech-Bud"
+          src={heroImage}
+          alt={heroImageAlt}
           fill
           className="object-cover"
           priority
@@ -67,7 +80,7 @@ export function HeroSection() {
             style={{ animationDelay: "0.3s" }}
           >
             <a
-              href="tel:607176748"
+              href={`tel:${phone}`}
               className="inline-flex items-center justify-center gap-2 bg-primary text-primary-foreground px-8 py-4 text-lg font-semibold rounded-sm shadow-lg shadow-primary/25 hover:bg-primary/90 transition-all hover:shadow-xl hover:-translate-y-1"
             >
               <Phone className="w-5 h-5" />

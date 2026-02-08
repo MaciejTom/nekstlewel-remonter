@@ -1,9 +1,14 @@
 "use client"
 
 import { ChevronRight } from "lucide-react"
-import { processContent } from "@/content/lech-bud/process"
+import { processContent as defaultProcessContent } from "@/content/lech-bud/process"
 
-export function ProcessSection() {
+interface ProcessSectionProps {
+  content?: typeof defaultProcessContent
+}
+
+export function ProcessSection({ content = defaultProcessContent }: ProcessSectionProps) {
+  const processContent = content
   return (
     <section id="proces" className="bg-background py-32 relative overflow-hidden">
       {/* Background decoration */}

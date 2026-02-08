@@ -13,6 +13,9 @@ export interface ContactContent {
   badge?: string
   title: string
   description: string
+  phone?: string
+  address?: string
+  hours?: string
   showImage?: boolean
   backgroundImage?: boolean
   contactItems?: Array<{ icon?: string; label: string }>

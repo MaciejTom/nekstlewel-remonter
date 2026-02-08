@@ -3,10 +3,10 @@
 import { useState } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { portfolioContent } from "@/content/lech-bud/portfolio"
+import { portfolioContent as defaultPortfolioContent } from "@/content/lech-bud/portfolio"
 
 interface GallerySliderProps {
-  projects: typeof portfolioContent.projects
+  projects: typeof defaultPortfolioContent.projects
   onImageClick: (index: number) => void
 }
 
@@ -112,30 +112,44 @@ export function GallerySlider({ projects, onImageClick }: GallerySliderProps) {
   )
 }
 
-export function GallerySection() {
-  const projectsWithSpan = [
-    { ...portfolioContent.projects[0], span: "" },
-    { ...portfolioContent.projects[1], span: "lg:row-span-2" },
-    { ...portfolioContent.projects[2], span: "" },
-    { ...portfolioContent.projects[3], span: "" },
-    { ...portfolioContent.projects[4], span: "lg:row-span-2" },
-    { ...portfolioContent.projects[5], span: "" },
-    { ...portfolioContent.projects[6], span: "" },
-  ]
+interface GallerySectionProps {
+  content?: typeof defaultPortfolioContent
+}
+
+export function GallerySection({ content = defaultPortfolioContent }: GallerySectionProps) {
+  const portfolioContent = content
+  const projectsWithSpan = portfolioContent.projects.map((project, index) => ({
+    ...project,
+    span: index === 1 || index === 4 ? "lg:row-span-2" : "",
+  }))
 
   return (
     <section id="realizacje" className="w-full bg-muted/30 py-24 px-4 md:px-10">
       <div className="mx-auto max-w-[1400px]">
         <div className="text-center mb-16">
           <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">
-            Portfolio
+            {portfolioContent.tagline}
           </span>
-          <h2 className="text-foreground text-4xl md:text-5xl font-bold mt-3">
-            Nasze realizacje
+          <h2 className="text-foreground text-4xl md:text-5xl font-bold mt-3 h2-accent-center">
+            {portfolioContent.title} <span className="text-primary">{portfolioContent.titleAccent}</span>
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Każdy projekt to osobna historia. Zobacz efekty naszej pracy.
+            {portfolioContent.subtitle}
           </p>
+
+          {/* Stats */}
+          {portfolioContent.stats && portfolioContent.stats.length > 0 && (
+            <div className="flex justify-center gap-8 md:gap-16 mt-8">
+              {portfolioContent.stats.map((stat, i) => (
+                <div key={i} className="text-center">
+                  <div className={`text-3xl md:text-4xl font-bold ${stat.highlight ? 'text-primary' : 'text-foreground'}`}>
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
 
         <div

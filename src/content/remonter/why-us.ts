@@ -1,6 +1,9 @@
-export const whyUsContent = {
+import type { ServiceIconGridContent } from "@/types"
+
+export const whyUsContent: ServiceIconGridContent = {
   tagline: "Dlaczego warto",
   title: "Wybierz sprawdzonego fachowca",
+  subtitle: "",
   services: [
     {
       icon: "Handshake",

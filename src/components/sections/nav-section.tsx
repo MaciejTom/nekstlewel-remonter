@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { Phone, Menu } from "lucide-react"
 
-const navLinks = [
+const defaultNavLinks = [
   { label: "Dlaczego my", href: "#dlaczego" },
   { label: "Usługi", href: "#uslugi" },
   { label: "Realizacje", href: "#realizacje" },
@@ -12,9 +12,26 @@ const navLinks = [
   { label: "Kontakt", href: "#kontakt" },
 ]
 
-export { navLinks }
+export { defaultNavLinks as navLinks }
 
-export function NavSection() {
+interface NavSectionProps {
+  brandName?: string
+  brandLetter?: string
+  phone?: string
+  phoneFormatted?: string
+  links?: typeof defaultNavLinks
+  homeHref?: string
+}
+
+export function NavSection({
+  brandName = "LECH-BUD",
+  brandLetter = "L",
+  phone = "607176748",
+  phoneFormatted = "607 176 748",
+  links = defaultNavLinks,
+  homeHref = "/",
+}: NavSectionProps) {
+  const navLinks = links
   const [isScrolled, setIsScrolled] = useState(false)
 
   useEffect(() => {
@@ -39,11 +56,11 @@ export function NavSection() {
       <div className="container mx-auto px-6 h-full">
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
+          <a href={homeHref} className="flex items-center gap-2">
             <div className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center font-bold text-xl rounded-sm">
-              L
+              {brandLetter}
             </div>
-            <span className="text-xl font-bold text-foreground tracking-tight">LECH-BUD</span>
+            <span className="text-xl font-bold text-foreground tracking-tight">{brandName}</span>
           </a>
 
           {/* Desktop nav */}
@@ -61,11 +78,11 @@ export function NavSection() {
 
           {/* CTA */}
           <a
-            href="tel:607176748"
+            href={`tel:${phone}`}
             className="hidden sm:inline-flex items-center gap-2 bg-primary text-primary-foreground px-5 py-2.5 rounded-sm text-sm font-semibold hover:bg-primary/90 transition-all hover:shadow-lg hover:scale-105"
           >
             <Phone className="w-4 h-4" />
-            607 176 748
+            {phoneFormatted}
           </a>
 
           {/* Mobile menu button */}

@@ -1,9 +1,33 @@
 "use client"
 
 import { Phone, Clock, MapPin, ShieldCheck } from "lucide-react"
-import { navLinks } from "./nav-section"
+import { navLinks as defaultNavLinks } from "./nav-section"
 
-export function FooterSection() {
+interface FooterSectionProps {
+  brandName?: string
+  brandDescription?: string
+  badge?: string
+  phone?: string
+  phoneFormatted?: string
+  hours?: string
+  location?: string
+  copyright?: string
+  navLinks?: typeof defaultNavLinks
+  whatsappNumber?: string
+}
+
+export function FooterSection({
+  brandName = "LECH-BUD",
+  brandDescription = "Firma remontowo-budowlana z 40-letnim doświadczeniem. Biurowce, domy kultury, wspólnoty mieszkaniowe i prywatne łazienki.",
+  badge = "Od 1986 roku",
+  phone = "607176748",
+  phoneFormatted = "607 176 748",
+  hours = "wt-pt od 07:00",
+  location = "Kielce i okolice",
+  copyright = "LECH-BUD Leszek Kozieł",
+  navLinks = defaultNavLinks,
+  whatsappNumber = "48607176748",
+}: FooterSectionProps) {
   return (
     <footer className="bg-card border-t border-border">
       <div className="mx-auto max-w-7xl px-4 pt-16 pb-6 sm:px-6 lg:px-8 lg:pt-24">
@@ -12,17 +36,17 @@ export function FooterSection() {
           <div>
             <div className="flex justify-center sm:justify-start">
               <a href="/" className="text-3xl font-bold text-foreground tracking-tight">
-                LECH-BUD
+                {brandName}
               </a>
             </div>
 
             <p className="mt-6 max-w-md text-center leading-relaxed text-muted-foreground sm:max-w-xs sm:text-left">
-              Firma remontowo-budowlana z 40-letnim doświadczeniem. Biurowce, domy kultury, wspólnoty mieszkaniowe i prywatne łazienki.
+              {brandDescription}
             </p>
 
             <div className="mt-6 inline-flex items-center gap-2 bg-gold/10 text-gold border border-gold/20 px-4 py-2 rounded-sm text-sm font-semibold">
               <ShieldCheck className="w-4 h-4" />
-              Od 1986 roku
+              {badge}
             </div>
           </div>
 
@@ -66,7 +90,7 @@ export function FooterSection() {
                 </li>
                 <li>
                   <a
-                    href="https://wa.me/48607176748"
+                    href={`https://wa.me/${whatsappNumber}`}
                     rel="noreferrer"
                     target="_blank"
                     className="flex items-center justify-center gap-2 sm:justify-start text-muted-foreground hover:text-primary transition-colors"
@@ -129,22 +153,22 @@ export function FooterSection() {
               <ul className="mt-8 space-y-4 text-sm">
                 <li>
                   <a
-                    href="tel:607176748"
+                    href={`tel:${phone}`}
                     className="flex items-center justify-center gap-2 sm:justify-start text-muted-foreground hover:text-primary transition-colors"
                   >
                     <Phone className="w-4 h-4" />
-                    <span>607 176 748</span>
+                    <span>{phoneFormatted}</span>
                   </a>
                 </li>
 
                 <li className="flex items-center justify-center gap-2 sm:justify-start text-muted-foreground">
                   <Clock className="w-4 h-4" />
-                  <span>wt-pt od 07:00</span>
+                  <span>{hours}</span>
                 </li>
 
                 <li className="flex items-center justify-center gap-2 sm:justify-start text-muted-foreground">
                   <MapPin className="w-4 h-4 shrink-0" />
-                  <span>Kielce i okolice</span>
+                  <span>{location}</span>
                 </li>
               </ul>
             </div>
@@ -166,7 +190,7 @@ export function FooterSection() {
             </p>
 
             <p className="mt-4 text-sm text-muted-foreground sm:order-first sm:mt-0">
-              &copy; {new Date().getFullYear()} LECH-BUD Leszek Kozieł
+              &copy; {new Date().getFullYear()} {copyright}
             </p>
           </div>
         </div>

@@ -1,16 +1,29 @@
 "use client"
 
 import Image from "next/image"
-import { whyUsContent } from "@/content/lech-bud/why-us"
+import { whyUsContent as defaultWhyUsContent } from "@/content/lech-bud/why-us"
 
-const iconImageMap: Record<string, string> = {
+const defaultIconImageMap: Record<string, string> = {
   Clock: "/images/lech-bud/Whisk_c259a637d38e05184f441dba9d60e8b9dr-removebg-preview.png",
   ShieldCheck: "/images/lech-bud/Whisk_0ff055529f5e3bbad9e46ad59dc41e6adr-removebg-preview (1).png",
   Building2: "/images/lech-bud/Whisk_5a4e3a2f16e5378a518405bddd9d228fdr-removebg-preview.png",
   CalendarCheck: "/images/lech-bud/checks.png",
+  Handshake: "/images/lech-bud/Whisk_0ff055529f5e3bbad9e46ad59dc41e6adr-removebg-preview (1).png",
+  Wrench: "/images/lech-bud/Whisk_5a4e3a2f16e5378a518405bddd9d228fdr-removebg-preview.png",
+  MapPin: "/images/lech-bud/checks.png",
 }
 
-export function WhyUsSection() {
+interface WhyUsSectionProps {
+  content?: typeof defaultWhyUsContent
+  iconMap?: Record<string, string>
+}
+
+export function WhyUsSection({
+  content = defaultWhyUsContent,
+  iconMap = defaultIconImageMap,
+}: WhyUsSectionProps) {
+  const whyUsContent = content
+  const iconImageMap = iconMap
   return (
     <section id="dlaczego" className="bg-muted/40 py-32 relative overflow-hidden">
       {/* Background decoration */}
