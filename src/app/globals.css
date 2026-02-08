@@ -1,41 +1,41 @@
 @import "tailwindcss";
 
 /* =============================================
-   TOM-ART WARM THEME — tweakcn generated
-   Cream + Navy + Red accent
+   INDUSTRIAL YELLOW THEME
+   Dark + Yellow/Gold accent
    ============================================= */
 
 :root {
   /* Fonty - zmieniane dynamicznie przez ControlPanel */
   --body-font: 'Inter', ui-sans-serif, system-ui, sans-serif;
-  --heading-font: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --heading-font: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
 
-  --background: #fffbf5;
-  --foreground: #1d3557;
-  --card: #ffffff;
-  --card-foreground: #1d3557;
-  --popover: #ffffff;
-  --popover-foreground: #1d3557;
-  --primary: #e63946;
-  --primary-foreground: #ffffff;
-  --secondary: #1d3557;
-  --secondary-foreground: #fffbf5;
-  --muted: #f3ede4;
-  --muted-foreground: #7d7063;
-  --accent: #f3ede4;
-  --accent-foreground: #1d3557;
-  --destructive: #9b2226;
+  --background: #171717;
+  --foreground: #fafafa;
+  --card: #262626;
+  --card-foreground: #fafafa;
+  --popover: #262626;
+  --popover-foreground: #fafafa;
+  --primary: #eab308;
+  --primary-foreground: #171717;
+  --secondary: #262626;
+  --secondary-foreground: #fafafa;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #262626;
+  --accent-foreground: #fafafa;
+  --destructive: #ef4444;
   --destructive-foreground: #ffffff;
-  --border: #e8e1d5;
-  --input: #e8e1d5;
-  --ring: #e63946;
-  --gold: #d97706;                /* amber-600 - gold accent */
+  --border: #404040;
+  --input: #404040;
+  --ring: #eab308;
+  --gold: #eab308;                /* amber-600 - gold accent */
   --chart-1: #e63946;
   --chart-2: #1d3557;
   --chart-3: #457b9d;
   --chart-4: #a8dadc;
   --chart-5: #f1faee;
-  --radius: 0.5rem;
+  --radius: 1.5rem;
   --shadow-2xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
   --shadow-xs: 0px 4px 12px 0px hsl(25 15% 15% / 0.04);
   --shadow-sm: 0px 4px 12px 0px hsl(25 15% 15% / 0.08), 0px 1px 2px -1px hsl(25 15% 15% / 0.08);

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Settings, X, Shuffle, RotateCcw } from "lucide-react"
+import { Settings, X, Shuffle, RotateCcw, Copy } from "lucide-react"
 
 // Rozszerzona paleta kolorów (70 kolorów)
 const COLOR_PALETTE = [
@@ -82,13 +82,14 @@ export function ControlPanel() {
   const [isOpen, setIsOpen] = useState(false)
   const [activeTab, setActiveTab] = useState<'presets' | 'colors' | 'typography' | 'effects'>('presets')
 
-  const [bgColor, setBgColor] = useState('#fffbf5')
-  const [fgColor, setFgColor] = useState('#1d3557')
-  const [primaryColor, setPrimaryColor] = useState('#e63946')
-  const [mutedColor, setMutedColor] = useState('#f3ede4')
-  const [borderColor, setBorderColor] = useState('#e8e1d5')
+  // Domyślne kolory Industrial Yellow (z globals.css)
+  const [bgColor, setBgColor] = useState('#171717')
+  const [fgColor, setFgColor] = useState('#fafafa')
+  const [primaryColor, setPrimaryColor] = useState('#eab308')
+  const [mutedColor, setMutedColor] = useState('#262626')
+  const [borderColor, setBorderColor] = useState('#404040')
 
-  const [currentFont, setCurrentFont] = useState('Inter')
+  const [currentFont, setCurrentFont] = useState('Space Grotesk')
   const [radius, setRadius] = useState('0.5rem')
   const [shadowIntensity, setShadowIntensity] = useState('normal')
   const [activePreset, setActivePreset] = useState('Warm Classic')
@@ -161,6 +162,31 @@ export function ControlPanel() {
     applyPreset(THEME_PRESETS[0])
     setRadius('0.5rem')
     setShadowIntensity('normal')
+  }
+
+  const exportTheme = () => {
+    const theme = {
+      background: bgColor,
+      foreground: fgColor,
+      primary: primaryColor,
+      muted: mutedColor,
+      border: borderColor,
+      font: currentFont,
+      radius,
+      shadow: shadowIntensity,
+    }
+    const css = `/* Eksportowany motyw */
+--background: ${bgColor};
+--foreground: ${fgColor};
+--primary: ${primaryColor};
+--muted: ${mutedColor};
+--border: ${borderColor};
+--heading-font: '${currentFont}';
+--radius: ${radius};`
+
+    navigator.clipboard.writeText(css)
+    alert('Skopiowano do schowka!\n\n' + css)
+    console.log('Eksportowany motyw:', theme)
   }
 
   const ColorSwatch = ({ color, isActive, onClick, size = 'normal' }: { color: string; isActive: boolean; onClick: () => void; size?: 'normal' | 'small' }) => (
@@ -478,6 +504,14 @@ export function ControlPanel() {
             >
               <RotateCcw className="w-4 h-4" />
               Reset do domyślnych
+            </button>
+
+            <button
+              onClick={exportTheme}
+              className="w-full py-2.5 px-4 bg-primary text-black font-bold text-xs uppercase tracking-wide hover:bg-primary/80 transition-all flex items-center justify-center gap-2 rounded"
+            >
+              <Copy className="w-4 h-4" />
+              Eksportuj motyw
             </button>
           </div>
 
