@@ -35,7 +35,7 @@ export function FaqSection({ content = defaultFaqContent }: FaqSectionProps) {
                 <span className="font-bold text-lg text-foreground pr-8">
                   {item.question}
                 </span>
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-open:bg-primary group-open:text-white transition-colors">
+                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center shrink-0 group-open:bg-primary group-open:text-primary-foreground transition-colors">
                   <ChevronDown className="w-5 h-5 transition-transform duration-300 group-open:rotate-180" />
                 </div>
               </summary>

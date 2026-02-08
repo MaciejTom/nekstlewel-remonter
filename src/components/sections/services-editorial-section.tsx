@@ -52,8 +52,8 @@ const s = {
 
   // CTA
   cta: "mt-24 lg:mt-32 w-full max-w-7xl bg-secondary text-secondary-foreground rounded-sm p-8 md:p-12 animate-fade-up relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8",
-  ctaTitle: "text-2xl md:text-3xl text-white font-bold mb-2 md:mb-0 tracking-tight relative z-10",
-  ctaDesc: "text-gray-400 relative z-10",
+  ctaTitle: "text-2xl md:text-3xl text-secondary-foreground font-bold mb-2 md:mb-0 tracking-tight relative z-10",
+  ctaDesc: "text-secondary-foreground/70 relative z-10",
   ctaButton: "bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-10 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 text-lg rounded-sm relative z-10 shrink-0",
 }
 
@@ -139,7 +139,7 @@ export function ServicesEditorialSection({ content, className, id }: ServicesEdi
           <div className={s.cta}>
             {/* Background decoration */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
+            <div className="absolute bottom-0 left-0 w-48 h-48 bg-foreground/5 rounded-full blur-2xl translate-y-1/2 -translate-x-1/2" />
 
             <div className="relative z-10">
               <p className={s.ctaTitle}>{cta.title}</p>

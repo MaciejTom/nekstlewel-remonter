@@ -89,7 +89,7 @@ export function HeroSection({
             {heroContent.ctaSecondary && (
               <a
                 href="#realizacje"
-                className="inline-flex items-center justify-center gap-2 bg-white text-foreground border border-border px-8 py-4 text-lg font-semibold rounded-sm hover:bg-muted transition-all hover:border-primary/50"
+                className="inline-flex items-center justify-center gap-2 bg-muted text-foreground border border-border px-8 py-4 text-lg font-semibold rounded-sm hover:bg-muted/80 transition-all hover:border-primary/50"
               >
                 {heroContent.ctaSecondary.text}
                 <ArrowRight className="w-5 h-5" />

@@ -539,11 +539,11 @@ interface ThemeState {
 }
 
 const defaultTheme: ThemeState = {
-  primary: "#dc2626",
-  secondary: "#1d3557",
-  background: "#fffbf5",
-  gold: "#b45309",
-  muted: "#f3ede4",
+  primary: "#eab308",
+  secondary: "#262626",
+  background: "#171717",
+  gold: "#eab308",
+  muted: "#262626",
   bodyFont: "inter",
   headingFont: "plus-jakarta",
 }

@@ -80,17 +80,17 @@ export function GallerySlider({ projects, onImageClick }: GallerySliderProps) {
                   className="object-cover group-hover:scale-105 transition-transform duration-500"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-secondary/40 to-transparent z-10" />
               </div>
 
               <div className="absolute bottom-0 left-0 right-0 p-4 z-20">
                 <span className="inline-block bg-primary/90 text-primary-foreground text-xs font-semibold px-2 py-1 rounded-sm mb-2">
                   {project.category}
                 </span>
-                <h3 className="text-sm font-bold text-white mb-1 group-hover:text-primary transition-colors line-clamp-1">
+                <h3 className="text-sm font-bold text-secondary-foreground mb-1 group-hover:text-primary transition-colors line-clamp-1">
                   {project.title}
                 </h3>
-                <p className="text-white/70 text-xs line-clamp-1">{project.specs}</p>
+                <p className="text-secondary-foreground/70 text-xs line-clamp-1">{project.specs}</p>
               </div>
             </div>
           ))}
@@ -167,16 +167,16 @@ export function GallerySection({ content = defaultPortfolioContent }: GallerySec
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
-              <div className="absolute top-4 right-4 bg-black/80 backdrop-blur border border-primary/30 px-3 py-1 z-20">
+              <div className="absolute top-4 right-4 bg-secondary/80 backdrop-blur border border-primary/30 px-3 py-1 z-20">
                 <span className="text-primary text-[10px] font-bold uppercase tracking-widest">
                   {project.category}
                 </span>
               </div>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
-                <h3 className="text-white font-bold text-xl">
+              <div className="absolute inset-0 bg-gradient-to-t from-secondary/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-6">
+                <h3 className="text-secondary-foreground font-bold text-xl">
                   {project.title}
                 </h3>
-                <p className="text-white/70 text-sm mt-1">{project.specs}</p>
+                <p className="text-secondary-foreground/70 text-sm mt-1">{project.specs}</p>
               </div>
             </div>
           ))}
