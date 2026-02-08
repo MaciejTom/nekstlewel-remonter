@@ -108,8 +108,8 @@ export function ControlPanel() {
     root.style.setProperty('--border', borderColor)
     root.style.setProperty('--input', borderColor)
     root.style.setProperty('--card', bgColor === '#ffffff' || bgColor === '#fefefe' || bgColor === '#fafafa' ? '#ffffff' : bgColor)
-    root.style.setProperty('--secondary', fgColor)
-    root.style.setProperty('--secondary-foreground', bgColor)
+    root.style.setProperty('--secondary', mutedColor)
+    root.style.setProperty('--secondary-foreground', fgColor)
   }, [bgColor, fgColor, primaryColor, mutedColor, borderColor])
 
   useEffect(() => {
