@@ -78,11 +78,23 @@ export default function RemonterPage() {
         />
         <HeroSection
           content={heroContent}
-          heroImage="/heroLech.webp"
+          heroImages={[
+            "/images/remonter/newHero.jpg",
+            "/images/remonter/newHero2.jpg",
+            "/images/remonter/newHero3.jpg",
+          ]}
           heroImageAlt="Wykończenia wnętrz REMONTER"
           phone={BRAND.phone}
         />
-        <WhyUsSection content={whyUsContent} />
+        <WhyUsSection
+          content={whyUsContent}
+          iconMap={{
+            Handshake: "/images/remonter/icons/Whisk_142f20ca50ad58f8f334cc4ab808b9fedr-removebg-preview.png",
+            Clock: "/images/remonter/icons/4-removebg-preview.png",
+            Wrench: "/images/remonter/icons/3-removebg-preview.png",
+            MapPin: "/images/remonter/icons/2-removebg-preview.png",
+          }}
+        />
         <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} />
         <GallerySection content={portfolioContent} />
         <ProcessSection content={processContent} />

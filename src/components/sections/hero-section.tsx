@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { Phone, ArrowRight, ShieldCheck } from "lucide-react"
 import { heroContent as defaultHeroContent } from "@/content/lech-bud/hero"
@@ -7,6 +8,7 @@ import { heroContent as defaultHeroContent } from "@/content/lech-bud/hero"
 interface HeroSectionProps {
   content?: typeof defaultHeroContent
   heroImage?: string
+  heroImages?: string[]
   heroImageAlt?: string
   phone?: string
 }
@@ -14,25 +16,41 @@ interface HeroSectionProps {
 export function HeroSection({
   content = defaultHeroContent,
   heroImage = "/heroLech.webp",
+  heroImages,
   heroImageAlt = "Realizacja",
   phone = "607176748",
 }: HeroSectionProps) {
   const heroContent = content
+  const images = heroImages || [heroImage]
+  const [currentIndex, setCurrentIndex] = useState(0)
+
+  const handleImageClick = () => {
+    if (images.length > 1) {
+      setCurrentIndex((prev) => (prev + 1) % images.length)
+    }
+  }
+
   return (
     <section className="relative min-h-screen flex items-center bg-background overflow-hidden">
       {/* Background image */}
-      <div className="absolute inset-0">
-        <Image
-          src={heroImage}
-          alt={heroImageAlt}
-          fill
-          className="object-cover"
-          priority
-          sizes="100vw"
-        />
+      <div
+        className={`absolute inset-0 ${images.length > 1 ? "cursor-pointer" : ""}`}
+        onClick={handleImageClick}
+      >
+        {images.map((img, idx) => (
+          <Image
+            key={img}
+            src={img}
+            alt={heroImageAlt}
+            fill
+            className={`object-cover transition-opacity duration-700 ${idx === currentIndex ? "opacity-100" : "opacity-0"}`}
+            priority={idx === 0}
+            sizes="100vw"
+          />
+        ))}
         {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 via-50% to-background/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/70 via-50% to-background/30 pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
       </div>
 
       <div className="container mx-auto px-6 py-40 relative z-10">

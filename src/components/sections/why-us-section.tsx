@@ -47,7 +47,7 @@ export function WhyUsSection({
             return (
               <div key={index} className="group transition-all duration-300 flex flex-col items-center text-center gap-6 hover:-translate-y-2">
                 {/* Icon Container */}
-                <div className="relative w-32 h-32 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
+                <div className="relative w-40 h-40 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500">
                    {/* Paint accent */}
                    <div className="absolute inset-0 flex items-center justify-center -z-10">
                       <svg viewBox="0 0 200 200" className="w-[180%] h-[180%] text-primary/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" fill="currentColor">
@@ -61,9 +61,9 @@ export function WhyUsSection({
                    <Image
                      src={iconSrc}
                      alt={usp.title}
-                     width={110}
-                     height={110}
-                     sizes="(max-width: 768px) 80px, 110px"
+                     width={140}
+                     height={140}
+                     sizes="(max-width: 768px) 100px, 140px"
                      className="w-full h-full object-contain drop-shadow-2xl relative z-10"
                    />
                 </div>
