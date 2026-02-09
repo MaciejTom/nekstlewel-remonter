@@ -1,8 +1,8 @@
 export const heroContent = {
-  badge: "Wykończenia pod klucz",
-  headline: "Kompleksowe wykończenia\nwnętrz",
-  headlineAccent: "wnętrz",
-  subtitle: "Remonty mieszkań i domów z dbałością o każdy detal. Solidna robota, terminowość i uczciwe ceny. Działam w regionie Kazimierzy Wielkiej.",
+  badge: "Kompleksowo | Terminowo | Lokalnie",
+  headline: "Zamień surowe ściany\nw wymarzony dom",
+  headlineAccent: "wymarzony dom",
+  subtitle: "Wykończenia wnętrz w województwie świętokrzyskim. Od pierwszej gładzi po ostatni włącznik — zajmuję się wszystkim, żebyś Ty mógł się tylko wprowadzić.",
   ctaPrimary: {
     text: "Zadzwoń: 123 456 789",
   },
