@@ -166,6 +166,7 @@ export function GallerySection({ content = defaultPortfolioContent }: GallerySec
                 alt={project.title}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
+                style={{ objectPosition: (project as any).objectPosition || "center" }}
               />
               <div className="absolute top-4 right-4 bg-secondary/80 backdrop-blur border border-primary/30 px-3 py-1 z-20">
                 <span className="text-primary text-[10px] font-bold uppercase tracking-widest">
