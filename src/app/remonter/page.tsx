@@ -10,6 +10,7 @@ import { ServicesEditorialSection } from "@/components/sections/services-editori
 import { GallerySection } from "@/components/sections/gallery-section"
 import { ProcessSection } from "@/components/sections/process-section"
 import { FaqSection } from "@/components/sections/faq-section"
+import { ReviewsSection } from "@/components/sections/reviews-section"
 import { ContactSection } from "@/components/sections/contact-section"
 import { FooterSection } from "@/components/sections/footer-section"
 
@@ -24,6 +25,7 @@ import { portfolioContent } from "@/content/remonter/portfolio"
 import { processContent } from "@/content/remonter/process"
 import { faqContent } from "@/content/remonter/faq"
 import { contactContent } from "@/content/remonter/contact"
+import { reviewsContent } from "@/content/remonter/reviews"
 
 // Config
 const BRAND = {
@@ -79,7 +81,7 @@ export default function RemonterPage() {
         <HeroSection
           content={heroContent}
           heroImages={[
-            "/images/remonter/newHero.jpg",
+            "/images/remonter/real5.jpg",
             "/images/remonter/newHero2.jpg",
             "/images/remonter/newHero3.jpg",
           ]}
@@ -98,6 +100,7 @@ export default function RemonterPage() {
         <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} />
         <GallerySection content={portfolioContent} />
         <ProcessSection content={processContent} />
+        <ReviewsSection content={reviewsContent} />
         <FaqSection content={faqContent} />
         <ContactSection content={contactContent} />
         <FooterSection
