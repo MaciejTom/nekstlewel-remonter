@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronRight } from "lucide-react"
-import { processContent as defaultProcessContent } from "@/content/lech-bud/process"
+import { processContent as defaultProcessContent } from "@/content/remonter/process"
 
 interface ProcessSectionProps {
   content?: typeof defaultProcessContent

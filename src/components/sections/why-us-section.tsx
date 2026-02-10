@@ -1,7 +1,7 @@
 "use client"
 
 import Image from "next/image"
-import { whyUsContent as defaultWhyUsContent } from "@/content/lech-bud/why-us"
+import { whyUsContent as defaultWhyUsContent } from "@/content/remonter/why-us"
 
 const defaultIconImageMap: Record<string, string> = {
   Clock: "/images/lech-bud/Whisk_c259a637d38e05184f441dba9d60e8b9dr-removebg-preview.png",

@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { portfolioContent as defaultPortfolioContent } from "@/content/lech-bud/portfolio"
+import { portfolioContent as defaultPortfolioContent } from "@/content/remonter/portfolio"
 
 interface GallerySliderProps {
   projects: typeof defaultPortfolioContent.projects

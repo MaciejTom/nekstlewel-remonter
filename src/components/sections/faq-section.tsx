@@ -1,7 +1,7 @@
 "use client"
 
 import { ChevronDown } from "lucide-react"
-import { faqContent as defaultFaqContent } from "@/content/lech-bud/faq"
+import { faqContent as defaultFaqContent } from "@/content/remonter/faq"
 
 interface FaqSectionProps {
   content?: typeof defaultFaqContent

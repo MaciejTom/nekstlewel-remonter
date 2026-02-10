@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { Phone, MapPin, Clock, ArrowRight, CheckCircle, AlertCircle } from "lucide-react"
-import { contactContent as defaultContactContent } from "@/content/lech-bud/contact"
+import { contactContent as defaultContactContent } from "@/content/remonter/contact"
 
 interface ContactSectionProps {
   content?: typeof defaultContactContent

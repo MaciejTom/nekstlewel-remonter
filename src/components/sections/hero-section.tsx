@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import { Phone, ArrowRight, ShieldCheck } from "lucide-react"
-import { heroContent as defaultHeroContent } from "@/content/lech-bud/hero"
+import { heroContent as defaultHeroContent } from "@/content/remonter/hero"
 
 interface HeroSectionProps {
   content?: typeof defaultHeroContent
