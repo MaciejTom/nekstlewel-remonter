@@ -31,7 +31,7 @@ import { reviewsContent } from "@/content/remonter/reviews"
 const BRAND = {
   name: "REMONTER",
   letter: "R",
-  logo: "/images/remonter/logo.jpg",
+  logo: "/images/remonter/logo.webp",
   phone: "123456789",
   phoneFormatted: "123 456 789",
   homeHref: "/",
@@ -83,9 +83,9 @@ export default function RemonterPage() {
         <HeroSection
           content={heroContent}
           heroImages={[
-            "/images/remonter/real5.jpg",
-            "/images/remonter/newHero2.jpg",
-            "/images/remonter/newHero3.jpg",
+            "/images/remonter/real5.webp",
+            "/images/remonter/newHero2.webp",
+            "/images/remonter/newHero3.webp",
           ]}
           heroImageAlt="Wykończenia wnętrz REMONTER"
           phone={BRAND.phone}
@@ -93,10 +93,10 @@ export default function RemonterPage() {
         <WhyUsSection
           content={whyUsContent}
           iconMap={{
-            Handshake: "/images/remonter/icons/Whisk_142f20ca50ad58f8f334cc4ab808b9fedr-removebg-preview.png",
-            Clock: "/images/remonter/icons/4-removebg-preview.png",
-            Wrench: "/images/remonter/icons/3-removebg-preview.png",
-            MapPin: "/images/remonter/icons/2-removebg-preview.png",
+            Handshake: "/images/remonter/icons/Whisk_142f20ca50ad58f8f334cc4ab808b9fedr-removebg-preview.webp",
+            Clock: "/images/remonter/icons/4-removebg-preview.webp",
+            Wrench: "/images/remonter/icons/3-removebg-preview.webp",
+            MapPin: "/images/remonter/icons/2-removebg-preview.webp",
           }}
         />
         <ServicesEditorialSection id="uslugi" content={servicesEditorialContent} />

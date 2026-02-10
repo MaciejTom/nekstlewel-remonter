@@ -17,7 +17,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Układanie podłóg",
         "Montaż drzwi i biały montaż",
       ],
-      image: "/images/remonter/serv1.jpg",
+      image: "/images/remonter/serv1.webp",
       imageAlt: "Wykończenie mieszkania pod klucz",
     },
     {
@@ -31,7 +31,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Wymiana instalacji",
         "Nowe wykończenie",
       ],
-      image: "/images/remonter/serv2.jpg",
+      image: "/images/remonter/serv2.webp",
       imageAlt: "Remont mieszkania",
     },
     {
@@ -45,7 +45,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Malowanie lateksowe",
         "Efekty dekoracyjne",
       ],
-      image: "/images/remonter/serv4.jpg",
+      image: "/images/remonter/serv4.webp",
       imageAlt: "Gładzie gipsowe",
     },
     {
@@ -59,7 +59,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Hydroizolacja",
         "Fugowanie i silikon",
       ],
-      image: "/images/remonter/serv3.jpg",
+      image: "/images/remonter/serv3.webp",
       imageAlt: "Układanie płytek",
     },
     {
@@ -73,7 +73,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
         "Deski warstwowe",
         "Wylewki samopoziomujące",
       ],
-      image: "/images/remonter/serv5.jpg",
+      image: "/images/remonter/serv5.webp",
       imageAlt: "Montaż podłóg",
     },
   ],
