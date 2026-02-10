@@ -92,7 +92,10 @@ export function NavSection({
           </a>
 
           {/* Mobile menu button */}
-          <button className="lg:hidden p-2 text-foreground hover:bg-muted rounded-sm transition-colors">
+          <button
+            aria-label="Otwórz menu"
+            className="lg:hidden p-2 text-foreground hover:bg-muted rounded-sm transition-colors"
+          >
             <Menu className="w-6 h-6" />
           </button>
         </div>
