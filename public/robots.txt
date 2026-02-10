@@ -1,6 +1,6 @@
-# Robots.txt for TOM-ART
+# Robots.txt for REMONTER
 User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://tom-art.pl/sitemap.xml
+Sitemap: https://remonter.pl/sitemap.xml

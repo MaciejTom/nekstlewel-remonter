@@ -15,28 +15,28 @@ const plusJakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://lech-bud.pl"),
-  title: "LECH-BUD | Remonty wnętrz Kielce - od 1986 roku",
-  description: "40 lat doświadczenia w remontach wnętrz. Biurowce, domy kultury, wspólnoty mieszkaniowe i prywatne łazienki w Kielcach i okolicach. Leszek Kozieł.",
+  metadataBase: new URL("https://remonter.pl"),
+  title: "REMONTER | Wykończenia i remonty Kazimierza Wielka",
+  description: "Kompleksowe wykończenia mieszkań i domów pod klucz. Remonty, gładzie, malowanie, płytki, podłogi. Kazimierza Wielka i okolice. Kamil Makieła.",
   openGraph: {
-    title: "LECH-BUD | Remonty wnętrz Kielce - od 1986 roku",
-    description: "40 lat doświadczenia w remontach wnętrz. Biurowce, domy kultury, wspólnoty mieszkaniowe i prywatne łazienki w Kielcach i okolicach.",
+    title: "REMONTER | Wykończenia i remonty Kazimierza Wielka",
+    description: "Kompleksowe wykończenia mieszkań i domów pod klucz. Remonty, gładzie, malowanie, płytki, podłogi. Kazimierza Wielka i okolice.",
     type: "website",
     locale: "pl_PL",
     images: [
       {
-        url: "/heroLech.webp",
+        url: "/images/remonter/real5.jpg",
         width: 1200,
         height: 630,
-        alt: "LECH-BUD - profesjonalne remonty wnętrz od 1986 roku",
+        alt: "REMONTER - wykończenia wnętrz Kazimierza Wielka",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LECH-BUD | Remonty wnętrz Kielce - od 1986 roku",
-    description: "40 lat doświadczenia w remontach wnętrz w Kielcach i okolicach.",
-    images: ["/heroLech.webp"],
+    title: "REMONTER | Wykończenia i remonty Kazimierza Wielka",
+    description: "Kompleksowe wykończenia mieszkań i domów pod klucz. Kazimierza Wielka i okolice.",
+    images: ["/images/remonter/real5.jpg"],
   },
 };
 
