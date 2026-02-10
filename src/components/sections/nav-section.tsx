@@ -17,6 +17,7 @@ export { defaultNavLinks as navLinks }
 interface NavSectionProps {
   brandName?: string
   brandLetter?: string
+  brandLogo?: string
   phone?: string
   phoneFormatted?: string
   links?: typeof defaultNavLinks
@@ -26,6 +27,7 @@ interface NavSectionProps {
 export function NavSection({
   brandName = "LECH-BUD",
   brandLetter = "L",
+  brandLogo,
   phone = "607176748",
   phoneFormatted = "607 176 748",
   links = defaultNavLinks,
@@ -57,9 +59,13 @@ export function NavSection({
         <div className="flex items-center justify-between h-full">
           {/* Logo */}
           <a href={homeHref} className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center font-bold text-xl rounded-sm">
-              {brandLetter}
-            </div>
+            {brandLogo ? (
+              <img src={brandLogo} alt={brandName} className="h-10 w-10 rounded-sm object-cover" />
+            ) : (
+              <div className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center font-bold text-xl rounded-sm">
+                {brandLetter}
+              </div>
+            )}
             <span className="text-xl font-bold text-foreground tracking-tight">{brandName}</span>
           </a>
 

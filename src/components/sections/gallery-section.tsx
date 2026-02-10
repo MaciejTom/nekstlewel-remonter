@@ -124,28 +124,32 @@ export function GallerySection({ content = defaultPortfolioContent }: GallerySec
   }))
 
   return (
-    <section id="realizacje" className="w-full bg-muted/30 py-24 px-4 md:px-10">
-      <div className="mx-auto max-w-[1400px]">
-        <div className="text-center mb-16">
-          <span className="text-primary text-xs font-bold tracking-[0.2em] uppercase">
+    <section id="realizacje" className="w-full bg-muted/30 py-32 px-4 md:px-10 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-primary/5 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-secondary/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2 pointer-events-none" />
+
+      <div className="mx-auto max-w-[1400px] relative z-10">
+        <div className="text-center mb-20">
+          <span className="text-sm font-bold text-primary tracking-widest uppercase mb-4 block">
             {portfolioContent.tagline}
           </span>
-          <h2 className="text-foreground text-4xl md:text-5xl font-bold mt-3 h2-accent-center">
+          <h2 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 tracking-tight h2-accent-center">
             {portfolioContent.title} <span className="text-primary">{portfolioContent.titleAccent}</span>
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+          <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
             {portfolioContent.subtitle}
           </p>
 
           {/* Stats */}
           {portfolioContent.stats && portfolioContent.stats.length > 0 && (
-            <div className="flex justify-center gap-8 md:gap-16 mt-8">
+            <div className="flex justify-center gap-8 md:gap-16 mt-12">
               {portfolioContent.stats.map((stat, i) => (
                 <div key={i} className="text-center">
-                  <div className={`text-3xl md:text-4xl font-bold ${stat.highlight ? 'text-primary' : 'text-foreground'}`}>
+                  <div className={`text-4xl md:text-5xl font-bold ${stat.highlight ? 'text-primary' : 'text-foreground'}`}>
                     {stat.value}
                   </div>
-                  <div className="text-sm text-muted-foreground mt-1">{stat.label}</div>
+                  <div className="text-sm text-muted-foreground mt-2 uppercase tracking-wider">{stat.label}</div>
                 </div>
               ))}
             </div>

@@ -31,6 +31,7 @@ import { reviewsContent } from "@/content/remonter/reviews"
 const BRAND = {
   name: "REMONTER",
   letter: "R",
+  logo: "/images/remonter/logo.jpg",
   phone: "123456789",
   phoneFormatted: "123 456 789",
   homeHref: "/remonter",
@@ -74,6 +75,7 @@ export default function RemonterPage() {
         <NavSection
           brandName={BRAND.name}
           brandLetter={BRAND.letter}
+          brandLogo={BRAND.logo}
           phone={BRAND.phone}
           phoneFormatted={BRAND.phoneFormatted}
           homeHref={BRAND.homeHref}
