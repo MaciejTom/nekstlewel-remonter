@@ -31,7 +31,7 @@ import { reviewsContent } from "@/content/remonter/reviews"
 const BRAND = {
   name: "REMONTER",
   letter: "R",
-  logo: "/images/remonter/logo.webp",
+  logo: "/images/remonter/logo-sm.webp",
   phone: "123456789",
   phoneFormatted: "123 456 789",
   homeHref: "/",

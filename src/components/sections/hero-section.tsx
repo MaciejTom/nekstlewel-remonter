@@ -55,18 +55,17 @@ export function HeroSection({
 
       <div className="container mx-auto px-6 py-40 relative z-10">
         <div className="max-w-4xl">
-          {/* Badge */}
+          {/* Badge - no animation to avoid FCP delay */}
           {heroContent.badge && (
-            <span className="inline-flex items-center gap-2 bg-gold/10 text-gold border border-gold/20 px-4 py-2 text-sm font-semibold tracking-wide rounded-sm mb-8 animate-fade-up backdrop-blur-sm">
+            <span className="inline-flex items-center gap-2 bg-gold/10 text-gold border border-gold/20 px-4 py-2 text-sm font-semibold tracking-wide rounded-sm mb-8 backdrop-blur-sm">
               <ShieldCheck className="w-4 h-4" />
               {heroContent.badge}
             </span>
           )}
 
-          {/* Headline */}
+          {/* Headline - no animation to avoid LCP delay */}
           <h1
-            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground leading-[1.1] mb-8 animate-fade-up tracking-tight"
-            style={{ animationDelay: "0.1s" }}
+            className="text-4xl sm:text-5xl lg:text-7xl font-bold text-foreground leading-[1.1] mb-8 tracking-tight"
           >
             {heroContent.headline.split("\n").map((line, i) => (
               <span key={i} className="block">

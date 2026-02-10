@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { Phone, Menu } from "lucide-react"
 
 const defaultNavLinks = [
@@ -60,7 +61,7 @@ export function NavSection({
           {/* Logo */}
           <a href={homeHref} className="flex items-center gap-2">
             {brandLogo ? (
-              <img src={brandLogo} alt={brandName} className="h-10 w-10 rounded-sm object-cover" />
+              <Image src={brandLogo} alt={brandName} width={40} height={40} className="rounded-sm object-cover" priority />
             ) : (
               <div className="w-10 h-10 bg-primary text-primary-foreground flex items-center justify-center font-bold text-xl rounded-sm">
                 {brandLetter}

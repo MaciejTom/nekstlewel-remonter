@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+import Image from "next/image"
 import type { ServiceEditorialContent } from "@/types"
 import { Home, Hammer, Paintbrush, Bath, Layers, CheckCircle, Phone } from "lucide-react"
 
@@ -35,8 +35,8 @@ const s = {
   imageCol: "w-full lg:w-1/2 relative perspective-1000",
   imageBorderLeft: "absolute top-4 -left-4 w-full h-full bg-primary/10 hidden lg:block -z-10 transition-transform duration-500 group-hover:rotate-0 group-hover:translate-x-2 group-hover:translate-y-2",
   imageBorderRight: "absolute top-4 -right-4 w-full h-full bg-secondary/10 hidden lg:block -z-10 transition-transform duration-500 group-hover:rotate-0 group-hover:-translate-x-2 group-hover:translate-y-2",
-  imageWrap: "relative h-72 sm:h-96 lg:h-[450px] w-full shadow-xl border border-border/50 bg-muted rounded-sm",
-  image: "object-cover w-full h-full transform transition-transform duration-700 group-hover:scale-105",
+  imageWrap: "relative h-72 sm:h-96 lg:h-[450px] w-full shadow-xl border border-border/50 bg-muted rounded-sm overflow-hidden",
+  image: "object-cover transition-transform duration-700 group-hover:scale-105",
 
   // Content
   contentCol: "w-full lg:w-1/2",
@@ -103,10 +103,13 @@ export function ServicesEditorialSection({ content, className, id }: ServicesEdi
                 <div className={s.imageCol}>
                   <div className={isEven ? s.imageBorderRight : s.imageBorderLeft} />
                   <div className={s.imageWrap}>
-                    <img
+                    <Image
                       src={service.image}
                       alt={service.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
                       className={s.image}
+                      loading={index === 0 ? "eager" : "lazy"}
                     />
                   </div>
                 </div>
