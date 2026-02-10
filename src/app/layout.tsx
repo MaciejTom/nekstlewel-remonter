@@ -49,13 +49,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pl" suppressHydrationWarning>
-      <head>
-        {/* Material Symbols for service icons */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0&display=swap"
-          rel="stylesheet"
-        />
-      </head>
       <body className={`${inter.variable} ${plusJakarta.variable} font-sans antialiased`}>
         {children}
       </body>

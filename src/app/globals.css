@@ -153,11 +153,6 @@ html {
   border-radius: 2px;
 }
 
-/* Material Symbols */
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-}
-
 /* FAQ */
 details summary::-webkit-details-marker {
   display: none;

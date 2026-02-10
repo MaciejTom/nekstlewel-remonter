@@ -1,5 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import type { ServiceOverlayContent } from "@/types"
+import { Home, Hammer, Paintbrush, Bath, Layers, Phone } from "lucide-react"
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  home: Home,
+  construction: Hammer,
+  format_paint: Paintbrush,
+  bathroom: Bath,
+  stairs: Layers,
+  phone: Phone,
+}
 
 const s = {
   // Section
@@ -37,8 +47,6 @@ const s = {
   ctaText: "text-secondary font-medium mb-4 text-lg",
   ctaButton: "bg-primary hover:bg-primary/85 text-primary-foreground font-sans font-semibold py-4 px-10 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 mx-auto transform hover:-translate-y-0.5",
 }
-
-const iconFill = { fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24" } as const
 
 const gradientStyle = {
   background: "linear-gradient(to top, var(--background), color-mix(in srgb, var(--background) 95%, transparent) 40%, transparent)",
@@ -84,9 +92,10 @@ export function ServicesOverlaySection({ content, className }: ServicesOverlaySe
               {/* Content */}
               <div className={s.cardContent}>
                 <div className={s.iconCircle}>
-                  <span className="material-symbols-outlined text-2xl" style={iconFill}>
-                    {service.icon}
-                  </span>
+                  {(() => {
+                    const IconComponent = iconMap[service.icon]
+                    return IconComponent ? <IconComponent className="w-6 h-6" /> : null
+                  })()}
                 </div>
 
                 <h3 className={s.cardTitle}>{service.title}</h3>
@@ -111,14 +120,13 @@ export function ServicesOverlaySection({ content, className }: ServicesOverlaySe
         {cta && (
           <div className={s.cta}>
             <p className={s.ctaText}>{cta.text}</p>
-            <button className={s.ctaButton}>
-              {cta.buttonIcon && (
-                <span className="material-symbols-outlined text-[24px]" style={iconFill}>
-                  {cta.buttonIcon}
-                </span>
-              )}
+            <a href="tel:123456789" className={s.ctaButton}>
+              {cta.buttonIcon && (() => {
+                const IconComponent = iconMap[cta.buttonIcon]
+                return IconComponent ? <IconComponent className="w-6 h-6" /> : null
+              })()}
               {cta.buttonText}
-            </button>
+            </a>
           </div>
         )}
       </div>

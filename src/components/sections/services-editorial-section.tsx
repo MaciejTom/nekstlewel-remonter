@@ -1,5 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import type { ServiceEditorialContent } from "@/types"
+import { Home, Hammer, Paintbrush, Bath, Layers, CheckCircle, Phone } from "lucide-react"
+
+const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+  home: Home,
+  construction: Hammer,
+  format_paint: Paintbrush,
+  bathroom: Bath,
+  stairs: Layers,
+  phone: Phone,
+}
 
 const s = {
   // Section
@@ -47,7 +57,7 @@ const s = {
   featureListReverse: "space-y-4 flex flex-col lg:items-end",
   featureItem: "flex items-center gap-3 p-2 hover:bg-muted/50 transition-colors -ml-2 pl-2",
   featureItemReverse: "flex items-center gap-3 lg:flex-row-reverse p-2 hover:bg-muted/50 transition-colors -mr-2 pr-2",
-  featureIcon: "material-symbols-outlined text-primary text-xl mt-0.5",
+  featureIcon: "text-primary w-5 h-5 mt-0.5 flex-shrink-0",
   featureText: "font-medium text-foreground/90",
 
   // CTA
@@ -56,8 +66,6 @@ const s = {
   ctaDesc: "text-secondary-foreground/70 relative z-10",
   ctaButton: "bg-primary hover:bg-primary/90 text-primary-foreground font-bold py-4 px-10 shadow-lg shadow-primary/25 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center gap-3 text-lg rounded-sm relative z-10 shrink-0",
 }
-
-const iconFill = { fontVariationSettings: "'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24" } as const
 
 interface ServicesEditorialSectionProps {
   content: ServiceEditorialContent
@@ -108,9 +116,10 @@ export function ServicesEditorialSection({ content, className, id }: ServicesEdi
                   {/* Step badge */}
                   <div className={isEven ? s.badgeReverse : s.badge}>
                     <span className={s.iconCircle}>
-                      <span className="material-symbols-outlined text-2xl" style={iconFill}>
-                        {service.icon}
-                      </span>
+                      {(() => {
+                        const IconComponent = iconMap[service.icon]
+                        return IconComponent ? <IconComponent className="w-6 h-6" /> : null
+                      })()}
                     </span>
                     <span className={s.stepLabel}>{service.step}</span>
                   </div>
@@ -123,7 +132,7 @@ export function ServicesEditorialSection({ content, className, id }: ServicesEdi
                   <ul className={isEven ? s.featureListReverse : s.featureList}>
                     {service.features.map((feature, i) => (
                       <li key={i} className={isEven ? s.featureItemReverse : s.featureItem}>
-                        <span className={s.featureIcon} style={iconFill}>check_circle</span>
+                        <CheckCircle className={s.featureIcon} />
                         <span className={s.featureText}>{feature}</span>
                       </li>
                     ))}
@@ -145,14 +154,13 @@ export function ServicesEditorialSection({ content, className, id }: ServicesEdi
               <p className={s.ctaTitle}>{cta.title}</p>
               <p className={s.ctaDesc}>{cta.description}</p>
             </div>
-            <button className={s.ctaButton}>
-              {cta.buttonIcon && (
-                <span className="material-symbols-outlined text-[24px]" style={iconFill}>
-                  {cta.buttonIcon}
-                </span>
-              )}
+            <a href="tel:123456789" className={s.ctaButton}>
+              {cta.buttonIcon && (() => {
+                const IconComponent = iconMap[cta.buttonIcon]
+                return IconComponent ? <IconComponent className="w-6 h-6" /> : null
+              })()}
               {cta.buttonText}
-            </button>
+            </a>
           </div>
         )}
       </div>
