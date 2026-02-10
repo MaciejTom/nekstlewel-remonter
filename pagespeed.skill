@@ -1,0 +1,62 @@
+# PageSpeed Optimizer Skill
+
+Kompleksowa optymalizacja Next.js dla PageSpeed 90+.
+
+## Wywołanie
+
+```
+/pagespeed [URL lub wyniki]
+```
+
+## Instrukcje dla Claude
+
+Gdy użytkownik wywoła ten skill:
+
+1. **Zbierz dane** - poproś o URL PageSpeed Insights lub surowe wyniki
+2. **Przeczytaj** `agent-teams/pagespeed-optimizer.md` dla pełnej metodologii
+3. **Wykonaj audyt** zgodnie z checklistą
+4. **Napraw problemy** w kolejności priorytetów:
+   - LCP (największy wpływ)
+   - Obrazy (łatwe do naprawy)
+   - Fonty (duże oszczędności)
+   - JS/CSS (wymaga testów)
+   - Accessibility (szybkie fixy)
+5. **Zbuduj i przetestuj** przed commitem
+6. **Commit z opisem** co zostało zoptymalizowane
+
+## Quick fixes (najczęstsze)
+
+### 1. Material Symbols → Lucide
+```bash
+grep -rn "material-symbols" src/
+```
+Zamień na import z lucide-react.
+
+### 2. <img> → next/image
+```bash
+grep -rn "<img " src/components/
+```
+Dodaj fill, sizes, loading.
+
+### 3. Animacje na LCP
+```bash
+grep -rn "animate-" src/components/sections/hero
+```
+Usuń z h1 i elementów above-fold.
+
+### 4. Logo za duże
+```javascript
+require('sharp')('logo.webp').resize(80,80).webp({quality:85}).toFile('logo-sm.webp')
+```
+
+### 5. Brak aria-label
+```bash
+grep -rn "<button" src/ | grep -v "aria-label"
+```
+
+## Oczekiwane wyniki
+
+- Performance: 60 → 90+
+- FCP: 4s → 2s
+- LCP: 6s → 3s
+- Savings: 300-500 KB
