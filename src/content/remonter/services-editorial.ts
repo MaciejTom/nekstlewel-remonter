@@ -81,7 +81,7 @@ export const servicesEditorialContent: ServiceEditorialContent = {
   cta: {
     title: "Potrzebujesz wyceny?",
     description: "Zadzwoń lub napisz - bezpłatnie wycenię Twój projekt.",
-    buttonText: "Zadzwoń: 123 456 789",
+    buttonText: "Zadzwoń: 609 643 576",
     buttonIcon: "phone",
   },
 }

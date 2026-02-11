@@ -32,13 +32,13 @@ const BRAND = {
   name: "REMONTER",
   letter: "R",
   logo: "/images/remonter/logo-sm.webp",
-  phone: "123456789",
-  phoneFormatted: "123 456 789",
+  phone: "609643576",
+  phoneFormatted: "609 643 576",
   homeHref: "/",
   description: "Kompleksowe wykończenia mieszkań i domów pod klucz. Remonty, gładzie, malowanie, płytki, podłogi. Kazimierza Wielka i okolice.",
   badge: "Wykończenia pod klucz",
   copyright: "REMONTER Kamil Makieła",
-  whatsappNumber: "48123456789",
+  whatsappNumber: "48609643576",
   location: "Kazimierza Wielka i okolice",
 }
 

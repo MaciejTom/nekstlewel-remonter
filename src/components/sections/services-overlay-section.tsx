@@ -120,7 +120,7 @@ export function ServicesOverlaySection({ content, className }: ServicesOverlaySe
         {cta && (
           <div className={s.cta}>
             <p className={s.ctaText}>{cta.text}</p>
-            <a href="tel:123456789" className={s.ctaButton}>
+            <a href="tel:609643576" className={s.ctaButton}>
               {cta.buttonIcon && (() => {
                 const IconComponent = iconMap[cta.buttonIcon]
                 return IconComponent ? <IconComponent className="w-6 h-6" /> : null

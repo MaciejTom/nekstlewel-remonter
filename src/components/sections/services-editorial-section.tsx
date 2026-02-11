@@ -157,7 +157,7 @@ export function ServicesEditorialSection({ content, className, id }: ServicesEdi
               <p className={s.ctaTitle}>{cta.title}</p>
               <p className={s.ctaDesc}>{cta.description}</p>
             </div>
-            <a href="tel:123456789" className={s.ctaButton}>
+            <a href="tel:609643576" className={s.ctaButton}>
               {cta.buttonIcon && (() => {
                 const IconComponent = iconMap[cta.buttonIcon]
                 return IconComponent ? <IconComponent className="w-6 h-6" /> : null
